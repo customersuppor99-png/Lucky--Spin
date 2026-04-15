@@ -1,333 +1,75 @@
-<!DOCTYPE html>
-<html lang="bn">
+<!DOCTYPE html><html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>জনতার অনলাইন প্রেস ক্লাব - প্রিমিয়াম ড্যাশবোর্ড</title>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --bg: #0b0f19;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --accent: #00d2ff;
-            --gold: #ffcc00;
-            --danger: #ff4d4d;
-            --glass-border: rgba(255, 255, 255, 0.1);
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Hind Siliguri', sans-serif;
-            background: radial-gradient(circle at top right, #1a2a44, var(--bg));
-            color: #ffffff;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 60px 20px;
-            background: var(--card-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 30px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            margin-bottom: 40px;
-        }
-
-        .hero h1 {
-            font-size: 32px;
-            background: linear-gradient(90deg, #00d2ff, #9d50bb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-
-        .hero p { font-size: 18px; color: #b0b0b0; }
-
-        /* Step Cards */
-        .step-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            padding: 25px;
-            border-radius: 20px;
-            transition: 0.3s;
-        }
-
-        .card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.08); }
-
-        .btn-action {
-            display: block;
-            text-align: center;
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: 0.3s;
-        }
-
-        .btn-login { background: var(--accent); color: #000; }
-        .btn-video { background: #ff0000; color: #fff; }
-
-        /* Status Banner */
-        .status-banner {
-            background: rgba(0, 255, 100, 0.1);
-            border-left: 5px solid #00ff64;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 40px;
-        }
-
-        /* Danger/Mandatory Section */
-        .danger-box {
-            background: rgba(255, 77, 77, 0.1);
-            border: 1px dashed var(--danger);
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .danger-box h2 { color: var(--danger); margin-top: 0; }
-
-        /* Benefits Grid */
-        .benefits {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-        }
-
-        .benefit-item {
-            padding: 15px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .benefit-item i { font-size: 24px; color: var(--accent); }
-
-        /* AI Floating Bot */
-        #ai-bot-trigger {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #00d2ff, #9d50bb);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 30px;
-            cursor: pointer;
-            box-shadow: 0 0 20px var(--accent);
-            z-index: 9999;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 210, 255, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(0, 210, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 210, 255, 0); }
-        }
-
-        #chat-window {
-            position: fixed;
-            bottom: 110px;
-            right: 30px;
-            width: 350px;
-            height: 500px;
-            background: #0b0f19e6;
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 25px;
-            display: none;
-            flex-direction: column;
-            z-index: 9999;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-        }
-
-        .chat-header { padding: 20px; background: var(--accent); color: #000; font-weight: 800; text-align: center; }
-        #chat-body { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
-        .bot-msg { background: var(--card-bg); padding: 12px; border-radius: 15px; font-size: 14px; border: 1px solid var(--glass-border); }
-        .chat-input { padding: 15px; display: flex; gap: 10px; border-top: 1px solid var(--glass-border); }
-        #msg-input { flex: 1; background: transparent; border: 1px solid var(--glass-border); color: white; padding: 10px; border-radius: 8px; }
-
-        @media (max-width: 600px) {
-            .step-container { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <div class="hero">
-        <i class="fas fa-rocket" style="font-size: 50px; color: var(--accent);"></i>
-        <h1>লাইভ নিউজ আপলোড সিস্টেম</h1>
-        <p>🎉 অভিনন্দন! আপনি এখন লাইভ নিউজ পাবলিশিং সিস্টেমে প্রবেশ করেছেন।</p>
-        <p style="font-size: 15px;">আপনার অ্যাকাউন্ট এখন প্রায় প্রস্তুত—আর মাত্র কয়েকটি ধাপ সম্পন্ন করলেই আপনি হয়ে যাবেন একজন অ্যাক্টিভ ডিজিটাল সাংবাদিক 📰</p>
-    </div>
-
-    <div class="step-container">
-        <div class="card">
-            <h3>🔐 ধাপ ১: লগইন করুন</h3>
-            <p>আপনার ব্যক্তিগত ড্যাশবোর্ডে প্রবেশ করতে নিচে ক্লিক করুন।</p>
-            <a href="https://www.jonotaronlinepresscloub.com/signin/" class="btn-action btn-login">সরাসরি লগইন করুন</a>
-        </div>
-        <div class="card">
-            <h3>🎥 ধাপ ২: ভিডিও গাইড</h3>
-            <p>কিভাবে সংবাদ ও ছবি আপলোড করবেন তা শিখতে ভিডিওটি দেখুন।</p>
-            <a href="https://youtu.be/nTB28qtbwdk?si=0BV6ZuHV3gX8ez3O" class="btn-action btn-video"><i class="fab fa-youtube"></i> টিউটোরিয়াল দেখুন</a>
-        </div>
-    </div>
-
-    <div class="status-banner">
-        <h3 style="margin:0;"><i class="fas fa-check-circle"></i> এলিট সদস্য নিশ্চিতকরণ</h3>
-        <p>আপনার সকল তথ্য সফলভাবে যাচাই করা হয়েছে ✅ আপনাকে আমাদের এক্সক্লুসিভ সাংবাদিক নেটওয়ার্কে অন্তর্ভুক্ত করা হয়েছে।</p>
-    </div>
-
-    <div class="danger-box">
-        <i class="fas fa-box-open" style="font-size: 40px; color: var(--gold); margin-bottom: 15px;"></i>
-        <h2>অ্যাক্টিভেশন বাধ্যতামূলক ⚠️</h2>
-        <p>আপনার অফিসিয়াল পরিচয় প্যাকেজ/পার্সেল পাঠানো হয়েছে। এটি আপনার ডিজিটাল পরিচয় ও ক্ষমতার দরজা।</p>
-        <p style="color: var(--danger); font-weight: bold;">🚫 পার্সেল গ্রহণ না করলে আপনার অ্যাকাউন্ট নিষ্ক্রিয় থাকবে এবং সংবাদ আপলোড বন্ধ থাকবে।</p>
-        <p>👉 <b>চূড়ান্ত অ্যাক্টিভেশন = পার্সেল গ্রহণ</b></p>
-    </div>
-
-    <h2 style="text-align: center; margin-bottom: 30px;">🌟 প্রিমিয়াম সুবিধাসমূহ</h2>
-    <div class="benefits">
-        <div class="benefit-item"><i class="fas fa-shield-alt"></i> আইনি সুরক্ষা (সক্রিয়)</div>
-        <div class="benefit-item"><i class="fas fa-bolt"></i> আনলিমিটেড নিউজ পাবলিশিং</div>
-        <div class="benefit-item"><i class="fas fa-qrcode"></i> স্মার্ট QR আইডি কার্ড</div>
-        <div class="benefit-item"><i class="fas fa-user-tie"></i> অফিসিয়াল প্রতিনিধি পদ</div>
-        <div class="benefit-item"><i class="fas fa-gift"></i> নিশ্চিত মেগা রিওয়ার্ড</div>
-        <div class="benefit-item"><i class="fas fa-heartbeat"></i> স্বাস্থ্য ও জীবন সুরক্ষা</div>
-    </div>
-
-    <div style="text-align: center; margin-top: 60px; padding: 40px; border-top: 1px solid var(--glass-border);">
-        <h2 style="color: var(--accent);">🚀 আপনার যাত্রা শুরু করুন</h2>
-        <p>📦 পার্সেল গ্রহণ করুন 🔓 আপনার আইডি অ্যাক্টিভ করুন</p>
-        <p><b>💥 এই সুযোগটি হাতছাড়া করবেন না!</b></p>
-    </div>
-</div>
-
-<div id="chat-window">
-    <div class="chat-header">AI অ্যাসিস্ট্যান্ট</div>
-    <div id="chat-body">
-        <div class="bot-msg">আসসালামু আলাইকুম! আপনি কীভাবে সাহায্য পেতে পারেন?</div>
-    </div>
-    <div class="chat-input">
-        <input type="text" id="msg-input" placeholder="প্রশ্ন লিখুন...">
-        <button id="send-btn" style="background:var(--accent); border:none; border-radius:8px; cursor:pointer;"><i class="fas fa-paper-plane"></i></button>
-    </div>
-</div>
-
-<div id="ai-bot-trigger">
-    <i class="fas fa-robot"></i>
-</div>
-
-<script>
-    const botTrigger = document.getElementById('ai-bot-trigger');
-    const chatWindow = document.getElementById('chat-window');
-    const sendBtn = document.getElementById('send-btn');
-    const msgInput = document.getElementById('msg-input');
-    const chatBody = document.getElementById('chat-body');
-
-    let count = 0;
-
-    botTrigger.onclick = () => {
-        chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
-    };
-
-    sendBtn.onclick = () => {
-        const userText = msgInput.value;
-        if(!userText) return;
-
-        // User message bubble
-        const uMsg = document.createElement('div');
-        uMsg.style = "align-self: flex-end; background: var(--accent); color: #000; padding: 10px; border-radius: 12px; font-size: 13px;";
-        uMsg.innerText = userText;
-        chatBody.appendChild(uMsg);
-        msgInput.value = '';
-        count++;
-
-        setTimeout(() => {
-            const bMsg = document.createElement('div');
-            bMsg.className = "bot-msg";
-            
-            if(count === 1) {
-                bMsg.innerHTML = `<b>কিভাবে সংবাদ আপলোড করবেন?</b><br>প্রথমে এই লিংকে লগইন করুন: <br><a href="https://www.jonotaronlinepresscloub.com/signin/" style="color:cyan">লগইন করুন</a><br><br>এরপর এই ভিডিওটি সম্পূর্ণ দেখুন: <br><a href="https://youtu.be/nTB28qtbwdk?si=0BV6ZuHV3gX8ez3O" style="color:cyan">ভিডিও লিংক</a>`;
-            } else {
-                bMsg.innerHTML = `<span style="color:yellow">Dear member, thank you for receiving the parcel.</span> To learn how to upload news, please first click on this link and log in: <a href="https://www.jonotaronlinepresscloub.com/signin/" style="color:cyan">https://www.jonotaronlinepresscloub.com/signin/</a><br><br>Then watch the complete tutorial video: <a href="https://youtu.be/nTB28qtbwdk?si=0BV6ZuHV3gX8ez3O" style="color:cyan">https://youtu.be/nTB28qtbwdk</a><br><br><b>পার্সেলটি দ্রুত গ্রহণ করুন।</b> কোনো সমস্যা হলে WhatsApp-এ যোগাযোগ করুন।`;
-            }
-            chatBody.appendChild(bMsg);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }, 1000);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate Generator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f9;
+      text-align: center;
+      padding: 20px;
     }
-</script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>মেগা রিওয়ার্ড সিস্টেম</title>
-    <link rel="stylesheet" href="style.css">
+    .form-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: auto;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #certificate {
+      display: none;
+      margin-top: 30px;
+      padding: 30px;
+      border: 10px solid #000;
+      background: #fff;
+    }
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .content {
+      font-size: 18px;
+      line-height: 1.8;
+    }
+  </style>
 </head>
-<body>
+<body>  <div class="form-box">
+    <h2>সার্টিফিকেট তৈরি করুন</h2>
+    <input type="text" id="name" placeholder="আপনার নাম লিখুন">
+    <input type="text" id="district" placeholder="জেলার নাম লিখুন">
+    <input type="text" id="upazila" placeholder="উপজেলার নাম লিখুন">
+    <button onclick="generateCertificate()">Generate Certificate</button>
+  </div>  <div id="certificate">
+    <div class="title">সনদপত্র</div>
+    <div class="content" id="certText"></div>
+  </div>  <script>
+    function generateCertificate() {
+      const name = document.getElementById('name').value;
+      const district = document.getElementById('district').value;
+      const upazila = document.getElementById('upazila').value;
 
-    <div class="reward-container">
-        <div class="card">
-            <div class="badge">১০০% নিশ্চিত বিজয়</div>
-            <h1>মেগা রিওয়ার্ড সিস্টেম 🔥</h1>
-            <p class="subtitle">পার্সেল গ্রহণ করলেই আপনি যুক্ত হবেন এক্সক্লুসিভ কুপন ড্র-এ!</p>
-            
-            <div class="divider"></div>
+      const text = `এই মর্মে প্রত্যয়ন করা যাচ্ছে যে ${name}, জেলা: ${district}, উপজেলা: ${upazila}, দেশ: বাংলাদেশ। \n\nউক্ত ব্যক্তি জনতার অনলাইন প্রেসক্লাবের একজন সম্মানিত সদস্য, যিনি সততা ও নিষ্ঠার সাথে কাজ করছেন। তিনি সাংবাদিক প্রশিক্ষণ কোর্স সফলভাবে সম্পন্ন করেছেন। \n\nতাকে আন্তরিক অভিনন্দন জানানো হলো।`;
 
-            <div class="offer-box">
-                <span class="check-icon">✔</span>
-                <p>পার্সেল রিসিভ করলেই আপনার কুপন নাম্বারটি একটিভ হবে এবং আপনি ইনশাআল্লাহ <strong>নিশ্চিত উপহার</strong> পাবেন।</p>
-            </div>
-
-            <h3>🎉 সম্ভাব্য পুরস্কারসমূহ:</h3>
-            <ul class="reward-list">
-                <li><span>📱</span> স্মার্টফোন</li>
-                <li><span>👕</span> অফিসিয়াল টি-শার্ট</li>
-                <li><span>🎤</span> সাংবাদিকতা সরঞ্জাম</li>
-                <li><span>🎧</span> প্রিমিয়াম গ্যাজেট প্যাকেজ</li>
-                <li><span>🎊</span> বৈশাখী বিশেষ উপহার</li>
-            </ul>
-
-            <div class="footer-note">
-                পরবর্তী ড্র-এর মাধ্যমে লাকি কুপন বিজয়ীদের ঘোষণা করা হবে।
-            </div>
-            
-            <button class="btn">বিস্তারিত জানুন</button>
-        </div>
-    </div>
-
-</body>
+      document.getElementById('certText').innerText = text;
+      document.getElementById('certificate').style.display = 'block';
+    }
+  </script></body>
 </html>
