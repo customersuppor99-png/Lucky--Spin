@@ -1,75 +1,271 @@
-<!DOCTYPE html><html lang="bn">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Certificate Generator</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f4f6f9;
-      text-align: center;
-      padding: 20px;
-    }
-    .form-box {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      max-width: 500px;
-      margin: auto;
-    }
-    input {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    button {
-      padding: 10px 20px;
-      background: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    #certificate {
-      display: none;
-      margin-top: 30px;
-      padding: 30px;
-      border: 10px solid #000;
-      background: #fff;
-    }
-    .title {
-      font-size: 28px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-    .content {
-      font-size: 18px;
-      line-height: 1.8;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অনলাইন প্রেস ক্লাবের সদস্যপদ সার্টিফিকেট</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333333; /* Text Primary */
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: #ffffff; /* Background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #2c3e50; /* A slightly darker shade for headings */
+            font-size: 2rem; /* Headings size */
+            font-weight: 700;
+        }
+        h2 {
+            font-size: 1.5rem;
+        }
+        .input-group {
+            margin-bottom: 15px; /* Spacing Unit */
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555555; /* Secondary */
+        }
+        .input-group input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem; /* Body size */
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            background-color: #28a745; /* Accent */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .certificate-preview {
+            border: 2px solid #007bff; /* Primary */
+            padding: 40px;
+            margin-top: 30px;
+            border-radius: 10px;
+            background-color: #e9f7ff; /* Lighter shade of primary for background */
+            text-align: center;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .certificate-preview h2 {
+            color: #007bff; /* Primary */
+            margin-bottom: 20px;
+        }
+        .certificate-text {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #444;
+        }
+        .name {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #0056b3; /* Text Highlight */
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .location {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .final-message {
+            font-size: 1.3em;
+            font-weight: 500;
+            color: #333333;
+            margin-top: 25px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        .country {
+            font-weight: bold;
+            color: #333333;
+        }
+        .error-message {
+            color: #dc3545; /* Error color */
+            font-weight: bold;
+        }
+    </style>
 </head>
-<body>  <div class="form-box">
-    <h2>সার্টিফিকেট তৈরি করুন</h2>
-    <input type="text" id="name" placeholder="আপনার নাম লিখুন">
-    <input type="text" id="district" placeholder="জেলার নাম লিখুন">
-    <input type="text" id="upazila" placeholder="উপজেলার নাম লিখুন">
-    <button onclick="generateCertificate()">Generate Certificate</button>
-  </div>  <div id="certificate">
-    <div class="title">সনদপত্র</div>
-    <div class="content" id="certText"></div>
-  </div>  <script>
-    function generateCertificate() {
-      const name = document.getElementById('name').value;
-      const district = document.getElementById('district').value;
-      const upazila = document.getElementById('upazila').value;
+<body>
+    <div id="root"></div>
 
-      const text = `এই মর্মে প্রত্যয়ন করা যাচ্ছে যে ${name}, জেলা: ${district}, উপজেলা: ${upazila}, দেশ: বাংলাদেশ। \n\nউক্ত ব্যক্তি জনতার অনলাইন প্রেসক্লাবের একজন সম্মানিত সদস্য, যিনি সততা ও নিষ্ঠার সাথে কাজ করছেন। তিনি সাংবাদিক প্রশিক্ষণ কোর্স সফলভাবে সম্পন্ন করেছেন। \n\nতাকে আন্তরিক অভিনন্দন জানানো হলো।`;
+    <script type="text/babel">
+        const { useState } = React;
 
-      document.getElementById('certText').innerText = text;
-      document.getElementById('certificate').style.display = 'block';
-    }
-  </script></body>
+        const InputGroup = ({ label, id, placeholder, value, onChange }) => (
+            <div className="input-group">
+                <label htmlFor={id}>{label}</label>
+                <input
+                    type="text"
+                    id={id}
+                    placeholder={placeholder}
+                    value={value}
+                    onChange={onChange}
+                />
+            </div>
+        );
+
+        const Button = ({ onClick, children }) => (
+            <button onClick={onClick}>{children}</button>
+        );
+
+        const CertificateForm = ({ personName, districtName, upazilaName, onPersonNameChange, onDistrictNameChange, onUpazilaNameChange, onSubmit }) => (
+            <div className="container">
+                <h1>সার্টিফিকেট তৈরির ফর্ম</h1>
+                <p>আপনার তথ্য পূরণ করুন এবং "সার্টিফিকেট তৈরি করুন" বাটনে ক্লিক করুন।</p>
+
+                <InputGroup
+                    label="ব্যক্তির নাম:"
+                    id="personName"
+                    placeholder="এখানে ব্যক্তির নাম লিখুন"
+                    value={personName}
+                    onChange={onPersonNameChange}
+                />
+
+                <InputGroup
+                    label="জেলার নাম:"
+                    id="districtName"
+                    placeholder="এখানে জেলার নাম লিখুন"
+                    value={districtName}
+                    onChange={onDistrictNameChange}
+                />
+
+                <InputGroup
+                    label="উপজেলার নাম:"
+                    id="upazilaName"
+                    placeholder="এখানে উপজেলার নাম লিখুন"
+                    value={upazilaName}
+                    onChange={onUpazilaNameChange}
+                />
+
+                <Button onClick={onSubmit}>সার্টিফিকেট তৈরি করুন</Button>
+            </div>
+        );
+
+        const CertificatePreview = ({ personName, districtName, upazilaName, errorMessage }) => {
+            let content;
+            if (errorMessage) {
+                content = (
+                    <>
+                        <h2>ত্রুটি</h2>
+                        <p className="error-message">{errorMessage}</p>
+                    </>
+                );
+            } else if (personName && districtName && upazilaName) {
+                content = (
+                    <>
+                        <h2>সদস্যপদ সার্টিফিকেট</h2>
+                        <p className="certificate-text">প্রমাণিত করা হচ্ছে যে,</p>
+                        <p className="name">{personName}</p>
+                        <p className="location">জেলা: {districtName}, উপজেলা: {upazilaName}, দেশ: <span className="country">বাংলাদেশ</span></p>
+                        <p className="final-message">
+                            উক্ত ব্যক্তি জনতার অনলাইন প্রেসক্লাবের একজন সম্মানিত সদস্য যিনি সততা এবং ন্যায়নিষ্ঠার সাথে কাজ করছেন। তিনি সাংবাদিক প্রশিক্ষণ কর্মসূচী সফলভাবে সম্পন্ন করেছেন। আন্তরিক অভিনন্দন!
+                        </p>
+                        <p style={{ marginTop: '30px', fontStyle: 'italic', color: '#777' }}>জনতার অনলাইন প্রেসক্লাব</p>
+                    </>
+                );
+            } else {
+                content = (
+                    <>
+                        <h2>আপনার সার্টিফিকেট এখানে দেখা যাবে</h2>
+                        <p>উপরে ফর্ম পূরণ করে "সার্টিফিকেট তৈরি করুন" বাটনে ক্লিক করুন।</p>
+                    </>
+                );
+            }
+
+            return (
+                <div className="container certificate-preview">
+                    {content}
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [personName, setPersonName] = useState('');
+            const [districtName, setDistrictName] = useState('');
+            const [upazilaName, setUpazilaName] = useState('');
+            const [generatedCertificate, setGeneratedCertificate] = useState({
+                personName: '',
+                districtName: '',
+                upazilaName: '',
+                errorMessage: '',
+            });
+
+            const handleGenerateCertificate = () => {
+                if (!personName || !districtName || !upazilaName) {
+                    setGeneratedCertificate({
+                        personName: '',
+                        districtName: '',
+                        upazilaName: '',
+                        errorMessage: 'অনুগ্রহ করে সকল তথ্য পূরণ করুন (ব্যক্তির নাম, জেলার নাম, উপজেলার নাম)।',
+                    });
+                } else {
+                    setGeneratedCertificate({
+                        personName,
+                        districtName,
+                        upazilaName,
+                        errorMessage: '',
+                    });
+                }
+            };
+
+            return (
+                <>
+                    <CertificateForm
+                        personName={personName}
+                        districtName={districtName}
+                        upazilaName={upazilaName}
+                        onPersonNameChange={(e) => setPersonName(e.target.value)}
+                        onDistrictNameChange={(e) => setDistrictName(e.target.value)}
+                        onUpazilaNameChange={(e) => setUpazilaName(e.target.value)}
+                        onSubmit={handleGenerateCertificate}
+                    />
+                    <CertificatePreview
+                        personName={generatedCertificate.personName}
+                        districtName={generatedCertificate.districtName}
+                        upazilaName={generatedCertificate.upazilaName}
+                        errorMessage={generatedCertificate.errorMessage}
+                    />
+                </>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
 </html>
