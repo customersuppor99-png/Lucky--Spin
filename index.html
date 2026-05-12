@@ -3,383 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>সম্মাননা সার্টিফিকেট</title>
-    <!-- Google Fonts for a more formal look -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <!-- html2pdf.js CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <title>Verification Portal | Janatar Online Press Club</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Noto Serif Bengali', serif;
-            background-color: #f0f2f5; /* Background */
-            color: #2c3e50; /* Body text color */
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .container {
-            max-width: 900px; /* Max-width for central alignment */
-            width: 100%;
-            background-color: #ffffff; /* Containers */
-            padding: 40px; /* Base 20px padding * 2 */
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px; /* Spacing between sections */
-            border: 1px solid #e0e0e0;
-        }
-        h1, h2 {
-            text-align: center;
-            color: #1a2c3c;
-            font-family: 'Playfair Display', serif; /* Heading Font */
-            margin-bottom: 25px;
-        }
-        h1 {
-            font-size: 2.5em; /* h1: 2.5em, bold */
-            font-weight: 700;
-            border-bottom: 2px solid #0056b3; /* Primary */
-            padding-bottom: 10px;
-            display: inline-block;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 0;
-        }
-        h2 {
-            font-size: 1.8em; /* h2: 1.8em, accent color */
-            color: #0056b3; /* Primary */
-        }
-        .input-group {
-            margin-bottom: 20px; /* Spacing between sections */
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #4a6572; /* Secondary */
-        }
-        .input-group input[type="text"] {
-            width: calc(100% - 24px);
-            padding: 12px;
-            border: 1px solid #aeb6bf;
-            border-radius: 5px;
-            font-size: 1.1em; /* 1.1em for form inputs */
-            background-color: #f9fbfd;
-        }
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-        button {
-            padding: 12px 25px;
-            background-color: #007bff; /* Accent */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s;
-        }
-        button:hover {
-            background-color: #0056b3; /* Primary */
-            transform: translateY(-2px);
-        }
-        button.download-btn {
-            background-color: #28a745; /* Download button success green */
-        }
-        button.download-btn:hover {
-            background-color: #218838;
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Hind+Siliguri:wght@300;400;700&display=swap');
+
+        :root {
+            --brand-gold: #fbbf24;
+            --brand-blue: #0ea5e9;
+            --bg-dark: #020617;
         }
 
-        /* Certificate Styling */
-        .certificate-frame {
-            border: 10px double #0056b3; /* Primary */
-            padding: 50px;
-            margin-top: 40px;
-            border-radius: 12px;
-            background-color: #fdfdfd;
-            text-align: center;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
-            position: relative;
-            overflow: hidden;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        body {
+            background-color: var(--bg-dark);
+            color: #f8fafc;
+            font-family: 'Hind Siliguri', sans-serif;
+            overflow-x: hidden;
+            perspective: 1200px;
         }
-        .certificate-frame::before {
-            content: '';
+
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+
+        /* Animated Tech Grid Background */
+        .bg-tech {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%);
+            z-index: -1;
+        }
+        .bg-tech::after {
+            content: "";
             position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAwIiBoZWlnaHQ9IjcwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNmY2ZjZmMiLz4gIDxjaXJjbGUgY3g9IjM1MCIgY3k9IjM1MCIgcj0iMjAwIiBmaWxsPSJub25lIiBzdHJva2U9IiNlMGUwZTAiIHN0cm9va2Utd2lkdGg9IjIiLz4gIDxsaW5lIHgyPSIxMDAlIiB5MT0iMCUiIHgyPSIwJSIgeTE9IjEwMCUiIHN0cm9rZT0iI2UwZTBlMCIgc3Ryb2tlLXdpZHRoPSIxIi8+ICA8bGluZSB4Mj0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkxPSIxMDAlIiBzdHJva2U9IiNlMGUwZTAiIHN0cm9rZS13aWR0aD0iMSIvPiAgPC9zdmc+') center center / cover no-repeat;
-            opacity: 0.2; /* Subtle watermark */
-            z-index: 0;
+            width: 200%; height: 200%;
+            background-image: linear-gradient(rgba(14, 165, 233, 0.05) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(14, 165, 233, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            transform: rotateX(60deg) translateY(-10%);
+            animation: gridMove 30s linear infinite;
         }
-        .certificate-content {
-            position: relative;
-            z-index: 1;
+        @keyframes gridMove { 0% { transform: rotateX(60deg) translateY(0); } 100% { transform: rotateX(60deg) translateY(40px); } }
+
+        /* Glassmorphism 3D Panel */
+        .glass-3d {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            border-radius: 40px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
         }
-        .certificate-header {
-            font-size: 2.5em; /* certificate header 2.5em uppercase */
-            font-weight: 700;
-            color: #003366;
-            margin-bottom: 30px;
-            font-family: 'Playfair Display', serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+
+        /* Gold Laser Scanner */
+        .laser-line {
+            position: absolute;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg, transparent, var(--brand-gold), transparent);
+            box-shadow: 0 0 20px var(--brand-gold);
+            top: -10px;
+            z-index: 100;
+            animation: laserScan 4s infinite linear;
         }
-        .certificate-subtitle {
-            font-size: 1.3em; /* 1.3em to 1.5em for certificate content */
-            color: #333;
-            margin-bottom: 20px;
+        @keyframes laserScan { 0% { top: 0; opacity: 0; } 50% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+
+        /* Success Pulse */
+        .verify-badge {
+            animation: badgeGlow 2s infinite;
         }
-        .person-name {
-            font-size: 3em;
-            font-weight: 700;
-            color: #0056b3; /* Primary */
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            font-family: 'Playfair Display', serif;
-            line-height: 1.2;
+        @keyframes badgeGlow {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.4); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 20px rgba(251, 191, 36, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
         }
-        .location-info {
-            font-size: 1.5em; /* 1.3em to 1.5em for certificate content */
-            color: #555;
-            margin-bottom: 30px;
+
+        .typing-text {
+            border-right: 2px solid var(--brand-gold);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 2.5s steps(30, end), blink 0.5s step-end infinite;
         }
-        .main-text {
-            font-size: 1.4em; /* 1.3em to 1.5em for certificate content */
-            color: #333;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .organization-name {
-            font-size: 1.6em;
-            font-weight: 700;
-            color: #003366;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #bbb;
-            font-family: 'Playfair Display', serif;
-        }
-        .signature-line {
-            margin-top: 60px;
-            display: flex;
-            justify-content: space-around;
-            width: 80%;
-            gap: 20px; /* Added gap for spacing between signatures */
-        }
-        .signature-box {
-            flex: 1; /* Distribute space evenly */
-            text-align: center;
-        }
-        .signature-box p {
-            border-top: 1px solid #000;
-            padding-top: 5px;
-            font-size: 1em;
-            margin-top: 10px;
-            color: #444;
-        }
-        .error-message {
-            color: #dc3545;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 20px;
-        }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink { 50% { border-color: transparent } }
     </style>
 </head>
-<body>
-    <div id="root"></div>
+<body class="min-h-screen flex flex-col items-center justify-center p-6">
 
-    <script type="text/babel">
-        const { useState, useEffect } = React;
+    <div class="bg-tech"></div>
 
-        const InputGroup = ({ label, id, placeholder, value, onChange }) => (
-            <div className="input-group">
-                <label htmlFor={id}>{label}</label>
-                <input
-                    type="text"
-                    id={id}
-                    placeholder={placeholder}
-                    value={value}
-                    onChange={onChange}
-                />
+    <!-- Header / Brand Logo -->
+    <header class="text-center mb-10 animate-fade-in">
+        <div class="inline-flex items-center gap-3 bg-white/5 px-6 py-3 rounded-2xl border border-white/10 shadow-2xl">
+            <i class="fas fa-users-viewfinder text-yellow-500 text-2xl"></i>
+            <h1 class="orbitron text-xl font-bold tracking-[3px] text-white">JANATAR ONLINE <span class="text-yellow-500">PRESS CLUB</span></h1>
+        </div>
+        <p class="text-[10px] orbitron tracking-[5px] text-sky-400 mt-4 uppercase">Official Media Verification Gate</p>
+    </header>
+
+    <!-- Main Container -->
+    <main class="w-full max-w-lg relative">
+        <div id="auth-panel" class="glass-3d p-8 md:p-12 min-h-[520px] flex flex-col justify-center relative overflow-hidden">
+            <div class="laser-line"></div>
+
+            <!-- STEP 1: WELCOME -->
+            <div id="step-home" class="text-center space-y-8">
+                <div class="relative w-32 h-32 mx-auto">
+                    <div class="absolute inset-0 border-2 border-yellow-500/20 rounded-full animate-ping"></div>
+                    <div class="relative bg-yellow-500/10 border border-yellow-500/50 rounded-full w-full h-full flex items-center justify-center">
+                        <i class="fas fa-id-card-clip text-5xl text-yellow-500"></i>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <h2 class="text-2xl font-bold">আইডি কার্ড যাচাইকরণ</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed">জনতার অনলাইন প্রেসক্লাব-এর সকল সদস্যের ডিজিটাল পরিচয়পত্রের সত্যতা যাচাই করার জন্য নিচে ক্লিক করুন।</p>
+                </div>
+                <button onclick="initiateAuth()" class="w-full py-5 rounded-2xl bg-gradient-to-r from-yellow-500 to-amber-600 text-black font-bold orbitron hover:scale-105 transition-transform shadow-xl">
+                    START AUTHENTICATION
+                </button>
             </div>
-        );
 
-        const Button = ({ onClick, children, className = '' }) => (
-            <button onClick={onClick} className={className}>{children}</button>
-        );
-
-        const CertificateForm = ({ personName, districtName, upazilaName, onPersonNameChange, onDistrictNameChange, onUpazilaNameChange, onSubmit, showDownloadButton, onDownload }) => (
-            <div className="container">
-                <h1>সদস্যপদ সার্টিফিকেট জেনারেটর</h1>
-                <p style={{ textAlign: 'center', fontSize: '1.1em', color: '#4a6572' }}>আপনার তথ্য পূরণ করে একটি পেশাদার সার্টিফিকেট তৈরি করুন।</p>
-
-                <InputGroup
-                    label="ব্যক্তির পূর্ণ নাম:"
-                    id="personName"
-                    placeholder="যেমন: মোঃ আব্দুল্লাহ আল মামুন"
-                    value={personName}
-                    onChange={onPersonNameChange}
-                />
-
-                <InputGroup
-                    label="জেলার নাম:"
-                    id="districtName"
-                    placeholder="যেমন: ঢাকা"
-                    value={districtName}
-                    onChange={onDistrictNameChange}
-                />
-
-                <InputGroup
-                    label="উপজেলার নাম:"
-                    id="upazilaName"
-                    placeholder="যেমন: সাভার"
-                    value={upazilaName}
-                    onChange={onUpazilaNameChange}
-                />
-
-                <div className="btn-group">
-                    <Button onClick={onSubmit}>সার্টিফিকেট তৈরি করুন</Button>
-                    {showDownloadButton && (
-                        <Button className="download-btn" onClick={onDownload}>পিডিএফ ডাউনলোড করুন</Button>
-                    )}
+            <!-- STEP 2: SCANNING -->
+            <div id="step-loading" class="hidden text-center space-y-12">
+                <div class="relative w-44 h-44 mx-auto flex items-center justify-center">
+                    <svg class="absolute w-full h-full -rotate-90">
+                        <circle cx="88" cy="88" r="80" stroke="rgba(255,255,255,0.05)" stroke-width="8" fill="none" />
+                        <circle id="auth-progress" cx="88" cy="88" r="80" stroke="#fbbf24" stroke-width="8" fill="none" stroke-dasharray="502" stroke-dashoffset="502" class="transition-all duration-300" />
+                    </svg>
+                    <div class="text-center">
+                        <span id="pct-digit" class="text-4xl font-bold orbitron text-yellow-500">0%</span>
+                        <p class="text-[9px] text-gray-500 tracking-[3px] mt-2">ENCRYPTING...</p>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <p id="auth-status" class="text-xs orbitron text-sky-400 animate-pulse tracking-widest uppercase">Initializing Security Layer...</p>
+                    <div class="h-1 w-32 bg-white/10 mx-auto rounded-full overflow-hidden">
+                        <div class="h-full bg-sky-500 animate-shimmer" style="width: 50%"></div>
+                    </div>
                 </div>
             </div>
-        );
 
-        const CertificatePreview = ({ personName, districtName, upazilaName, errorMessage }) => {
-            let content;
-
-            if (errorMessage) {
-                content = (
-                    <div className="certificate-content">
-                        <h2>ত্রুটি</h2>
-                        <p className="error-message">{errorMessage}</p>
+            <!-- STEP 3: FINAL VERIFIED RESULT -->
+            <div id="step-result" class="hidden animate-in zoom-in duration-500">
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 bg-yellow-500 rounded-full mx-auto flex items-center justify-center verify-badge border-4 border-white/20 mb-4 shadow-[0_0_30px_rgba(251,191,36,0.5)]">
+                        <i class="fas fa-check text-4xl text-black"></i>
                     </div>
-                );
-            } else if (personName && districtName && upazilaName) {
-                content = (
-                    <div className="certificate-content">
-                        <div className="certificate-header">সম্মাননা সার্টিফিকেট</div>
-                        <div className="certificate-subtitle">এই মর্মে প্রত্যয়ন করা হচ্ছে যে,</div>
-                        <div className="person-name">{personName}</div>
-                        <div className="location-info">জেলা: {districtName}, উপজেলা: {upazilaName}, দেশ: <strong>বাংলাদেশ</strong></div>
-                        <div className="main-text">
-                            উক্ত ব্যক্তি জনতার অনলাইন প্রেসক্লাবের একজন সম্মানিত সদস্য যিনি সততা এবং ন্যায়নিষ্ঠার সাথে কাজ করছেন। তিনি সাংবাদিক প্রশিক্ষণ কর্মসূচী সফলভাবে সম্পন্ন করেছেন। আন্তরিক অভিনন্দন!
-                        </div>
-                        <div className="organization-name">জনতার অনলাইন প্রেসক্লাব</div>
-                        <div className="signature-line">
-                            <div className="signature-box">
-                                <p>সভাপতি</p>
-                            </div>
-                            <div className="signature-box">
-                                <p>সাধারণ সম্পাদক</p>
-                            </div>
-                        </div>
-                    </div>
-                );
-            } else {
-                content = (
-                    <div className="certificate-content">
-                        <h2>আপনার সার্টিফিকেট এখানে দেখা যাবে</h2>
-                        <p>উপরে ফর্ম পূরণ করে "সার্টিফিকেট তৈরি করুন" বাটনে ক্লিক করুন।</p>
-                    </div>
-                );
-            }
-
-            return (
-                <div className="container certificate-frame" id="certificateOutput">
-                    {content}
+                    <h3 class="text-2xl font-bold text-yellow-500 orbitron">VERIFIED ID</h3>
+                    <p class="text-[10px] text-gray-500 uppercase tracking-widest">Janatar Online Press Club Official Auth</p>
                 </div>
-            );
-        };
 
-        const App = () => {
-            const [personName, setPersonName] = useState('');
-            const [districtName, setDistrictName] = useState('');
-            const [upazilaName, setUpazilaName] = useState('');
-            const [generatedCertificate, setGeneratedCertificate] = useState({
-                personName: '',
-                districtName: '',
-                upazilaName: '',
-                errorMessage: '',
-            });
-            const [showDownloadButton, setShowDownloadButton] = useState(false);
+                <div class="p-6 bg-gradient-to-br from-white/10 to-transparent rounded-[32px] border border-yellow-500/20 backdrop-blur-md">
+                    <div class="text-center space-y-4">
+                        <div class="inline-block px-4 py-1 bg-yellow-500/10 border border-yellow-500/30 rounded-full">
+                            <span class="text-xs font-bold text-yellow-500 tracking-wider">OFFICIAL SUCCESSFUL</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-white">ডিজিটাল ভেরিফিকেশন সফল</h4>
+                        <p class="text-sm text-gray-300 leading-relaxed">
+                            এই ডিজিটাল প্রেস আইডিটি **জনতার অনলাইন প্রেসক্লাব** মিডিয়া নেটওয়ার্কের অফিসিয়াল সার্ভার দ্বারা সফলভাবে যাচাই করা হয়েছে। উক্ত ব্যক্তি একজন বৈধ এবং অনুমোদিত গণমাধ্যম কর্মী।
+                        </p>
+                    </div>
 
-            const handleGenerateCertificate = () => {
-                if (!personName || !districtName || !upazilaName) {
-                    setGeneratedCertificate({
-                        personName: '',
-                        districtName: '',
-                        upazilaName: '',
-                        errorMessage: 'অনুগ্রহ করে সকল তথ্য পূরণ করুন (ব্যক্তির পূর্ণ নাম, জেলার নাম, উপজেলার নাম)।',
-                    });
-                    setShowDownloadButton(false);
-                } else {
-                    setGeneratedCertificate({
-                        personName,
-                        districtName,
-                        upazilaName,
-                        errorMessage: '',
-                    });
-                    setShowDownloadButton(true);
+                    <div class="mt-8 grid grid-cols-2 gap-3">
+                        <div class="p-3 bg-black/40 rounded-2xl border border-white/5 text-center">
+                            <p class="text-[9px] text-gray-500 uppercase">Status</p>
+                            <p class="font-bold text-emerald-500 text-xs">ACTIVE</p>
+                        </div>
+                        <div class="p-3 bg-black/40 rounded-2xl border border-white/5 text-center">
+                            <p class="text-[9px] text-gray-500 uppercase">Protection</p>
+                            <p class="font-bold text-sky-400 text-xs">ENCRYPTED</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-center">
+                    <p class="text-[9px] text-gray-600 uppercase italic">
+                        <i class="fas fa-shield-halved mr-1"></i> Protected by JOPC Secure Verification Node v3.0
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Stats -->
+    <div class="mt-12 w-full max-w-lg grid grid-cols-3 gap-4 opacity-50 hover:opacity-100 transition-opacity">
+        <div class="text-center"><i class="fas fa-network-wired block text-yellow-500 mb-2"></i><span class="text-[9px] uppercase">Node Active</span></div>
+        <div class="text-center"><i class="fas fa-database block text-yellow-500 mb-2"></i><span class="text-[9px] uppercase">Synced</span></div>
+        <div class="text-center"><i class="fas fa-user-shield block text-yellow-500 mb-2"></i><span class="text-[9px] uppercase">Protected</span></div>
+    </div>
+
+    <footer class="mt-16 mb-8 text-center opacity-30">
+        <p class="text-[10px]">&copy; 2026 Janatar Online Press Club | All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function initiateAuth() {
+            document.getElementById('step-home').classList.add('hidden');
+            document.getElementById('step-loading').classList.remove('hidden');
+
+            let progress = 0;
+            const bar = document.getElementById('auth-progress');
+            const digit = document.getElementById('pct-digit');
+            const status = document.getElementById('auth-status');
+
+            const statusSteps = [
+                "Connecting to JOPC Server...",
+                "Loading Media Database...",
+                "Scanning Digital Encryption...",
+                "Analyzing Member Token...",
+                "Authentication Finalized!"
+            ];
+
+            const timer = setInterval(() => {
+                progress += 1;
+                digit.innerText = progress + "%";
+                
+                const offset = 502 - (progress / 100) * 502;
+                bar.style.strokeDashoffset = offset;
+
+                if(progress % 20 === 0) {
+                    status.innerText = statusSteps[Math.floor(progress / 20) - 1] || statusSteps[4];
                 }
-            };
 
-            const downloadPdf = () => {
-                const element = document.getElementById('certificateOutput');
-                const opt = {
-                    margin:       10, // Margin in mm
-                    filename:     'জনতার-অনলাইন-প্রেসক্লাব-সার্টিফিকেট.pdf',
-                    image:        { type: 'jpeg', quality: 0.98 },
-                    html2canvas:  { scale: 2, logging: true, dpi: 192, letterRendering: true },
-                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'landscape' }
-                };
+                if (progress >= 100) {
+                    clearInterval(timer);
+                    setTimeout(() => {
+                        document.getElementById('step-loading').classList.add('hidden');
+                        document.getElementById('step-result').classList.remove('hidden');
+                        document.getElementById('auth-panel').style.borderColor = "rgba(251, 191, 36, 0.5)";
+                    }, 500);
+                }
+            }, 45);
+        }
 
-                html2pdf().set(opt).from(element).save();
-            };
-
-            // Initialize preview on component mount
-            useEffect(() => {
-                handleGenerateCertificate(); // This will show placeholders or initial error
-            }, []); // Empty dependency array means it runs once on mount
-
-            return (
-                <>
-                    <CertificateForm
-                        personName={personName}
-                        districtName={districtName}
-                        upazilaName={upazilaName}
-                        onPersonNameChange={(e) => setPersonName(e.target.value)}
-                        onDistrictNameChange={(e) => setDistrictName(e.target.value)}
-                        onUpazilaNameChange={(e) => setUpazilaName(e.target.value)}
-                        onSubmit={handleGenerateCertificate}
-                        showDownloadButton={showDownloadButton}
-                        onDownload={downloadPdf}
-                    />
-                    <CertificatePreview
-                        personName={generatedCertificate.personName}
-                        districtName={generatedCertificate.districtName}
-                        upazilaName={generatedCertificate.upazilaName}
-                        errorMessage={generatedCertificate.errorMessage}
-                    />
-                </>
-            );
-        };
-
-        ReactDOM.render(<App />, document.getElementById('root'));
+        // 3D Tilt Effect
+        const panel = document.getElementById('auth-panel');
+        document.addEventListener('mousemove', (e) => {
+            let x = (window.innerWidth / 2 - e.pageX) / 30;
+            let y = (window.innerHeight / 2 - e.pageY) / 30;
+            panel.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+        });
     </script>
 </body>
 </html>
