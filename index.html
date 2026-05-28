@@ -1,247 +1,72 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verification Portal | Janatar Online Press Club</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Hind+Siliguri:wght@300;400;700&display=swap');
+// components/VerificationForm.js
+import { useState } from 'react';
 
-        :root {
-            --brand-gold: #fbbf24;
-            --brand-blue: #0ea5e9;
-            --bg-dark: #020617;
-        }
+export default function VerificationForm() {
+  const [formData, setFormData] = useState({
+    name: '',
+    area: '',
+    phone: '',
+    expiry: '',
+    updatedBefore: 'না',
+    comment: ''
+  });
 
-        body {
-            background-color: var(--bg-dark);
-            color: #f8fafc;
-            font-family: 'Hind Siliguri', sans-serif;
-            overflow-x: hidden;
-            perspective: 1200px;
-        }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    // ১. এখানে ডাটাবেজে (API) তথ্য পাঠানোর কোড বসবে
+    // const res = await fetch('/api/verify-member', { method: 'POST', body: JSON.stringify(formData) });
 
-        .orbitron { font-family: 'Orbitron', sans-serif; }
+    // ২. স্বয়ংক্রিয় হোয়াটসঅ্যাপ রিডাইরেক্ট মেসেজ ফরম্যাট
+    const adminWhatsApp = "8801750328870"; 
+    const message = `*নতুন সদস্য তথ্য সাবমিট* \n\n` +
+                    `📝 *নামঃ* ${formData.name}\n` +
+                    `🌍 *এলাকাঃ* ${formData.area}\n` +
+                    `📱 *মোবাইলঃ* ${formData.phone}\n` +
+                    `🪪 *আইডি মেয়াদঃ* ${formData.expiry}\n` +
+                    `📄 *ফরম পূরণ করেছেনঃ* ${formData.updatedBefore}\n` +
+                    `💬 *মন্তব্যঃ* ${formData.comment || 'নেই'}`;
 
-        /* Animated Tech Grid Background */
-        .bg-tech {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%);
-            z-index: -1;
-        }
-        .bg-tech::after {
-            content: "";
-            position: absolute;
-            width: 200%; height: 200%;
-            background-image: linear-gradient(rgba(14, 165, 233, 0.05) 1px, transparent 1px), 
-                              linear-gradient(90deg, rgba(14, 165, 233, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-            transform: rotateX(60deg) translateY(-10%);
-            animation: gridMove 30s linear infinite;
-        }
-        @keyframes gridMove { 0% { transform: rotateX(60deg) translateY(0); } 100% { transform: rotateX(60deg) translateY(40px); } }
+    const whatsappURL = `https://api.whatsapp.com/send?phone=${adminWhatsApp}&text=${encodeURIComponent(message)}`;
+    
+    // হোয়াটসঅ্যাপে পাঠিয়ে দেওয়া
+    window.location.href = whatsappURL;
+  };
 
-        /* Glassmorphism 3D Panel */
-        .glass-3d {
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(251, 191, 36, 0.2);
-            border-radius: 40px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
-            transform-style: preserve-3d;
-            transition: transform 0.1s ease-out;
-        }
+  return (
+    <form onSubmit={handleSubmit} className="bg-black text-white p-6 rounded-lg shadow-xl border border-red-600 max-w-md mx-auto">
+      <h2 className="text-xl font-bold border-b border-red-600 pb-2 mb-4 text-center text-red-500">সদস্য তথ্য ফরম</h2>
+      
+      <label className="block mb-2 text-sm">সম্পূর্ণ নাম</label>
+      <input type="text" required className="w-full p-2.5 mb-4 bg-zinc-900 border border-zinc-700 rounded focus:border-red-600 outline-none text-white" 
+        onChange={e => setFormData({...formData, name: e.target.value})} />
 
-        /* Gold Laser Scanner */
-        .laser-line {
-            position: absolute;
-            width: 100%; height: 4px;
-            background: linear-gradient(90deg, transparent, var(--brand-gold), transparent);
-            box-shadow: 0 0 20px var(--brand-gold);
-            top: -10px;
-            z-index: 100;
-            animation: laserScan 4s infinite linear;
-        }
-        @keyframes laserScan { 0% { top: 0; opacity: 0; } 50% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+      <label className="block mb-2 text-sm">কাজের এলাকা (জেলা/উপজেলা)</label>
+      <input type="text" required className="w-full p-2.5 mb-4 bg-zinc-900 border border-zinc-700 rounded focus:border-red-600 outline-none text-white" 
+        onChange={e => setFormData({...formData, area: e.target.value})} />
 
-        /* Success Pulse */
-        .verify-badge {
-            animation: badgeGlow 2s infinite;
-        }
-        @keyframes badgeGlow {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.4); }
-            70% { transform: scale(1.1); box-shadow: 0 0 0 20px rgba(251, 191, 36, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
-        }
+      <label className="block mb-2 text-sm">ব্যবহৃত মোবাইল নাম্বার</label>
+      <input type="tel" required className="w-full p-2.5 mb-4 bg-zinc-900 border border-zinc-700 rounded focus:border-red-600 outline-none text-white" 
+        onChange={e => setFormData({...formData, phone: e.target.value})} />
 
-        .typing-text {
-            border-right: 2px solid var(--brand-gold);
-            white-space: nowrap;
-            overflow: hidden;
-            animation: typing 2.5s steps(30, end), blink 0.5s step-end infinite;
-        }
-        @keyframes typing { from { width: 0 } to { width: 100% } }
-        @keyframes blink { 50% { border-color: transparent } }
-    </style>
-</head>
-<body class="min-h-screen flex flex-col items-center justify-center p-6">
+      <label className="block mb-2 text-sm">আইডি কার্ডের মেয়াদ</label>
+      <input type="date" required className="w-full p-2.5 mb-4 bg-zinc-900 border border-zinc-700 rounded focus:border-red-600 outline-none text-white" 
+        onChange={e => setFormData({...formData, expiry: e.target.value})} />
 
-    <div class="bg-tech"></div>
+      <label className="block mb-2 text-sm">কয়েকদিন আগে তথ্য হালনাগাদ ফরম পূরণ করেছেন?</label>
+      <select className="w-full p-2.5 mb-4 bg-zinc-900 border border-zinc-700 rounded focus:border-red-600 outline-none text-white"
+        onChange={e => setFormData({...formData, updatedBefore: e.target.value})}>
+        <option value="না">না</option>
+        <option value="হ্যাঁ">হ্যাঁ</option>
+      </select>
 
-    <!-- Header / Brand Logo -->
-    <header class="text-center mb-10 animate-fade-in">
-        <div class="inline-flex items-center gap-3 bg-white/5 px-6 py-3 rounded-2xl border border-white/10 shadow-2xl">
-            <i class="fas fa-users-viewfinder text-yellow-500 text-2xl"></i>
-            <h1 class="orbitron text-xl font-bold tracking-[3px] text-white">JANATAR ONLINE <span class="text-yellow-500">PRESS CLUB</span></h1>
-        </div>
-        <p class="text-[10px] orbitron tracking-[5px] text-sky-400 mt-4 uppercase">Official Media Verification Gate</p>
-    </header>
+      <label className="block mb-2 text-sm">অতিরিক্ত মন্তব্য (ঐচ্ছিক)</label>
+      <textarea className="w-full p-2.5 mb-4 bg-zinc-900 border border-zinc-700 rounded focus:border-red-600 outline-none text-white" rows="2"
+        onChange={e => setFormData({...formData, comment: e.target.value})}></textarea>
 
-    <!-- Main Container -->
-    <main class="w-full max-w-lg relative">
-        <div id="auth-panel" class="glass-3d p-8 md:p-12 min-h-[520px] flex flex-col justify-center relative overflow-hidden">
-            <div class="laser-line"></div>
-
-            <!-- STEP 1: WELCOME -->
-            <div id="step-home" class="text-center space-y-8">
-                <div class="relative w-32 h-32 mx-auto">
-                    <div class="absolute inset-0 border-2 border-yellow-500/20 rounded-full animate-ping"></div>
-                    <div class="relative bg-yellow-500/10 border border-yellow-500/50 rounded-full w-full h-full flex items-center justify-center">
-                        <i class="fas fa-id-card-clip text-5xl text-yellow-500"></i>
-                    </div>
-                </div>
-                <div class="space-y-3">
-                    <h2 class="text-2xl font-bold">আইডি কার্ড যাচাইকরণ</h2>
-                    <p class="text-gray-400 text-sm leading-relaxed">জনতার অনলাইন প্রেসক্লাব-এর সকল সদস্যের ডিজিটাল পরিচয়পত্রের সত্যতা যাচাই করার জন্য নিচে ক্লিক করুন।</p>
-                </div>
-                <button onclick="initiateAuth()" class="w-full py-5 rounded-2xl bg-gradient-to-r from-yellow-500 to-amber-600 text-black font-bold orbitron hover:scale-105 transition-transform shadow-xl">
-                    START AUTHENTICATION
-                </button>
-            </div>
-
-            <!-- STEP 2: SCANNING -->
-            <div id="step-loading" class="hidden text-center space-y-12">
-                <div class="relative w-44 h-44 mx-auto flex items-center justify-center">
-                    <svg class="absolute w-full h-full -rotate-90">
-                        <circle cx="88" cy="88" r="80" stroke="rgba(255,255,255,0.05)" stroke-width="8" fill="none" />
-                        <circle id="auth-progress" cx="88" cy="88" r="80" stroke="#fbbf24" stroke-width="8" fill="none" stroke-dasharray="502" stroke-dashoffset="502" class="transition-all duration-300" />
-                    </svg>
-                    <div class="text-center">
-                        <span id="pct-digit" class="text-4xl font-bold orbitron text-yellow-500">0%</span>
-                        <p class="text-[9px] text-gray-500 tracking-[3px] mt-2">ENCRYPTING...</p>
-                    </div>
-                </div>
-                <div class="space-y-2">
-                    <p id="auth-status" class="text-xs orbitron text-sky-400 animate-pulse tracking-widest uppercase">Initializing Security Layer...</p>
-                    <div class="h-1 w-32 bg-white/10 mx-auto rounded-full overflow-hidden">
-                        <div class="h-full bg-sky-500 animate-shimmer" style="width: 50%"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- STEP 3: FINAL VERIFIED RESULT -->
-            <div id="step-result" class="hidden animate-in zoom-in duration-500">
-                <div class="text-center mb-8">
-                    <div class="w-20 h-20 bg-yellow-500 rounded-full mx-auto flex items-center justify-center verify-badge border-4 border-white/20 mb-4 shadow-[0_0_30px_rgba(251,191,36,0.5)]">
-                        <i class="fas fa-check text-4xl text-black"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-yellow-500 orbitron">VERIFIED ID</h3>
-                    <p class="text-[10px] text-gray-500 uppercase tracking-widest">Janatar Online Press Club Official Auth</p>
-                </div>
-
-                <div class="p-6 bg-gradient-to-br from-white/10 to-transparent rounded-[32px] border border-yellow-500/20 backdrop-blur-md">
-                    <div class="text-center space-y-4">
-                        <div class="inline-block px-4 py-1 bg-yellow-500/10 border border-yellow-500/30 rounded-full">
-                            <span class="text-xs font-bold text-yellow-500 tracking-wider">OFFICIAL SUCCESSFUL</span>
-                        </div>
-                        <h4 class="text-lg font-bold text-white">ডিজিটাল ভেরিফিকেশন সফল</h4>
-                        <p class="text-sm text-gray-300 leading-relaxed">
-                            এই ডিজিটাল প্রেস আইডিটি **জনতার অনলাইন প্রেসক্লাব** মিডিয়া নেটওয়ার্কের অফিসিয়াল সার্ভার দ্বারা সফলভাবে যাচাই করা হয়েছে। উক্ত ব্যক্তি একজন বৈধ এবং অনুমোদিত গণমাধ্যম কর্মী।
-                        </p>
-                    </div>
-
-                    <div class="mt-8 grid grid-cols-2 gap-3">
-                        <div class="p-3 bg-black/40 rounded-2xl border border-white/5 text-center">
-                            <p class="text-[9px] text-gray-500 uppercase">Status</p>
-                            <p class="font-bold text-emerald-500 text-xs">ACTIVE</p>
-                        </div>
-                        <div class="p-3 bg-black/40 rounded-2xl border border-white/5 text-center">
-                            <p class="text-[9px] text-gray-500 uppercase">Protection</p>
-                            <p class="font-bold text-sky-400 text-xs">ENCRYPTED</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-8 text-center">
-                    <p class="text-[9px] text-gray-600 uppercase italic">
-                        <i class="fas fa-shield-halved mr-1"></i> Protected by JOPC Secure Verification Node v3.0
-                    </p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer Stats -->
-    <div class="mt-12 w-full max-w-lg grid grid-cols-3 gap-4 opacity-50 hover:opacity-100 transition-opacity">
-        <div class="text-center"><i class="fas fa-network-wired block text-yellow-500 mb-2"></i><span class="text-[9px] uppercase">Node Active</span></div>
-        <div class="text-center"><i class="fas fa-database block text-yellow-500 mb-2"></i><span class="text-[9px] uppercase">Synced</span></div>
-        <div class="text-center"><i class="fas fa-user-shield block text-yellow-500 mb-2"></i><span class="text-[9px] uppercase">Protected</span></div>
-    </div>
-
-    <footer class="mt-16 mb-8 text-center opacity-30">
-        <p class="text-[10px]">&copy; 2026 Janatar Online Press Club | All Rights Reserved.</p>
-    </footer>
-
-    <script>
-        function initiateAuth() {
-            document.getElementById('step-home').classList.add('hidden');
-            document.getElementById('step-loading').classList.remove('hidden');
-
-            let progress = 0;
-            const bar = document.getElementById('auth-progress');
-            const digit = document.getElementById('pct-digit');
-            const status = document.getElementById('auth-status');
-
-            const statusSteps = [
-                "Connecting to JOPC Server...",
-                "Loading Media Database...",
-                "Scanning Digital Encryption...",
-                "Analyzing Member Token...",
-                "Authentication Finalized!"
-            ];
-
-            const timer = setInterval(() => {
-                progress += 1;
-                digit.innerText = progress + "%";
-                
-                const offset = 502 - (progress / 100) * 502;
-                bar.style.strokeDashoffset = offset;
-
-                if(progress % 20 === 0) {
-                    status.innerText = statusSteps[Math.floor(progress / 20) - 1] || statusSteps[4];
-                }
-
-                if (progress >= 100) {
-                    clearInterval(timer);
-                    setTimeout(() => {
-                        document.getElementById('step-loading').classList.add('hidden');
-                        document.getElementById('step-result').classList.remove('hidden');
-                        document.getElementById('auth-panel').style.borderColor = "rgba(251, 191, 36, 0.5)";
-                    }, 500);
-                }
-            }, 45);
-        }
-
-        // 3D Tilt Effect
-        const panel = document.getElementById('auth-panel');
-        document.addEventListener('mousemove', (e) => {
-            let x = (window.innerWidth / 2 - e.pageX) / 30;
-            let y = (window.innerHeight / 2 - e.pageY) / 30;
-            panel.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
-        });
-    </script>
-</body>
-</html>
+      <button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded transition duration-200 uppercase tracking-wider shadow-lg shadow-red-600/20">
+        তথ্য জমা দিন
+      </button>
+    </form>
+  );
+}
