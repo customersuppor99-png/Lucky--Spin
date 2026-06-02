@@ -1,72 +1,152 @@
-// components/VerificationForm.js
-import { useState } from 'react';
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>দৈনিক প্রতিচ্ছবি প্রতিনিধি নিবন্ধন</title>
 
-export default function VerificationForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    area: '',
-    phone: '',
-    expiry: '',
-    updatedBefore: 'না',
-    comment: ''
-  });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    // ১. এখানে ডাটাবেজে (API) তথ্য পাঠানোর কোড বসবে
-    // const res = await fetch('/api/verify-member', { method: 'POST', body: JSON.stringify(formData) });
-
-    // ২. স্বয়ংক্রিয় হোয়াটসঅ্যাপ রিডাইরেক্ট মেসেজ ফরম্যাট
-    const adminWhatsApp = "8801750328870"; 
-    const message = `*নতুন সদস্য তথ্য সাবমিট* \n\n` +
-                    `📝 *নামঃ* ${formData.name}\n` +
-                    `🌍 *এলাকাঃ* ${formData.area}\n` +
-                    `📱 *মোবাইলঃ* ${formData.phone}\n` +
-                    `🪪 *আইডি মেয়াদঃ* ${formData.expiry}\n` +
-                    `📄 *ফরম পূরণ করেছেনঃ* ${formData.updatedBefore}\n` +
-                    `💬 *মন্তব্যঃ* ${formData.comment || 'নেই'}`;
-
-    const whatsappURL = `https://api.whatsapp.com/send?phone=${adminWhatsApp}&text=${encodeURIComponent(message)}`;
-    
-    // হোয়াটসঅ্যাপে পাঠিয়ে দেওয়া
-    window.location.href = whatsappURL;
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="bg-black text-white p-6 rounded-lg shadow-xl border border-red-600 max-w-md mx-auto">
-      <h2 className="text-xl font-bold border-b border-red-600 pb-2 mb-4 text-center text-red-500">সদস্য তথ্য ফরম</h2>
-      
-      <label className="block mb-2 text-sm">সম্পূর্ণ নাম</label>
-      <input type="text" required className="w-full p-2.5 mb-4 bg-zinc-900 border border-zinc-700 rounded focus:border-red-600 outline-none text-white" 
-        onChange={e => setFormData({...formData, name: e.target.value})} />
-
-      <label className="block mb-2 text-sm">কাজের এলাকা (জেলা/উপজেলা)</label>
-      <input type="text" required className="w-full p-2.5 mb-4 bg-zinc-900 border border-zinc-700 rounded focus:border-red-600 outline-none text-white" 
-        onChange={e => setFormData({...formData, area: e.target.value})} />
-
-      <label className="block mb-2 text-sm">ব্যবহৃত মোবাইল নাম্বার</label>
-      <input type="tel" required className="w-full p-2.5 mb-4 bg-zinc-900 border border-zinc-700 rounded focus:border-red-600 outline-none text-white" 
-        onChange={e => setFormData({...formData, phone: e.target.value})} />
-
-      <label className="block mb-2 text-sm">আইডি কার্ডের মেয়াদ</label>
-      <input type="date" required className="w-full p-2.5 mb-4 bg-zinc-900 border border-zinc-700 rounded focus:border-red-600 outline-none text-white" 
-        onChange={e => setFormData({...formData, expiry: e.target.value})} />
-
-      <label className="block mb-2 text-sm">কয়েকদিন আগে তথ্য হালনাগাদ ফরম পূরণ করেছেন?</label>
-      <select className="w-full p-2.5 mb-4 bg-zinc-900 border border-zinc-700 rounded focus:border-red-600 outline-none text-white"
-        onChange={e => setFormData({...formData, updatedBefore: e.target.value})}>
-        <option value="না">না</option>
-        <option value="হ্যাঁ">হ্যাঁ</option>
-      </select>
-
-      <label className="block mb-2 text-sm">অতিরিক্ত মন্তব্য (ঐচ্ছিক)</label>
-      <textarea className="w-full p-2.5 mb-4 bg-zinc-900 border border-zinc-700 rounded focus:border-red-600 outline-none text-white" rows="2"
-        onChange={e => setFormData({...formData, comment: e.target.value})}></textarea>
-
-      <button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded transition duration-200 uppercase tracking-wider shadow-lg shadow-red-600/20">
-        তথ্য জমা দিন
-      </button>
-    </form>
-  );
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f5f7fa;
+    margin:0;
+    padding:0;
 }
+
+.container{
+    max-width:600px;
+    margin:30px auto;
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(0,0,0,0.1);
+}
+
+h1{
+    color:#008000;
+    text-align:center;
+}
+
+h2{
+    text-align:center;
+}
+
+p{
+    line-height:1.7;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    margin-bottom:15px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.whatsapp-btn{
+    width:100%;
+    background:#25D366;
+    color:white;
+    border:none;
+    padding:15px;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.whatsapp-btn:hover{
+    background:#1ebd5a;
+}
+
+.features{
+    margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📰 দৈনিক প্রতিচ্ছবি</h1>
+
+<h2>সম্মানিত প্রিয় প্রতিনিধি</h2>
+
+<p>
+আপনি যদি সংবাদ প্রকাশ, অডিও-ভিডিও সংবাদ আপলোড এবং প্রতিনিধি হিসেবে কাজ করার সুযোগ পেতে চান,
+তাহলে নিচের তথ্যগুলো প্রদান করুন।
+</p>
+
+<p>
+🎯 মাত্র ৩০ সেকেন্ডে আপনার আবেদন সম্পন্ন করুন।
+</p>
+
+<form onsubmit="sendWhatsApp(); return false;">
+
+<label>👤 পূর্ণ নাম</label>
+<input type="text" id="name" required>
+
+<label>📱 মোবাইল নম্বর</label>
+<input type="text" id="mobile" required>
+
+<label>🏠 জেলা</label>
+<input type="text" id="district" required>
+
+<label>📍 উপজেলা</label>
+<input type="text" id="upazila" required>
+
+<button class="whatsapp-btn">
+🟢 WhatsApp-এ আবেদন পাঠান
+</button>
+
+</form>
+
+<div class="features">
+<h3>⭐ আবেদন করার পর যা হবে</h3>
+
+<p>✅ প্রতিনিধি যাচাই করা হবে</p>
+<p>✅ অফিসিয়াল যোগাযোগ করা হবে</p>
+<p>✅ সংবাদ আপলোড অ্যাকাউন্ট চালু করা হবে</p>
+<p>✅ অডিও, ভিডিও ও লিখিত সংবাদ প্রকাশের নির্দেশনা প্রদান করা হবে</p>
+<p>✅ সকল সুযোগ-সুবিধা সম্পর্কে বিস্তারিত জানানো হবে</p>
+
+<p><b>📞 অফিসিয়াল WhatsApp:</b> 01784157260</p>
+</div>
+
+</div>
+
+<script>
+
+function sendWhatsApp(){
+
+let name = document.getElementById('name').value;
+let mobile = document.getElementById('mobile').value;
+let district = document.getElementById('district').value;
+let upazila = document.getElementById('upazila').value;
+
+let message =
+`নতুন প্রতিনিধি আবেদন
+
+নাম: ${name}
+মোবাইল: ${mobile}
+জেলা: ${district}
+উপজেলা: ${upazila}
+
+আমি দৈনিক প্রতিচ্ছবির সংবাদ আপলোড সুবিধা সম্পর্কে জানতে আগ্রহী।`;
+
+let phone = "8801784157260";
+
+let url =
+`https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+window.open(url,'_blank');
+
+}
+
+</script>
+
+</body>
+</html>
