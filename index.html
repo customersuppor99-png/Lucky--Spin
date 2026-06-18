@@ -3,182 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>প্রযুক্তি-নির্ভর আধুনিক সাংবাদিকতার নতুন দিগন্ত</title>
+    <title>গণমাধ্যমের ডিজিটাল বিপ্লব - অফিসিয়াল সদস্য পোর্টাল</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
+    <!-- Google Fonts (Hind Siliguri) -->
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         body {
             font-family: 'Hind Siliguri', sans-serif;
-            background-color: #070b13;
+            background-color: #040812;
             color: #f3f4f6;
         }
-        .premium-glow {
-            box-shadow: 0 0 35px rgba(59, 130, 246, 0.25);
+        .neon-glow-blue {
+            box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
         }
-        .pulse-border {
-            animation: borderPulse 2s infinite;
+        .neon-glow-emerald {
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
         }
-        @keyframes borderPulse {
-            0%, 100% { border-color: rgba(239, 68, 68, 0.4); box-shadow: 0 0 15px rgba(239, 68, 68, 0.2); }
-            50% { border-color: rgba(239, 68, 68, 1); box-shadow: 0 0 25px rgba(239, 68, 68, 0.5); }
+        .pulse-fast {
+            animation: pulseBg 1.5s infinite;
+        }
+        @keyframes pulseBg {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(239, 68, 68, 0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 0 30px rgba(239, 68, 68, 0.8); }
         }
         .text-neon {
-            text-shadow: 0 0 15px rgba(59, 130, 246, 0.7);
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
         }
     </style>
 </head>
 <body class="overflow-x-hidden">
 
-    <!-- AI অডিও নোটিফিকেশন বার -->
+    <!-- অফিসিয়াল AI অ্যানাউন্সমেন্ট বার -->
     <div id="audio-bar" class="fixed top-5 right-5 z-50 bg-slate-900/95 border border-blue-500/40 p-4 rounded-2xl backdrop-blur-md shadow-2xl flex items-center gap-4 max-w-sm transition-all duration-500 transform translate-y-20 opacity-0">
         <div class="w-3 h-3 bg-emerald-500 rounded-full animate-ping"></div>
         <div class="flex-1">
-            <p class="text-xs text-blue-400 font-bold tracking-wider">অফিসিয়াল AI ঘোষণা</p>
-            <p class="text-xs text-slate-300 font-medium" id="audio-status">বিস্তারিত শুনতে স্ক্রিনে ক্লিক করুন...</p>
+            <p class="text-xs text-blue-400 font-bold tracking-wider">🔴 লাইভ AI ব্রডকাস্ট</p>
+            <p class="text-xs text-slate-200 font-medium" id="audio-status">গুরুত্বপূর্ণ নির্দেশনা শুনতে স্ক্রিনে স্পর্শ করুন...</p>
         </div>
         <button id="audio-toggle-btn" class="bg-blue-600 hover:bg-blue-700 text-white w-9 h-9 rounded-full flex items-center justify-center transition-all cursor-pointer">
             <i class="fas fa-pause" id="audio-icon"></i>
         </button>
     </div>
 
-    <!-- হিরো সেকশন: ধামাকাদার প্রথম ভিউ -->
-    <header class="relative min-h-screen flex flex-col justify-center items-center px-4 overflow-hidden border-b border-slate-900">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(30,58,138,0.25)_0%,transparent_60%)]"></div>
-        <div class="absolute -top-40 -right-40 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl"></div>
+    <!-- গ্যারান্টি অ্যান্ড ট্রাস্ট সিল (টপ নোটিশ বার) -->
+    <div class="bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 text-center py-3 px-4 border-b border-blue-900/40 text-xs md:text-sm font-semibold tracking-wide text-blue-300 flex items-center justify-center gap-2">
+        <i class="fas fa-shield-alt text-emerald-400"></i> গণপ্রজাতন্ত্রী বাংলাদেশ সরকার দ্বারা নিবন্ধিত ও অনুমোদিত জাতীয় ডিজিটাল গণমাধ্যম নেটওয়ার্ক
+    </div>
 
-        <div class="relative z-10 text-center max-w-5xl mx-auto py-12">
-            <span class="bg-red-500/10 border text-red-400 px-5 py-2 rounded-full text-sm font-bold tracking-wide uppercase inline-flex items-center gap-2 mb-8 pulse-border">
-                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> সকল সদস্য ও গণমাধ্যম কর্মীদের জন্য বিশেষ ঘোষণা
+    <!-- হিরো মাস্টারপিস সেকশন -->
+    <header class="relative min-h-screen flex flex-col justify-center items-center px-4 overflow-hidden">
+        <!-- ব্যাকগ্রাউন্ড হাইপার-গ্রাফিক্স -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.18)_0%,transparent_65%)]"></div>
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
+
+        <div class="relative z-10 text-center max-w-5xl mx-auto py-16">
+            <span class="bg-red-500/15 border border-red-500/40 text-red-400 px-5 py-2.5 rounded-full text-xs md:text-sm font-bold tracking-wide uppercase inline-flex items-center gap-2 mb-8 pulse-fast">
+                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> কুরিয়ার অবমুক্তকরণ নোটিশ
             </span>
             
-            <h1 class="text-4xl md:text-7xl font-extrabold text-white leading-tight mb-8">
-                সম্মানিত প্রিয় সদস্য ও <br>
+            <h1 class="text-4xl md:text-7xl font-extrabold text-white leading-tight mb-8 tracking-tight">
+                সম্মানিত প্রিয় সদস্য ও <br>
                 <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400 bg-clip-text text-transparent text-neon">গণমাধ্যম কর্মী</span>
             </h1>
 
             <p class="text-xl md:text-3xl text-amber-400 font-bold max-w-3xl mx-auto mb-8 leading-relaxed">
-                আপনার জন্য পাঠানো অত্যন্ত মূল্যবান পার্সেলটি কি এখনো গ্রহণ করেননি?
+                আপনার জন্য প্রেরিত সর্বোচ্চ গুরুত্বপূর্ণ বিশেষ পার্সেলটি কি এখনো গ্রহণ করেননি?
             </p>
 
-            <div class="bg-slate-900/80 border border-slate-800/80 rounded-3xl p-6 md:p-10 backdrop-blur-xl mb-12 max-w-4xl mx-auto shadow-2xl">
-                <p class="text-lg md:text-xl text-slate-300 text-center leading-relaxed font-medium">
-                    <i class="fas fa-info-circle text-blue-500 mr-2"></i>
-                    অনুগ্রহ করে দ্রুত আপনার জন্য নির্ধারিত পার্সেলটি ডাকযোগ/কুরিয়ার থেকে সংগ্রহ করুন। এই পার্সেলের ভেতরে রয়েছে আপনার <span class="text-white font-bold underline decoration-blue-500">অফিসিয়াল সদস্য পরিচয়পত্র, প্রাতিষ্ঠানিক প্রামাণ্য ডকুমেন্ট</span> এবং আমাদের আন্তর্জাতিক মানের ডিজিটাল নেটওয়ার্কের বিশেষ অ্যাক্সেস—যা আপনার সাংবাদিকতা ক্যারিয়ারে এক বিশাল ও যুগান্তকারী পরিবর্তন নিয়ে আসবে!
+            <div class="bg-slate-900/70 border border-slate-800 rounded-3xl p-6 md:p-10 backdrop-blur-xl mb-12 max-w-4xl mx-auto shadow-2xl text-left border-t-4 border-t-blue-500">
+                <p class="text-base md:text-lg text-slate-300 leading-relaxed font-medium mb-4">
+                    <i class="fas fa-exclamation-circle text-blue-500 mr-2 text-xl"></i>
+                    অনুগ্রহ করে অবিলম্বে আপনার জন্য নির্ধারিত অফিশিয়াল পার্সেলটি কুরিয়ার সার্ভিস থেকে সংগ্রহ করুন। এই পার্সেলের ভেতরেই রয়েছে আপনার অত্যন্ত মর্যাদাপূর্ণ <span class="text-white font-bold underline decoration-blue-500">ডিজিটাল মেম্বারশিপ কার্ড, প্রাতিষ্ঠানিক সার্টিফিকেট, আইনি সুরক্ষা প্রামাণ্যপত্র এবং স্টিকার</span>। 
+                </p>
+                <p class="text-base md:text-lg text-emerald-400 font-bold flex items-center gap-2">
+                    <i class="fas fa-lock-open"></i> গুরুত্বপূর্ণ বিষয়: কুরিয়ার থেকে পার্সেলটি গ্রহণ করার সাথে সাথেই আপনার জন্য সমস্ত যুগান্তকারী প্রযুক্তিগত সুযোগ-সুবিধা, সফটওয়্যার ড্যাশবোর্ড এবং উপহারের অ্যাক্সেস লাইভ চালু করে দেওয়া হবে।
                 </p>
             </div>
 
             <div class="flex flex-col sm:flex-row justify-center items-center gap-5">
-                <a href="#benefits" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-lg px-10 py-5 rounded-2xl shadow-xl transition-all transform hover:-translate-y-1 w-full sm:w-auto premium-glow flex items-center justify-center gap-3">
-                    <i class="fas fa-award text-amber-300 animate-pulse"></i> আপনার অভূতপূর্ব সুযোগ-সুবিধাগুলো দেখুন
+                <a href="#first-time" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-lg px-10 py-5 rounded-2xl shadow-xl transition-all transform hover:-translate-y-1 w-full sm:w-auto neon-glow-blue flex items-center justify-center gap-3">
+                    <i class="fas fa-fingerprint text-emerald-300 animate-pulse"></i> প্রযুক্তিগত সিস্টেম ও সুবিধাসমূহ দেখুন
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- সেকশন ১: আধুনিক প্রযুক্তিনির্ভর প্ল্যাটফর্মের ক্ষমতা -->
-    <section id="benefits" class="py-24 px-4 bg-slate-950 relative">
+    <!-- সেকশন ১: বাংলাদেশে প্রথম আমরাই নিয়ে এসেছি -->
+    <section id="first-time" class="py-24 px-4 bg-slate-950 relative border-t border-slate-900">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <span class="text-blue-500 text-xs font-bold tracking-widest uppercase">FIRST TIME IN BANGLADESH</span>
-                <h2 class="text-3xl md:text-5xl font-bold text-white mt-2">🌐 আধুনিক প্রযুক্তিনির্ভর সাংবাদিকতা প্ল্যাটফর্ম</h2>
-                <div class="w-24 h-1 bg-blue-500 mx-auto mt-4 rounded-full"></div>
-                <p class="text-slate-400 mt-6 max-w-3xl mx-auto text-lg leading-relaxed">
-                    এটি শুধু কোনো সাধারণ ওয়েবসাইট বা নিউজ পোর্টাল নয়—এটি সম্পূর্ণ কৃত্রিম বুদ্ধিমত্তা (AI) চালিত বাংলাদেশের প্রথম ও একমাত্র অটোমেটেড রিপ্রেজেন্টেটিভ ড্যাশবোর্ড ও নিউজ ম্যানেজমেন্ট সফটওয়্যার সিস্টেম।
+            <div class="text-center mb-20">
+                <span class="bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs px-4 py-1.5 rounded-full font-bold uppercase tracking-widest">HISTORIC MILESTONE</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-4">🌐 বাংলাদেশে প্রথম অনন্য প্রযুক্তিগত সিস্টেম</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-emerald-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-slate-400 mt-6 max-w-3xl mx-auto text-base md:text-lg leading-relaxed">
+                    ঐতিহ্যগত সাংবাদিকতার সনাতন নিয়ম ভেঙে আমাদের প্রতিষ্ঠান সম্পূর্ণ আধুনিক ও কৃত্তিম বুদ্ধিমত্তা (AI) নির্ভর ব্যবস্থা প্রবর্তন করেছে। গর্বের সাথে জানাচ্ছি, <span class="text-white font-semibold">এই অত্যাধুনিক আর্কিটেকচারগুলো বাংলাদেশে প্রথম আমরাই সফলভাবে নিয়ে এসেছি:</span>
                 </p>
             </div>
 
-            <!-- ফিচার গ্রিড -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-slate-900/40 border border-slate-800/60 p-6 rounded-2xl hover:border-blue-500/40 transition-all">
-                    <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4"><i class="fas fa-bolt"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-2">সুপার ফাস্ট লোডিং সিস্টেম</h3>
-                    <p class="text-slate-400 text-sm">সর্বোচ্চ গতিসম্পন্ন ক্লাউড ইনফ্রাস্ট্রাকচার, যা মুহূর্তের মধ্যে লক্ষ লক্ষ পাঠকের কাছে সংবাদ পৌঁছে দেয়।</p>
+            <!-- মূল ৩টি বৈপ্লবিক ফিচার যা আমরা এনেছি -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-slate-900/50 border border-blue-500/20 p-8 rounded-3xl neon-glow-blue relative overflow-hidden group hover:border-blue-500/50 transition-all">
+                    <div class="w-14 h-14 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center text-2xl mb-6"><i class="fas fa-video"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3">স্মার্ট ভিডিও সংবাদ আপলোড</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">মাঠ পর্যায় থেকে সরাসরি হাই-ডেফিনিশন ভিডিও রিপোর্ট ড্যাশবোর্ডে আপলোড ও নিমেষেই অটো-ওয়াটারমার্ক সহ লাইভ পাবলিশ করার এক ক্লিকে ব্যবস্থাপনা।</p>
+                    <span class="absolute bottom-4 right-4 text-[10px] uppercase font-black bg-blue-600/20 text-blue-400 px-2 py-1 rounded">First In BD</span>
                 </div>
-                <div class="bg-slate-900/40 border border-slate-800/60 p-6 rounded-2xl hover:border-blue-500/40 transition-all">
-                    <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-xl flex items-center justify-center text-xl mb-4"><i class="fas fa-robot"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-2">কৃত্রিম বুদ্ধিমত্তা (AI) চালিত</h3>
-                    <p class="text-slate-400 text-sm">AI প্রযুক্তির সাহায্যে খুব সহজেই অডিও, ভিডিও এবং লিখিত সংবাদ স্বয়ংক্রিয়ভাবে তৈরি ও কাস্টমাইজড করার সুবিধা।</p>
+
+                <div class="bg-slate-900/50 border border-purple-500/20 p-8 rounded-3xl relative overflow-hidden group hover:border-purple-500/50 transition-all">
+                    <div class="w-14 h-14 bg-purple-500/10 text-purple-400 rounded-2xl flex items-center justify-center text-2xl mb-6"><i class="fas fa-microphone-lines"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3">স্মার্ট অডিও সংবাদ আপলোড</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">কৃত্রিম বুদ্ধিমত্তার (AI) মেলবন্ধনে টেক্সট থেকে স্পষ্ট ভয়েস ওভার কিংবা নিজস্ব অডিও ফিড আপলোড করে পডকাস্ট স্টাইলে সংবাদ প্রচারের যুগান্তকারী ব্যবস্থা।</p>
+                    <span class="absolute bottom-4 right-4 text-[10px] uppercase font-black bg-purple-600/20 text-purple-400 px-2 py-1 rounded">First In BD</span>
                 </div>
-                <div class="bg-slate-900/40 border border-slate-800/60 p-6 rounded-2xl hover:border-blue-500/40 transition-all">
-                    <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center text-xl mb-4"><i class="fas fa-qrcode"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-2">QR Code ডিজিটাল আইডি ভেরিফিকেশন</h3>
-                    <p class="text-slate-400 text-sm">প্রতিনিধিদের সুরক্ষায় ডিজিটাল আইডি কার্ড যাচাই ব্যবস্থা, যা স্ক্যান করলেই লাইভ প্রোফাইল প্রদর্শন করবে।</p>
-                </div>
-                <div class="bg-slate-900/40 border border-slate-800/60 p-6 rounded-2xl hover:border-blue-500/40 transition-all">
-                    <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-xl flex items-center justify-center text-xl mb-4"><i class="fas fa-user-shield"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-2">প্রতিনিধি ড্যাশবোর্ড ও সফটওয়্যার</h3>
-                    <p class="text-slate-400 text-sm">প্রত্যেক সংবাদকর্মীর জন্য রয়েছে নিজস্ব প্যানেল। জেলা ও উপজেলা ভিত্তিক সংবাদ প্রকাশ ও রিপোর্টিং ট্র্যাকিং সিস্টেম।</p>
-                </div>
-                <div class="bg-slate-900/40 border border-slate-800/60 p-6 rounded-2xl hover:border-blue-500/40 transition-all">
-                    <div class="w-12 h-12 bg-pink-500/10 text-pink-400 rounded-xl flex items-center justify-center text-xl mb-4"><i class="fas fa-file-invoice"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-2">১-ক্লিকে ডিজিটাল ই-পেপার</h3>
-                    <p class="text-slate-400 text-sm">কোনো জটিল কারিগরি জ্ঞান ছাড়াই অত্যন্ত আকর্ষণীয় উপাত্ত দিয়ে এক ক্লিকে প্রিন্ট সংস্করণের মতো ই-পেপার প্রকাশ।</p>
-                </div>
-                <div class="bg-slate-900/40 border border-slate-800/60 p-6 rounded-2xl hover:border-blue-500/40 transition-all">
-                    <div class="w-12 h-12 bg-cyan-500/10 text-cyan-400 rounded-xl flex items-center justify-center text-xl mb-4"><i class="fas fa-satellite-dish"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-2">লাইভ ভিডিও ও IPTV সাপোর্ট</h3>
-                    <p class="text-slate-400 text-sm">ভিডিও জার্নালিজমকে সহজ করতে ডেডিকেটেড ভিডিও পাবলিশিং, ফটো স্টোরি ও সরাসরি লাইভ ব্রডকাস্টিং ফ্রেমওয়ার্ক।</p>
+
+                <div class="bg-slate-900/50 border border-emerald-500/20 p-8 rounded-3xl neon-glow-emerald relative overflow-hidden group hover:border-emerald-500/50 transition-all">
+                    <div class="w-14 h-14 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center text-2xl mb-6"><i class="fas fa-user-check"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3">লাইভ প্রতিনিধি তথ্য যাচাই</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">নিরাপত্তা নিশ্চিতে QR Code সম্বলিত প্রতিনিধি ড্যাশবোর্ড ও মেম্বার ভেরিফিকেশন ম্যানেজমেন্ট সফটওয়্যার সিস্টেম, যা বাংলাদেশে শতভাগ জালিয়াতি মুক্ত সাংবাদিকতা নিশ্চিত করে।</p>
+                    <span class="absolute bottom-4 right-4 text-[10px] uppercase font-black bg-emerald-600/20 text-emerald-400 px-2 py-1 rounded">First In BD</span>
                 </div>
             </div>
 
-            <!-- টেকনিক্যাল চিপস -->
-            <div class="mt-8 flex flex-wrap justify-center gap-3 text-xs font-semibold text-slate-400">
-                <span class="bg-slate-900 px-4 py-2 rounded-full border border-slate-800"><i class="fas fa-check text-emerald-400 mr-1"></i> এলাকাভিত্তিক সংবাদ প্রবাহ</span>
-                <span class="bg-slate-900 px-4 py-2 rounded-full border border-slate-800"><i class="fas fa-check text-emerald-400 mr-1"></i> অনলাইন জরিপ ও ভোটিং</span>
-                <span class="bg-slate-900 px-4 py-2 rounded-full border border-slate-800"><i class="fas fa-check text-emerald-400 mr-1"></i> অটোমেটিক ওয়াটারমার্ক প্রোটেকশন</span>
-                <span class="bg-slate-900 px-4 py-2 rounded-full border border-slate-800"><i class="fas fa-check text-emerald-400 mr-1"></i> ইনস্ট্যান্ট SMS নোটিফিকেশন</span>
-                <span class="bg-slate-900 px-4 py-2 rounded-full border border-slate-800"><i class="fas fa-check text-emerald-400 mr-1"></i> নিউজ টিকার ও শিরোনাম ডেক্স</span>
+            <!-- অন্যান্য টেকনিক্যাল সুবিধা -->
+            <div class="bg-slate-900/30 border border-slate-800 p-8 rounded-3xl">
+                <h4 class="text-lg font-bold text-white mb-6 flex items-center gap-2"><i class="fas fa-microchip text-blue-500"></i> আরও যে সকল সুপার-মডার্ন প্রযুক্তিগত সুবিধা রয়েছে:</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-sm text-slate-400">
+                    <div class="flex items-center gap-3 bg-slate-950 p-3 rounded-xl border border-slate-900"><i class="fas fa-bolt text-emerald-400"></i> সুপার ফাস্ট লোডিং নিউজ প্ল্যাটফর্ম</div>
+                    <div class="flex items-center gap-3 bg-slate-950 p-3 rounded-xl border border-slate-900"><i class="fas fa-check text-emerald-400"></i> এলাকাভিত্তিক নিউজ ফিল্টারিং</div>
+                    <div class="flex items-center gap-3 bg-slate-950 p-3 rounded-xl border border-slate-900"><i class="fas fa-check text-emerald-400"></i> লাইভ নিউজ ও ইভেন্ট ব্রডকাস্ট</div>
+                    <div class="flex items-center gap-3 bg-slate-950 p-3 rounded-xl border border-slate-900"><i class="fas fa-check text-emerald-400"></i> IPTV ও লাইভ ভিডিও স্ট্রিম সাপোর্ট</div>
+                    <div class="flex items-center gap-3 bg-slate-950 p-3 rounded-xl border border-slate-900"><i class="fas fa-check text-emerald-400"></i> ফটো স্টোরি ও ডিজিটাল গ্যালারি</div>
+                    <div class="flex items-center gap-3 bg-slate-950 p-3 rounded-xl border border-slate-900"><i class="fas fa-check text-emerald-400"></i> অনলাইন পোলিং ও ভোটিং সিস্টেম</div>
+                    <div class="flex items-center gap-3 bg-slate-950 p-3 rounded-xl border border-slate-900"><i class="fas fa-check text-emerald-400"></i> সম্পূর্ণ কাস্টমাইজেবল থিম প্যানেল</div>
+                    <div class="flex items-center gap-3 bg-slate-950 p-3 rounded-xl border border-slate-900"><i class="fas fa-check text-emerald-400"></i> স্মার্ট নিউজ টিকার ও ব্রেকিং হেডলাইন</div>
+                    <div class="flex items-center gap-3 bg-slate-950 p-3 rounded-xl border border-slate-900"><i class="fas fa-check text-emerald-400"></i> ইনস্ট্যান্ট ই-পেপার জেনারেটর (১-ক্লিক)</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- সেকশন ২: মেম্বারদের বিশেষ অধিকার ও সুযোগ -->
-    <section class="py-24 px-4 bg-slate-900/30 border-t border-slate-900 relative">
+    <!-- সেকশন ২: পার্সেল গ্রহণের পর আপনার অ্যাকাউন্টে যা যা যুক্ত হবে -->
+    <section class="py-24 px-4 bg-slate-900/20 relative border-t border-slate-900">
         <div class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 
-                <!-- বাম পাশ: প্রতিনিধিদের সুবিধা -->
+                <!-- বাম পাশ: প্রতিনিধিদের অনন্য সুবিধাসমূহ -->
                 <div>
-                    <span class="text-emerald-400 text-xs font-bold tracking-widest uppercase">REPRESENTATIVE BENEFITS</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-6">📰 সদস্য ও প্রতিনিধিদের স্পেশাল প্রিভিলেজ</h2>
+                    <span class="text-amber-400 text-xs font-bold tracking-widest uppercase">MEMBERS PRESTIGE</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-6">📰 সদস্য ও প্রতিনিধিদের বিশেষ সুযোগ-সুবিধা</h2>
+                    <p class="text-slate-400 text-sm md:text-base mb-6 leading-relaxed">
+                        কুরিয়ারের পার্সেলটি সফলভাবে আপনার হাতে পৌঁছানোর পর, আপনাকে আমাদের মূল সেন্ট্রাল সফটওয়্যার সিস্টেমের সাথে যুক্ত করা হবে। এরপর আপনি উপভোগ করতে পারবেন:
+                    </p>
                     
-                    <ul class="space-y-4 text-slate-300">
+                    <ul class="space-y-4 text-slate-300 text-sm md:text-base">
                         <li class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-emerald-500 mt-1 shrink-0"></i>
-                            <span><strong class="text-white">সীমাহীন সংবাদ প্রকাশের সুবিধা:</strong> নিজস্ব ভেরিফাইড আপলোড অ্যাকাউন্ট থেকে দেশের যেকোনো প্রান্ত থেকে আনলিমিটেড নিউজ পাবলিশ করার সুযোগ।</span>
+                            <div class="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0 mt-1"><i class="fas fa-check text-[10px]"></i></div>
+                            <span>অনলাইনে দেশব্যাপী স্বাধীনভাবে সাংবাদিকতা করার সুবর্ণ সুযোগ।</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-emerald-500 mt-1 shrink-0"></i>
-                            <span><strong class="text-white">ফিজিক্যাল কিট ও সার্টিফিকেশন:</strong> পার্সেলের মাধ্যমে মেম্বারশিপ কার্ড, ল্যামিনেটেড শংসাপত্র (সার্টিফিকেট), এবং গাড়ির বা ল্যাপটপের জন্য প্রাতিষ্ঠানিক স্টিকার।</span>
+                            <div class="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0 mt-1"><i class="fas fa-check text-[10px]"></i></div>
+                            <span>নিজস্ব ড্যাশবোর্ড থেকে সীমাহীন (আনলিমিটেড) সংবাদ প্রকাশের অ্যাকাউন্ট অ্যাক্সেস।</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-emerald-500 mt-1 shrink-0"></i>
-                            <span><strong class="text-white">পেশাদার প্রশিক্ষণ সহযোগিতা:</strong> সাংবাদিকতার মূলনীতি ও আধুনিক প্রযুক্তির সর্বোচ্চ ব্যবহারের ওপর নিয়মিত অনলাইন ও অফলাইন বিশেষ কর্মশালা।</span>
+                            <div class="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0 mt-1"><i class="fas fa-check text-[10px]"></i></div>
+                            <span>জেলা ও উপজেলা ভিত্তিক ডেডিকেটেড প্রতিনিধি কার্যক্রম পরিচালনার পূর্ণ অধিকার।</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-emerald-500 mt-1 shrink-0"></i>
-                            <span><strong class="text-white">মোবাইল অ্যাপস সুবিধা:</strong> কম্পিউটার ছাড়াই সরাসরি নিজের স্মার্টফোন বা অ্যাপ থেকে চোখের পলকে সংবাদ কভার করার সুবিধা।</span>
+                            <div class="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0 mt-1"><i class="fas fa-check text-[10px]"></i></div>
+                            <span>উন্নত প্রযুক্তিগত প্রশিক্ষণ, অনলাইন-অফলাইন সেমিনার এবং মোবাইল অ্যাপ সাপোর্ট।</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0 mt-1"><i class="fas fa-check text-[10px]"></i></div>
+                            <span>গবেষণাধর্মী স্পেশাল প্রতিবেদন ও কলাম তৈরিতে কেন্দ্রীয় প্যানেল থেকে সার্বক্ষণিক সহযোগিতা।</span>
                         </li>
                     </ul>
                 </div>
 
-                <!-- ডান পাশ: আইনি সুরক্ষা ও সহযোগিতা বক্স -->
-                <div class="bg-gradient-to-br from-red-950/40 to-slate-950 border border-red-500/30 p-8 rounded-3xl shadow-2xl">
-                    <div class="w-12 h-12 bg-red-500/10 text-red-400 rounded-xl flex items-center justify-center text-2xl mb-4">
+                <!-- ডান পাশ: আইনি সুরক্ষা কবচ (গ্যারান্টি) -->
+                <div class="bg-gradient-to-br from-red-950/40 via-slate-950 to-slate-950 border border-red-500/30 p-8 rounded-3xl shadow-2xl relative">
+                    <div class="absolute top-4 right-4 bg-red-600/20 text-red-400 font-bold text-[10px] px-3 py-1 rounded-full uppercase tracking-wider">
+                        100% Legal Protection
+                    </div>
+                    <div class="w-12 h-12 bg-red-500/10 text-red-400 rounded-2xl flex items-center justify-center text-2xl mb-4">
                         <i class="fas fa-gavel"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-4">⚖️ আইনি ও প্রশাসনিক বজ্রকঠিন ঢাল</h3>
                     <p class="text-slate-300 text-sm leading-relaxed mb-4">
-                        পেশাগত দায়িত্ব পালন, সত্য সংবাদ প্রকাশ বা মাঠ পর্যায়ে সংবাদ সংগ্রহের সময় কোনো প্রকার অনাকাঙ্ক্ষিত জটিলতা তৈরি হলে আমাদের প্রতিষ্ঠান সব সময় আপনার পাশে থাকবে।
+                        মাঠ পর্যায়ে সংবাদ সংগ্রহ, সত্য প্রকাশ বা পেশাগত দ্বায়িত্ব পালনের সময় আমাদের নিবন্ধিত সদস্যদের পাশে যেকোনো পরিস্থিতিতে সর্বোচ্চ প্রাতিষ্ঠানিক ও আইনি সহযোগিতা নিয়ে থাকবে আমাদের অভিজ্ঞ লিগ্যাল টিম।
                     </p>
-                    <p class="text-slate-300 text-sm leading-relaxed font-semibold text-amber-400">
-                        যেকোনো ধরনের হামলা, মিথ্যা মামলা, অন্যায় হয়রানি বা কঠিন পরিস্থিতিতে আপনার অধিকার রক্ষায় এবং আইনি লড়াইতে আইন আদালত থেকে শুরু করে সর্বোচ্চ প্রাতিষ্ঠানিক ও প্রশাসনিক সহযোগিতা নিশ্চিত করা হবে। মিডিয়া আইন ও নিরাপত্তার প্রশ্নে আমরা আপসহীন।
+                    <p class="text-slate-300 text-sm leading-relaxed font-semibold text-amber-400 bg-red-950/20 border border-red-900/40 p-4 rounded-xl">
+                        যেকোনো ধরনের অনাকাঙ্ক্ষিত জটিলতা, হামলা, মামলা, হয়রানি বা কঠিন সংকটে আপনার অধিকার রক্ষায় আইন আদালত থেকে শুরু করে সর্বোচ্চ প্রশাসনিক স্তরে আমরা আপনার পাশে থাকব। আমাদের সদস্যদের আইনি নিরাপত্তা আমাদের প্রথম অগ্রাধিকার।
                     </p>
                 </div>
 
@@ -186,83 +205,88 @@
         </div>
     </section>
 
-    <!-- সেকশন ৩: আর্থিক রিওয়ার্ড এবং উপহার (যা তাদের মোটিভেট করবে) -->
+    <!-- সেকশন ৩: ফিন্যান্সিয়াল এবং লাইভ গ্যাজেট পুরস্কার পলিসি -->
     <section class="py-24 px-4 bg-slate-950 border-t border-slate-900">
         <div class="max-w-5xl mx-auto text-center">
-            <span class="text-amber-500 text-xs font-bold tracking-widest uppercase">HONORARIUM & REWARDS</span>
-            <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-2 mb-6">💼 সম্মানী, আর্থিক সুযোগ ও আকর্ষণীয় উপহার</h2>
+            <span class="text-emerald-400 text-xs font-bold tracking-widest uppercase">FINANCIAL POLICY & REWARDS</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-2 mb-6">💼 মাসিক সম্মানী, পারিশ্রমিক ও উপহার সামগ্রী</h2>
             <p class="text-slate-400 max-w-2xl mx-auto mb-12 text-sm md:text-base">
-                প্রতিনিধিদের মেধা ও শ্রমের সঠিক মূল্যায়ন করতে আমাদের রয়েছে একটি চমৎকার প্রাতিষ্ঠানিক রিওয়ার্ড পলিসি। সংবাদ লেখার মান, ধারাবাহিকতা এবং আপনার অবদানের ভিত্তিতে আপনি পাবেন:
+                আমাদের প্রতিষ্ঠানে সাংবাদিকদের মেধা ও অবদানের সর্বোচ্চ মূল্যায়ন নিশ্চিত করা হয়। আপনার সংবাদের গুণগত মান, অনন্য প্রতিবেদন এবং সক্রিয় অংশগ্রহণের ওপর ভিত্তি করে রয়েছে আকর্ষণীয় নীতিমালা:
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left max-w-4xl mx-auto mb-12">
-                <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-2xl flex items-start gap-4">
-                    <div class="text-2xl text-emerald-400"><i class="fas fa-money-check-alt"></i></div>
+                <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-2xl flex items-start gap-4 hover:border-emerald-500/30 transition-all">
+                    <div class="text-2xl text-emerald-400"><i class="fas fa-money-bill-wave"></i></div>
                     <div>
-                        <h4 class="text-lg font-bold text-white mb-1">মাসিক সম্মানী ও পারিশ্রমিক</h4>
-                        <p class="text-slate-400 text-sm">নীতিমালা অনুযায়ী আপনার কাজের গ্রেড ও অবদানের ওপর ভিত্তি করে প্রতি মাসে ফিক্সড সম্মানী ও পারিশ্রমিক অ্যাকাউন্টে পৌঁছে যাবে।</p>
+                        <h4 class="text-lg font-bold text-white mb-1">নির্ধারিত মাসিক সম্মানী ও বেতন</h4>
+                        <p class="text-slate-400 text-sm">সক্রিয় এবং ডেডিকেটেড প্রতিনিধিদের কাজের গ্রেড অনুযায়ী প্রতি মাসে প্রাতিষ্ঠানিক বেতন ও নিয়মিত সম্মানীর চমৎকার ব্যবস্থা রয়েছে।</p>
                     </div>
                 </div>
-                <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-2xl flex items-start gap-4">
-                    <div class="text-2xl text-amber-400"><i class="fas fa-trophy"></i></div>
+                <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-2xl flex items-start gap-4 hover:border-emerald-500/30 transition-all">
+                    <div class="text-2xl text-amber-400"><i class="fas fa-medal"></i></div>
                     <div>
-                        <h4 class="text-lg font-bold text-white mb-1">বিশেষ আর্থিক সম্মাননা ও পুরস্কার</h4>
-                        <p class="text-slate-400 text-sm">সেরা প্রতিবেদন বা বিশেষ অনুসন্ধানী সংবাদের জন্য প্রতি মাসেই থাকছে আকর্ষণীয় বোনাস ও বিশেষ ক্রিয়েটিভ ফান্ডিং।</p>
+                        <h4 class="text-lg font-bold text-white mb-1">বিশেষ আর্থিক সুযোগ ও রেটিং পারিশ্রমিক</h4>
+                        <p class="text-slate-400 text-sm">আপনার পাঠানো বিশেষ ব্রেকিং নিউজ বা অনুসন্ধানী প্রতিবেদনের ওপর ভিত্তি করে প্রতি সংবাদের জন্য অতিরিক্ত পারিশ্রমিক ও বোনাস পলিসি।</p>
                     </div>
                 </div>
             </div>
 
-            <!-- লাইভ উপহার শোকেস -->
-            <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-indigo-950/40 border border-blue-500/20 rounded-3xl p-8 max-w-4xl mx-auto">
-                <h3 class="text-xl font-bold text-white mb-6 flex items-center justify-center gap-2">
-                    <i class="fas fa-gift text-red-400 animate-bounce"></i> 🎁 বিশেষ উপহার সামগ্রী ও সাংবাদিকতা কিট
+            <!-- রিয়েল কিট শোকেস -->
+            <div class="bg-gradient-to-br from-slate-900 to-indigo-950/40 border border-blue-500/20 rounded-3xl p-8 max-w-4xl mx-auto text-left relative">
+                <div class="absolute -top-4 right-6 bg-blue-600 text-white font-extrabold text-[10px] px-4 py-1 rounded-full uppercase tracking-widest shadow-lg">
+                    Premium Kits Included
+                </div>
+                <h3 class="text-xl font-bold text-white mb-6 text-center sm:text-left flex items-center justify-center sm:justify-start gap-2">
+                    <i class="fas fa-box text-amber-400 animate-bounce"></i> 🎁 নিয়মিত উপহার সামগ্রী ও সাংবাদিকতার প্রয়োজনীয় উপকরণ:
                 </h3>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
-                        <i class="fas fa-microphone-alt text-3xl text-blue-400 mb-2"></i>
-                        <p class="text-xs text-white font-medium">অফিসিয়াল ইন্টারভিউ মাইক্রোফোন</p>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-900 hover:border-blue-500/30 transition-all">
+                        <i class="fas fa-microphone text-3xl text-blue-400 mb-2"></i>
+                        <p class="text-xs text-white font-semibold">অফিসিয়াল ইন্টারভিউ মাইক্রোফোন</p>
                     </div>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
-                        <i class="fas fa-laptop text-3xl text-blue-400 mb-2"></i>
-                        <p class="text-xs text-white font-medium">আধুনিক সাংবাদিক গ্যাজেট আইটেম</p>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-900 hover:border-blue-500/30 transition-all">
+                        <i class="fas fa-headset text-3xl text-blue-400 mb-2"></i>
+                        <p class="text-xs text-white font-semibold">আধুনিক সাংবাদিক গ্যাজেট কিট</p>
                     </div>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
-                        <i class="fas fa-mobile-alt text-3xl text-blue-400 mb-2"></i>
-                        <p class="text-xs text-white font-medium">স্মার্ট ইলেকট্রনিক অ্যাক্সেসরিজ</p>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-900 hover:border-blue-500/30 transition-all">
+                        <i class="fas fa-plug-circle-bolt text-3xl text-blue-400 mb-2"></i>
+                        <p class="text-xs text-white font-semibold">স্মার্ট ইলেকট্রনিক আইটেমসমূহ</p>
                     </div>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
-                        <i class="fas fa-tools text-3xl text-blue-400 mb-2"></i>
-                        <p class="text-xs text-white font-medium">পেশাগত প্রয়োজনীয় অন-ফিল্ড উপকরণ</p>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-900 hover:border-blue-500/30 transition-all">
+                        <i class="fas fa-vest text-3xl text-blue-400 mb-2"></i>
+                        <p class="text-xs text-white font-semibold">অন-ফিল্ড রিপোর্টিং উপকরণ</p>
                     </div>
                 </div>
-                <div class="mt-6 text-xs text-slate-400">
-                    <i class="fas fa-info-circle text-blue-400 mr-1"></i> সংবাদ লেখার মান এবং সক্রিয়তার ওপর নির্ভর করে নিয়মিত এই উপহার সামগ্রীগুলো কুরিয়ার যোগে পাঠানো হয়।
-                </div>
+                <p class="text-xs text-slate-400 mt-6 text-center bg-slate-950/50 p-3 rounded-xl border border-slate-900">
+                    <i class="fas fa-info-circle text-blue-500 mr-1"></i> এই সমস্ত উপহার ও সম্মাননা আপনার কাজের সক্রিয়তা এবং প্রকাশিত সংবাদের সংখ্যার ওপর নির্ভর করে নিয়মিত পাঠানো হয়ে থাকে।
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- চূড়ান্ত মোটিভেশনাল সেকশন (কল-টু-অ্যাকশন ছাড়াই চমৎকার সমাপনী) -->
-    <section class="py-20 px-4 bg-gradient-to-t from-slate-950 to-slate-900 text-center">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-2xl md:text-4xl font-bold text-white mb-6">🤝 সুদৃঢ় সাংগঠনিক নেটওয়ার্ক ও যোগাযোগ</h2>
-            <p class="text-slate-300 leading-relaxed mb-8 text-sm md:text-base">
-                আমাদের রয়েছে ডেডিকেটেড অফিসিয়াল যোগাযোগ গ্রুপ, জেলা ও উপজেলা পর্যায়ের শক্তিশালী কমিটি ব্যবস্থাপনা। এই প্ল্যাটফর্মে যুক্ত হওয়া মানে জাতীয় ও আন্তর্জাতিক সাংবাদিক মহলের একটি বিশাল ও প্রভাবশালী নেটওয়ার্কের অংশ হওয়া। আপনার অধিকার, নিরাপত্তা এবং সর্বোচ্চ পেশাদার মর্যাদা নিশ্চিত করতেই এই আয়োজন।
+    <!-- সাংগঠনিক সমাপনী ও ফাইনাল কল -->
+    <section class="py-24 px-4 bg-gradient-to-t from-slate-950 to-slate-900 text-center border-t border-slate-900">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl md:text-4xl font-bold text-white mb-6">🤝 সুদৃঢ় অফিসিয়াল যোগাযোগ ও সাংগঠনিক নেটওয়ার্ক</h2>
+            <p class="text-slate-300 leading-relaxed mb-10 max-w-3xl mx-auto text-sm md:text-base">
+                যোগাযোগের ক্ষেত্রে আমরা সর্বোচ্চ পেশাদারিত্ব বজায় রাখি। আমাদের রয়েছে বিশেষ অফিসিয়াল কমিউনিকেশন গ্রুপ এবং জেলা-উপজেলা পর্যায়ের শক্তিশালী অনুমোদিত কমিটি। এই নেটওয়ার্কের সাথে যুক্ত হয়ে আপনি জাতীয় ও আন্তর্জাতিক পর্যায়ের সাংবাদিক মহলে নিজের অবস্থান সুদৃঢ় করতে পারবেন।
             </p>
-            <div class="inline-block px-8 py-4 bg-blue-600/10 border border-blue-500/30 text-blue-400 rounded-2xl font-bold text-lg">
-                🚀 তাই আর বিলম্ব না করে দ্রুত আপনার পার্সেলটি সংগ্রহ করুন এবং গর্বিত সদস্য হিসেবে আমাদের সাথে নতুন পথচলা শুরু করুন!
+            
+            <div class="inline-block px-8 py-5 bg-gradient-to-r from-blue-900/30 via-indigo-900/30 to-blue-900/30 border-2 border-dashed border-blue-500/40 text-blue-400 rounded-2xl font-bold text-lg max-w-2xl shadow-xl animate-pulse">
+                🚀 তাই আর এক মুহূর্তও বিলম্ব না করে দ্রুত আপনার ঠিকানায় পৌঁছানো পার্সেলটি সংগ্রহ করুন এবং প্রযুক্তিনির্ভর আধুনিক সাংবাদিকতার এই গৌরবময় ও ঐতিহাসিক নতুন যাত্রায় শামিল হোন!
             </div>
         </div>
     </section>
 
     <!-- ফুটার -->
-    <footer class="bg-slate-950 py-6 text-center text-xs text-slate-600 border-t border-slate-900/60">
+    <footer class="bg-slate-950 py-8 text-center text-xs text-slate-600 border-t border-slate-900/40">
         <p>&copy; 2026 প্রযুক্তিনির্ভর আধুনিক সাংবাদিকতা নেটওয়ার্ক। সর্বস্বত্ব সংরক্ষিত।</p>
     </footer>
 
-    <!-- স্ক্রিপ্ট: স্মার্ট অটোমেটিক ভয়েস-ওভার প্লেয়ার -->
+    <!-- স্ক্রিপ্ট: মোশন অ্যাক্টিভেটেড AI ভয়েস-ওভার প্লেয়ার মেকানিজম -->
     <script>
-        const voiceScript = "সম্মানিত প্রিয় সদস্য এবং গণমাধ্যম কর্মী। আপনার জন্য প্রেরণ করা গুরুত্বপূর্ণ পার্সেলটি কি এখনো গ্রহণ করেননি? অনুগ্রহ করে দ্রুত আপনার পার্সেলটি গ্রহণ করুন। কারণ এই পার্সেলের মাধ্যমে আপনি আপনার সদস্য পরিচয়, প্রয়োজনীয় ডকুমেন্ট এবং আধুনিক প্রযুক্তিনির্ভর সাংবাদিকতা কার্যক্রমের বিভিন্ন সুযোগ সুবিধা গ্রহণের সুযোগ পাবেন। এটি শুধু একটি সাধারণ ওয়েবসাইট নয়, এটি একটি সম্পূর্ণ আধুনিক স্মার্ট ও প্রযুক্তিনির্ভর নিউজ প্ল্যাটফর্ম। যেখানে সংবাদ সংগ্রহ, প্রকাশনা, প্রতিনিধি ব্যবস্থাপনা এবং ডিজিটাল কার্যক্রম দ্রুত ও স্বয়ংক্রিয়ভাবে পরিচালনা করা যাবে। আপনি আমাদের প্রতিষ্ঠানের পক্ষ থেকে সবসময় আইনি এবং প্রশাসনিক সহযোগিতা পাবেন। আমাদের এখানে মাসিক সম্মানী, বেতনের ব্যবস্থা এবং বিভিন্ন সময়ে বিভিন্ন উপহার যেমন সাংবাদিক গ্যাজেট আইটেম, ইলেকট্রনিক আইটেম, মাইক্রোফোন ইত্যাদি প্রদানের চমৎকার ব্যবস্থা রয়েছে। তাই অনুগ্রহ করে দ্রুত আপনার পার্সেলটি গ্রহণ করুন এবং প্রযুক্তিনির্ভর আধুনিক সাংবাদিকতার নতুন যাত্রায় যুক্ত হোন।";
+        // আপনার জন্য বিশেষভাবে রিফাইন ও আপগ্রেড করা অডিও স্ক্রিপ্ট
+        const voiceScript = "সম্মানিত প্রিয় সদস্য এবং গণমাধ্যম কর্মী। আপনার জন্য প্রেরণ করা অত্যন্ত গুরুত্বপূর্ণ বিশেষ পার্সেলটি কি এখনো গ্রহণ করেননি? অনুগ্রহ করে দ্রুত আপনার পার্সেলটি গ্রহণ করুন। কারণ এই পার্সেলের মাধ্যমে আপনি আপনার সদস্য পরিচয়, প্রয়োজনীয় ডকুমেন্ট এবং আধুনিক প্রযুক্তিনির্ভর সাংবাদিকতা কার্যক্রমের বিভিন্ন সুযোগ সুবিধা গ্রহণের সুযোগ পাবেন। এটি শুধু একটি সাধারণ ওয়েবসাইট নয়, এটি সম্পূর্ণ আধুনিক স্মার্ট ও প্রযুক্তিনির্ভর নিউজ প্ল্যাটফর্ম। যেখানে ভিডিও সংবাদ আপলোড, অডিও সংবাদ আপলোড এবং লাইভ প্রতিনিধি তথ্য যাচাইয়ের মতো বৈপ্লবিক সিস্টেম রয়েছে, যা বাংলাদেশে প্রথম আমরাই নিয়ে এসেছি। আমাদের প্রতিষ্ঠানটি গণপ্রজাতন্ত্রী বাংলাদেশ সরকার দ্বারা নিবন্ধিত এবং আমরাই দিচ্ছি সবচেয়ে অত্যাধুনিক প্রাতিষ্ঠানিক সুযোগ-সুবিধা। পার্সেলটি গ্রহণ করার পরেই আপনি এই সমস্ত প্রিমিয়াম সুযোগ সুবিধা ও ড্যাশবোর্ড ব্যবহারের নিয়ম বিস্তারিত পেয়ে যাবেন। এছাড়া আপনার জন্য রয়েছে মাসিক সম্মানী, বেতনের ব্যবস্থা এবং বিভিন্ন সময়ে বিভিন্ন উপহার যেমন সাংবাদিক গ্যাজেট আইটেম, ইলেকট্রনিক আইটেম, মাইক্রোফোন সহ প্রয়োজনীয় অন-ফিল্ড উপকরণ। একই সাথে যেকোনো কঠিন পরিস্থিতিতে আপনি আমাদের প্রতিষ্ঠানের পক্ষ থেকে পাবেন সর্বোচ্চ আইনি এবং প্রশাসনিক সুরক্ষা। তাই অনুগ্রহ করে দ্রুত আপনার পার্সেলটি কুরিয়ার থেকে গ্রহণ করুন এবং প্রযুক্তিনির্ভর আধুনিক সাংবাদিকতার নতুন বিজয়ী যাত্রায় যুক্ত হোন। ধন্যবাদ।";
 
         let synth = window.speechSynthesis;
         let utterance = null;
@@ -278,8 +302,8 @@
                 utterance = new SpeechSynthesisUtterance(voiceScript);
                 utterance.lang = 'bn-BD'; 
                 utterance.pitch = 1.0;
-                utterance.rate = 0.95; // স্বাভাবিক ও স্পষ্ট বাচনভঙ্গি
-
+                utterance.rate = 0.95; // স্পষ্ট এবং প্রফেশনাল স্পিড
+                
                 utterance.onend = () => {
                     audioStatus.innerText = "ঘোষণা সম্পন্ন হয়েছে।";
                     audioIcon.className = "fas fa-redo";
@@ -288,7 +312,7 @@
             }
         }
 
-        function triggerVoice() {
+        function playVoice() {
             if (!utterance) initVoice();
             if (!isSpeaking) {
                 synth.cancel(); 
@@ -300,9 +324,9 @@
             }
         }
 
-        function togglePlayback() {
+        function toggleVoice() {
             if (!isSpeaking) {
-                triggerVoice();
+                playVoice();
             } else {
                 if (synth.speaking) {
                     if (synth.paused) {
@@ -311,25 +335,25 @@
                         audioIcon.className = "fas fa-pause";
                     } else {
                         synth.pause();
-                        audioStatus.innerText = "ভয়েস সাময়িক বন্ধ আছে";
+                        audioStatus.innerText = "ভয়ার্স সাময়িক বন্ধ আছে";
                         audioIcon.className = "fas fa-play";
                     }
                 }
             }
         }
 
-        // ব্রাউজার পলিসি অনুযায়ী প্রথম ইন্টারঅ্যাকশনে (টাচ বা ক্লিক) স্বয়ংক্রিয়ভাবে ভয়েস চালু হবে
-        window.addEventListener('click', function autoPlayOnFirstClick() {
-            triggerVoice();
-            window.removeEventListener('click', autoPlayOnFirstClick);
+        // ব্রাউজার সিকিউরিটি পলিসি অনুসারে ইউজার স্ক্রিনের যেকোনো জায়গায় প্রথম ক্লিক করলেই ব্যাকগ্রাউন্ড ভয়েস চালু হবে
+        window.addEventListener('click', function triggerOnFirstInteraction() {
+            playVoice();
+            window.removeEventListener('click', triggerOnFirstInteraction);
         }, { once: true });
 
         toggleBtn.addEventListener('click', (e) => {
             e.stopPropagation(); 
-            togglePlayback();
+            toggleVoice();
         });
 
         window.onload = initVoice;
     </script>
 </body>
-</html>
+    </html>
