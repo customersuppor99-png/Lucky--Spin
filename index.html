@@ -3,396 +3,351 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>সংবাদ আপলোড ড্যাশবোর্ড | স্বাধীন বাংলা প্রেসক্লাব</title>
+    <title>সংবাদ আপলোড সম্পূর্ণ নির্দেশিকা | স্বাধীন বাংলা প্রেসক্লাব</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
         body {
             font-family: 'Hind Siliguri', sans-serif;
-            background-color: #f8fafc;
+            scroll-behavior: smooth;
         }
-        .step-active {
-            border-color: #2563eb;
-            color: #2563eb;
-            background-color: #eff6ff;
+        .step-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+        .active-step {
+            border-color: #ef4444;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased">
 
-    <nav class="bg-gradient-to-r #ff3333 to-red-700 bg-red-600 text-white shadow-xl sticky top-0 z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex items-center space-x-3 gap-2">
-                    <div class="p-2.5 bg-white/10 rounded-xl backdrop-blur-md animate__animated animate__pulse animate__infinite">
-                        <i class="fa-solid fa-newspaper text-2xl text-yellow-300"></i>
-                    </div>
-                    <div>
-                        <span class="text-xl font-bold tracking-wide block">স্বাধীন বাংলা প্রেসক্লাব</span>
-                        <span class="text-xs text-red-100 block opacity-90">ডিজিটাল জার্নালিজম পোর্টাল</span>
-                    </div>
+    <!-- Premium Header -->
+    <header class="bg-gradient-to-r from-red-600 to-red-800 text-white shadow-xl sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2.5 bg-white/10 rounded-xl animate__animated animate__pulse animate__infinite">
+                    <i class="fa-solid fa-newspaper text-2xl text-yellow-300"></i>
                 </div>
-                <div class="flex items-center space-x-4 gap-3">
-                    <button onclick="toggleVoiceAssistant()" id="voiceBtn" class="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 active:scale-95 transition rounded-full text-sm font-semibold border border-white/20 shadow-inner">
-                        <i id="voiceIcon" class="fa-solid fa-volume-high text-green-300 animate-pulse"></i>
-                        <span id="voiceText">AI ভয়েস অন</span>
-                    </button>
-                    <a href="https://shadinbanglapressclub.com/login" target="_blank" class="px-5 py-2.5 bg-yellow-400 hover:bg-yellow-500 text-slate-900 font-bold rounded-xl transition transform hover:-translate-y-0.5 shadow-lg flex items-center gap-2 text-sm">
-                        <i class="fa-solid fa-right-to-bracket"></i> লগইন করুন
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide">স্বাধীন বাংলা প্রেসক্লাব</h1>
+                    <p class="text-xs text-red-100 opacity-90">সংবাদ আপলোড করার সম্পূর্ণ ভিডিও ও টেক্সট নির্দেশিকা</p>
+                </div>
+            </div>
+            <!-- AI Audio Control Hub -->
+            <div class="flex items-center gap-3">
+                <button onclick="startAiTutorial()" class="px-5 py-2.5 bg-yellow-400 hover:bg-yellow-500 text-slate-900 font-bold rounded-full transition transform hover:scale-105 shadow-md flex items-center gap-2 text-sm cursor-pointer">
+                    <i class="fa-solid fa-circle-play text-red-600 animate-ping"></i> <span>AI ভয়েস টিউটোরিয়াল চালু করুন</span>
+                </button>
+                <button onclick="stopSpeech()" class="p-2.5 bg-slate-900/40 text-white rounded-full hover:bg-slate-900/60 transition">
+                    <i class="fa-solid fa-volume-xmark"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dynamic Container -->
+    <main class="max-w-5xl mx-auto px-4 py-12 space-y-16">
+        
+        <!-- Hero Intro Section -->
+        <section class="text-center space-y-4 max-w-2xl mx-auto animate__animated animate__fadeIn">
+            <span class="bg-red-100 text-red-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">অফিসিয়াল গাইডলাইন</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-950 leading-tight">ডিজিটাল পোর্টালে সহজেই সংবাদ প্রকাশ করুন</h2>
+            <p class="text-base text-slate-500">আমাদের নতুন ড্যাশবোর্ডে কীভাবে নির্ভুলভাবে সংবাদ সাবমিট করবেন, তার প্রতিটি ধাপ নিচে সচিত্র এবং এআই ভয়েস অ্যাসিস্ট্যান্টের মাধ্যমে ধাপে ধাপে বুঝিয়ে দেওয়া হলো।</p>
+        </section>
+
+        <!-- Dynamic Timeline Steps -->
+        <div class="space-y-8 relative before:absolute before:inset-0 before:left-4 sm:before:left-1/2 before:w-0.5 before:bg-slate-200 before:-z-10">
+            
+            <!-- STEP 1 -->
+            <div id="step1" class="step-card flex flex-col sm:flex-row items-start sm:items-center gap-6 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm relative">
+                <div class="absolute -left-2 sm:left-1/2 sm:-translate-x-1/2 top-6 sm:top-auto bg-blue-600 text-white w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm ring-4 ring-blue-50 shadow-md">১</div>
+                <div class="sm:w-1/2 space-y-3">
+                    <span class="text-blue-600 font-bold text-sm uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-rocket"></i> ধাপ ১</span>
+                    <h3 class="text-xl font-bold text-slate-900">ওয়েবসাইটে লগইন করুন</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">প্রথমে নিচে দেওয়া লিংকে ক্লিক করে আপনার ইউজার আইডি এবং পাসওয়ার্ড দিয়ে আমাদের অফিসিয়াল ওয়েবসাইটে সফলভাবে লগইন সম্পন্ন করুন।</p>
+                    <a href="https://shadinbanglapressclub.com/login" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 underline underline-offset-4">
+                        <i class="fa-solid fa-link"></i> https://shadinbanglapressclub.com/login
                     </a>
                 </div>
+                <div class="sm:w-1/2 bg-slate-50 p-4 rounded-xl border border-slate-200/60 flex items-center justify-center">
+                    <i class="fa-solid fa-shield-halved text-6xl text-blue-500/20 py-6"></i>
+                </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div id="step2" class="step-card flex flex-col sm:flex-row-reverse items-start sm:items-center gap-6 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm relative">
+                <div class="absolute -left-2 sm:left-1/2 sm:-translate-x-1/2 top-6 sm:top-auto bg-purple-600 text-white w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm ring-4 ring-purple-50 shadow-md">২</div>
+                <div class="sm:w-1/2 space-y-3 sm:pl-8">
+                    <span class="text-purple-600 font-bold text-sm uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-lock"></i> ধাপ ২</span>
+                    <h3 class="text-xl font-bold text-slate-900">ড্যাশবোর্ডে প্রবেশ করুন</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">লগইন করার পর আপনি আপনার ব্যক্তিগত প্যানেলে নিচের অপশনগুলো দেখতে পাবেন। সংবাদ প্রকাশ করার জন্য সরাসরি <strong class="text-slate-800">"আর্টিকেল লিখুন"</strong> অপশনে ক্লিক করুন।</p>
+                    <div class="grid grid-cols-2 gap-2 pt-2">
+                        <div class="p-2.5 bg-blue-50 border border-blue-200 rounded-lg text-xs font-bold text-blue-700"><i class="fa-regular fa-file-lines mr-1.5"></i> আর্টিকেল লিখুন</div>
+                        <div class="p-2.5 bg-slate-50 rounded-lg text-xs text-slate-600 opacity-60"><i class="fa-regular fa-circle-check mr-1.5"></i> প্রকাশিত আর্টিকেল</div>
+                        <div class="p-2.5 bg-slate-50 rounded-lg text-xs text-slate-600 opacity-60"><i class="fa-regular fa-clock mr-1.5"></i> অপেক্ষামান লেখা</div>
+                        <div class="p-2.5 bg-slate-50 rounded-lg text-xs text-slate-600 opacity-60"><i class="fa-regular fa-circle-xmark mr-1.5"></i> বাতিল লেখা</div>
+                    </div>
+                </div>
+                <div class="sm:w-1/2 bg-slate-50 p-4 rounded-xl border border-slate-200/60 flex items-center justify-center">
+                    <i class="fa-solid fa-gauge-high text-6xl text-purple-500/20 py-10"></i>
+                </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div id="step3" class="step-card flex flex-col sm:flex-row items-start sm:items-center gap-6 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm relative">
+                <div class="absolute -left-2 sm:left-1/2 sm:-translate-x-1/2 top-6 sm:top-auto bg-amber-500 text-white w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm ring-4 ring-amber-50 shadow-md">৩</div>
+                <div class="sm:w-1/2 space-y-4">
+                    <span class="text-amber-600 font-bold text-sm uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-pen-nib"></i> ধাপ ৩</span>
+                    <h3 class="text-xl font-bold text-slate-900">সংবাদ লিখুন ও তথ্য পূরণ করুন</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">ড্যাশবোর্ড ওপেন হওয়ার পর নিচের নিয়ম অনুযায়ী নিখুঁতভাবে ফর্মটি পূরণ করুন:</p>
+                    
+                    <ul class="space-y-2.5 text-xs text-slate-600">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-arrow-right text-amber-500 mt-0.5"></i> <span><strong>সংবাদ শিরোনাম:</strong> আকর্ষণীয় শিরোনাম দিন, যা সর্বোচ্চ ১৬ শব্দের মধ্যে হতে হবে।</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-arrow-right text-amber-500 mt-0.5"></i> <span><strong>সংবাদ লিখুন:</strong> সংবাদের বিস্তারিত বিবরণ সাবলীলভাবে লিখুন।</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-arrow-right text-amber-500 mt-0.5"></i> <span><strong>ছবি আপলোড:</strong> সংবাদের সাথে সম্পর্কিত একটি ফিচার ছবি সিলেক্ট করুন। সাইজ সর্বোচ্চ 2MB হতে হবে।</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-arrow-right text-amber-500 mt-0.5"></i> <span><strong>ক্যাটাগরি ও স্থান:</strong> নির্দিষ্ট ক্যাটাগরি এবং আপনার জেলা ও উপজেলা সিলেক্ট করুন।</span></li>
+                    </ul>
+
+                    <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 flex items-start gap-2.5 text-xs text-amber-900">
+                        <i class="fa-solid fa-user-ninja text-amber-600 mt-0.5"></i>
+                        <span><strong>বিশেষ দ্রষ্টব্য:</strong> সংবাদের ভেতরে আপনার নাম ও পদবি লেখার কোনো প্রয়োজন নেই। সিস্টেম স্বয়ংক্রিয়ভাবে তা যুক্ত করে নেবে।</span>
+                    </div>
+                </div>
+                <div class="sm:w-1/2 bg-slate-50 p-6 rounded-xl border border-slate-200/60 space-y-3">
+                    <div class="h-3 bg-slate-200 rounded w-1/3"></div>
+                    <div class="h-9 bg-slate-200 rounded-lg w-full"></div>
+                    <div class="h-3 bg-slate-200 rounded w-1/2"></div>
+                    <div class="h-20 bg-slate-200 rounded-lg w-full"></div>
+                </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div id="step4" class="step-card flex flex-col sm:flex-row-reverse items-start sm:items-center gap-6 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm relative">
+                <div class="absolute -left-2 sm:left-1/2 sm:-translate-x-1/2 top-6 sm:top-auto bg-emerald-600 text-white w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm ring-4 ring-emerald-50 shadow-md">৪</div>
+                <div class="sm:w-1/2 space-y-3 sm:pl-8">
+                    <span class="text-emerald-600 font-bold text-sm uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-share-from-square"></i> ধাপ ৪</span>
+                    <h3 class="text-xl font-bold text-slate-900">সংবাদ প্রকাশ করুন</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">সাবমিট করার আগে সংবাদের ৫টি মূল বিষয় পুনরায় ভালো করে যাচাই করে নিন:</p>
+                    <div class="flex flex-wrap gap-2 pt-1">
+                        <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs font-medium text-slate-700">✓ শিরোনাম</span>
+                        <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs font-medium text-slate-700">✓ বিস্তারিত সংবাদ</span>
+                        <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs font-medium text-slate-700">✓ ইমেজ/ছবি</span>
+                        <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs font-medium text-slate-700">✓ ক্যাটাগরি</span>
+                        <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs font-medium text-slate-700">✓ জেলা ও উপজেলা</span>
+                    </div>
+                    <p class="text-sm text-slate-500 pt-1">সবকিছু সঠিক থাকলে নিচে থাকা সবুজ রঙের <strong class="text-emerald-600">"প্রকাশ করুন"</strong> বাটনে ক্লিক করুন।</p>
+                </div>
+                <div class="sm:w-1/2 bg-slate-50 p-4 rounded-xl border border-slate-200/60 flex items-center justify-center">
+                    <button type="button" class="px-6 py-3 bg-emerald-500 text-white rounded-xl font-bold shadow-lg shadow-emerald-500/20 text-sm"><i class="fa-solid fa-paper-plane mr-2"></i> প্রকাশ করুন</button>
+                </div>
+            </div>
+
+            <!-- STEP 5 -->
+            <div id="step5" class="step-card flex flex-col sm:flex-row items-start sm:items-center gap-6 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm relative">
+                <div class="absolute -left-2 sm:left-1/2 sm:-translate-x-1/2 top-6 sm:top-auto bg-teal-600 text-white w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm ring-4 ring-teal-50 shadow-md">৫</div>
+                <div class="sm:w-1/2 space-y-3">
+                    <span class="text-teal-600 font-bold text-sm uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-square-poll-vertical"></i>  ধাপ ৫</span>
+                    <h3 class="text-xl font-bold text-slate-900">প্রকাশিত সংবাদ দেখুন ও শেয়ার করুন</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">সংবাদটি সফলভাবে ডাটাবেজে জমা হলে স্ক্রিনের উপরে সবুজ রঙে <span class="bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded text-xs font-bold">প্রকাশিত</span> স্ট্যাটাসটি দেখতে পাবেন। এরপর নিচে থাকা <strong class="text-slate-800">"আর্টিকেল দেখুন"</strong> অপশনে ক্লিক করলে আপনার খবরটি অটোমেটিক নতুন ট্যাবে ওপেন হয়ে যাবে এবং আপনি এর লিংক কপি করতে পারবেন।</p>
+                </div>
+                <div class="sm:w-1/2 bg-slate-50 p-4 rounded-xl border border-slate-200/60 flex items-center justify-center">
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 text-center space-y-2 w-full max-w-[240px]">
+                        <span class="text-[10px] bg-emerald-500 text-white font-bold px-2 py-0.5 rounded-full">প্রকাশিত</span>
+                        <div class="text-xs font-bold text-slate-700 py-1 border-y border-dashed border-slate-100">আর্টিকেল দেখুন <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-slate-400"></i></div>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
-        
-        <div class="lg:col-span-8 bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden transition-all duration-300">
-            
-            <div class="bg-slate-900 text-white p-6 grid grid-cols-2 sm:grid-cols-4 gap-4 border-b border-slate-800">
-                <button onclick="speak('আপনি এখন সংবাদ আপলোড ড্যাশবোর্ডে আছেন।')" class="p-3 bg-blue-600/20 border border-blue-500/30 rounded-2xl text-center hover:bg-blue-600/30 transition group cursor-pointer">
-                    <i class="fa-solid fa-pen-to-square text-xl text-blue-400 mb-1 group-hover:scale-110 transition"></i>
-                    <span class="block text-xs text-slate-300">আর্টিকেল লিখুন</span>
-                </button>
-                <div class="p-3 bg-emerald-600/10 border border-emerald-500/20 rounded-2xl text-center opacity-75">
-                    <i class="fa-solid fa-circle-check text-xl text-emerald-400 mb-1"></i>
-                    <span class="block text-xs text-slate-300">প্রকাশিত (১২)</span>
-                </div>
-                <div class="p-3 bg-amber-600/10 border border-amber-500/20 rounded-2xl text-center opacity-75">
-                    <i class="fa-solid fa-hourglass-half text-xl text-amber-400 mb-1"></i>
-                    <span class="block text-xs text-slate-300">অপেক্ষামান (২)</span>
-                </div>
-                <div class="p-3 bg-rose-600/10 border border-rose-500/20 rounded-2xl text-center opacity-75">
-                    <i class="fa-solid fa-circle-xmark text-xl text-rose-400 mb-1"></i>
-                    <span class="block text-xs text-slate-300">বাতিল (০)</span>
-                </div>
-            </div>
-
-            <form id="newsForm" class="p-8 space-y-6">
-                <div class="border-b border-slate-100 pb-4">
-                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
-                        <i class="fa-solid fa-feather-alt text-red-500"></i> নতুন সংবাদ যুক্ত করুন
-                    </h2>
-                    <p class="text-sm text-slate-500 mt-1">সবগুলো তথ্য নির্ভুলভাবে পূরণ করে সংবাদটি প্রকাশ করুন।</p>
-                </div>
-
-                <div class="space-y-2 animate__animated animate__fadeIn">
-                    <label class="block text-sm font-semibold text-slate-700">
-                        সংবাদ শিরোনাম <span class="text-red-500">*</span>
-                        <span id="titleCount" class="text-xs font-normal text-slate-400 float-right">০ / ১৬ শব্দ</span>
-                    </label>
-                    <div class="relative">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
-                            <i class="fa-solid fa-heading"></i>
-                        </span>
-                        <input type="text" id="newsTitle" oninput="updatePreview(); checkWordLimit(this);" onfocus="speakStep(1)" required
-                            placeholder="আকর্ষণীয় ও অর্থপূর্ণ শিরোনাম লিখুন (সর্বোচ্চ ১৬ শব্দ)" 
-                            class="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition outline-none text-base">
-                    </div>
-                </div>
-
-                <div class="space-y-2 animate__animated animate__fadeIn">
-                    <label class="block text-sm font-semibold text-slate-700">
-                        সংবাদের বিস্তারিত বিবরণ <span class="text-red-500">*</span>
-                    </label>
-                    <textarea id="newsContent" oninput="updatePreview()" onfocus="speakStep(2)" required rows="8"
-                        placeholder="এখানে আপনার সংবাদের বিস্তারিত বিবরণ সাবলীল ভাষায় লিখুন..." 
-                        class="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition outline-none text-base"></textarea>
-                    <div class="p-3 bg-amber-50 rounded-xl border border-amber-100 flex items-start gap-2.5">
-                        <i class="fa-solid fa-circle-info text-amber-600 mt-0.5"></i>
-                        <p class="text-xs text-amber-800 leading-relaxed">
-                            <strong>গুরুত্বপূর্ণ তথ্য:</strong> আপনার নাম ও পদবি লেখার প্রয়োজন নেই। সিস্টেম স্বয়ংক্রিয়ভাবে আপনার প্রোফাইলের তথ্য যুক্ত করে দেবে।
-                        </p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="space-y-2">
-                        <label class="block text-sm font-semibold text-slate-700">ফিচার ছবি আপলোড <span class="text-red-500">*</span></label>
-                        <div class="relative group border-2 border-dashed border-slate-200 hover:border-blue-400 bg-slate-50 hover:bg-blue-50/30 rounded-xl p-4 transition text-center cursor-pointer">
-                            <input type="file" id="newsImage" accept="image/*" onchange="handleImage(this); updatePreview();" onfocus="speakStep(3)" required
-                                class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
-                            <div class="space-y-2">
-                                <i class="fa-solid fa-cloud-arrow-up text-3xl text-slate-400 group-hover:text-blue-500 transition"></i>
-                                <p class="text-xs text-slate-600 font-medium" id="uploadText">ছবি নির্বাচন করতে এখানে ক্লিক করুন</p>
-                                <p class="text-[11px] text-slate-400">সর্বোচ্চ ফাইলের আকার: 2MB</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-2">
-                        <label class="block text-sm font-semibold text-slate-700">ক্যাটাগরি নির্বাচন করুন <span class="text-red-500">*</span></label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
-                                <i class="fa-solid fa-layer-group"></i>
-                            </span>
-                            <select id="newsCategory" onchange="updatePreview()" onfocus="speakStep(4)" required
-                                class="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition outline-none appearance-none">
-                                <option value="">ক্যাটাগরি সিলেক্ট করুন</option>
-                                <option value="জাতীয়">জাতীয়</option>
-                                <option value="রাজনীতি">রাজনীতি</option>
-                                <option value="আন্তর্জাতিক">আন্তর্জাতিক</option>
-                                <option value="খেলাধুলা">খেলাধুলা</option>
-                                <option value="বিনোদন">বিনোদন</option>
-                                <option value="সারাদেশ">সারাদেশ</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="space-y-2">
-                    <label class="block text-sm font-semibold text-slate-700">সংবাদের স্থান (ঐচ্ছিক)</label>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
-                                <i class="fa-solid fa-map-location-dot"></i>
-                            </span>
-                            <input type="text" id="newsDistrict" oninput="updatePreview()" placeholder="জেলা (যেমন: ঠাকুরগাঁও)" 
-                                class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 transition outline-none">
-                        </div>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
-                                <i class="fa-solid fa-location-arrow"></i>
-                            </span>
-                            <input type="text" id="newsUpazila" oninput="updatePreview()" placeholder="উপজেলা (যেমন: রানীশংকৈল)" 
-                                class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 transition outline-none">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-4 border-t border-slate-100">
-                    <button type="button" onclick="submitNewsForm()"
-                        class="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/20 active:scale-[0.99] transition transform text-lg flex items-center justify-center gap-2 cursor-pointer">
-                        <i class="fa-solid fa-paper-plane animate-bounce"></i> সংবাদটি প্রকাশ করুন
-                    </button>
-                </div>
-            </form>
-        </div>
-
-        <div class="lg:col-span-4 space-y-8">
-            
-            <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden sticky top-28">
-                <div class="bg-slate-50 px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                        <span class="h-2 w-2 rounded-full bg-red-500 animate-ping"></span> রিয়েল-টাইম প্রিভিউ
-                    </span>
-                    <span class="text-xs bg-slate-200 px-2 py-0.5 rounded-md font-semibold text-slate-600" id="previewBadge">খসড়া</span>
-                </div>
-
-                <div class="p-6 space-y-4">
-                    <span id="pCategory" class="inline-block bg-red-100 text-red-700 text-xs font-bold px-2.5 py-1 rounded-md">ক্যাটাগরি</span>
-                    <h3 id="pTitle" class="text-xl font-bold text-slate-900 leading-snug">এখানে আপনার সংবাদের শিরোনাম লাইভ প্রদর্শিত হবে...</h3>
-                    
-                    <div class="flex items-center gap-2 text-xs text-slate-400">
-                        <i class="fa-solid fa-clock"></i> <span id="pTime">এইমাত্র</span>
-                        <span class="mx-1">•</span>
-                        <i class="fa-solid fa-location-dot"></i> <span id="pLocation">সারাদেশ</span>
-                    </div>
-
-                    <div class="h-44 bg-slate-100 rounded-2xl overflow-hidden flex items-center justify-center border border-slate-200/60 relative">
-                        <img id="pImg" src="" class="w-full h-full object-cover hidden">
-                        <div id="pImgPlaceholder" class="text-center p-4">
-                            <i class="fa-regular fa-image text-4xl text-slate-300"></i>
-                            <p class="text-xs text-slate-400 mt-2">সংবাদের সাথে যুক্ত ছবি এখানে দেখা যাবে</p>
-                        </div>
-                    </div>
-
-                    <p id="pContent" class="text-sm text-slate-600 leading-relaxed line-clamp-4">সংবাদের বিস্তারিত বিবরণ এখানে রিয়েল-টাইমে আপডেট হতে থাকবে। চমৎকার ইউজার এক্সপেরিয়েন্সের জন্য এটি বিশেষভাবে অপ্টিমাইজ করা।</p>
-                    
-                    <div id="postActions" class="hidden pt-4 border-t border-slate-100 grid grid-cols-2 gap-3 animate__animated animate__fadeInUp">
-                        <button onclick="window.print()" class="flex items-center justify-center gap-2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-xl transition">
-                            <i class="fa-solid fa-print"></i> প্রিন্ট সংস্করণ
-                        </button>
-                        <button onclick="generatePhotoCard()" class="flex items-center justify-center gap-2 py-2.5 bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold text-xs rounded-xl transition">
-                            <i class="fa-solid fa-id-card"></i> ফটো কার্ড
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-3xl p-6 shadow-xl space-y-4">
-                <h4 class="font-bold text-lg flex items-center gap-2">
-                    <i class="fa-regular fa-comments text-amber-400"></i> কোনো সাহায্য প্রয়োজন?
+        <!-- Premium Additional Features Block -->
+        <section class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-3xl p-8 shadow-xl space-y-6">
+            <div class="border-b border-slate-700 pb-4 text-center sm:text-left">
+                <h4 class="text-2xl font-bold text-white flex items-center justify-center sm:justify-start gap-2">
+                    <i class="fa-solid fa-wand-magic-sparkles text-yellow-300"></i> প্রকাশিত সংবাদের অতিরিক্ত আধুনিক সুবিধাসমূহ
                 </h4>
-                <p class="text-xs text-slate-300 leading-relaxed">
-                    সংবাদ আপলোড করতে কোনো সমস্যার সম্মুখীন হলে অথবা যেকোনো কারিগরি সহায়তার জন্য সরাসরি আমাদের অফিশিয়াল হোয়াটসঅ্যাপ হেল্পডেস্কে যোগাযোগ করুন।
-                </p>
-                <a href="https://wa.me/8801516011136" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 bg-green-500 hover:bg-green-600 font-bold rounded-xl text-sm transition shadow-lg shadow-green-500/20">
-                    <i class="fa-brands fa-whatsapp text-lg"></i> সরাসরি হোয়াটসঅ্যাপ করুন
+                <p class="text-xs text-slate-400 mt-1">সংবাদটি লাইভ ওপেন করার পর আপনার নামের পাশে এই উন্নত ডিজিটাল ফিচারগুলো পাবেন—</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="p-4 bg-white/5 rounded-2xl border border-white/10 flex gap-4 items-start">
+                    <div class="p-3 bg-red-500/20 text-red-400 rounded-xl"><i class="fa-solid fa-print text-xl"></i></div>
+                    <div>
+                        <h5 class="font-bold text-base text-slate-100">🖨️ প্রিন্ট সংস্করণ</h5>
+                        <p class="text-xs text-slate-400 mt-1">এখানে ক্লিক করলে মুহূর্তের মধ্যে আপনার সংবাদের একটি সুন্দর ও গোছানো প্রিন্ট মিডিয়া ভিউ ওপেন হবে যা প্রিন্ট করা যাবে।</p>
+                    </div>
+                </div>
+                <div class="p-4 bg-white/5 rounded-2xl border border-white/10 flex gap-4 items-start">
+                    <div class="p-3 bg-blue-500/20 text-blue-400 rounded-xl"><i class="fa-solid fa-id-card text-xl"></i></div>
+                    <div>
+                        <h5 class="font-bold text-base text-slate-100">🪪 ডিজিটাল ফটো কার্ড</h5>
+                        <p class="text-xs text-slate-400 mt-1">সোশ্যাল মিডিয়ায় বা ফেসবুকে খবরটি আকর্ষণীয়ভাবে শেয়ার করার জন্য অটোমেটিক একটি মডার্ন ফটো কার্ড তৈরি হয়ে যাবে।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video & Help Desk Workspace -->
+        <section class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+            <!-- Video Column -->
+            <div class="md:col-span-7 bg-white rounded-3xl p-6 shadow-xl border border-slate-100 flex flex-col justify-between space-y-4">
+                <div>
+                    <h4 class="font-bold text-lg text-slate-900 flex items-center gap-2"><i class="fa-solid fa-circle-play text-red-600"></i> ভিডিও টিউটোরিয়াল</h4>
+                    <p class="text-xs text-slate-500 mt-1">যেকোনো ধাপে বুঝতে সমস্যা হলে আমাদের তৈরি এই ১ মিনিটের অফিশিয়াল শর্টস ভিডিও গাইডটি দেখে নিতে পারেন।</p>
+                </div>
+                <div class="aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-inner relative flex items-center justify-center group">
+                    <a href="https://youtube.com/shorts/Uk0rzZGjrpU?si=ex5dKU0Aal8x0t1w" target="_blank" class="absolute z-20 px-5 py-2.5 bg-red-600 text-white font-bold text-sm rounded-xl flex items-center gap-2 shadow-lg group-hover:scale-105 transition">
+                        <i class="fa-brands fa-youtube"></i> ইউটিউবে ভিডিওটি দেখুন
+                    </a>
+                    <div class="absolute inset-0 bg-cover bg-center opacity-40 blur-xs" style="background-image: url('https://shadinbanglapressclub.com/login');"></div>
+                </div>
+            </div>
+
+            <!-- Help Desk Column -->
+            <div class="md:col-span-5 bg-gradient-to-br from-emerald-600 to-teal-700 text-white rounded-3xl p-6 shadow-xl flex flex-col justify-between space-y-6">
+                <div class="space-y-2">
+                    <span class="px-2.5 py-0.5 bg-white/20 rounded text-[10px] font-bold uppercase tracking-wider">সরাসরি সহায়তা</span>
+                    <h4 class="font-bold text-xl">জরুরি কারিগরি সাপোর্ট?</h4>
+                    <p class="text-xs text-emerald-100 leading-relaxed">নির্দেশিকা দেখার পরও যদি কোনো টেকনিক্যাল ত্রুটি বা সমস্যায় পড়েন, তবে দ্বিধা না করে আমাদের কেন্দ্রীয় আইটি সেলে সরাসরি যোগাযোগ করুন।</p>
+                </div>
+                <div class="bg-slate-900/20 p-4 rounded-2xl border border-white/10 space-y-1">
+                    <span class="text-[10px] text-emerald-200 block uppercase font-bold">Official WhatsApp Number</span>
+                    <a href="https://wa.me/8801516011136" target="_blank" class="text-lg font-black block tracking-wide hover:underline">+880 1516-011136</a>
+                </div>
+                <a href="https://wa.me/8801516011136" target="_blank" class="w-full py-3 bg-white text-slate-900 hover:bg-slate-100 font-bold rounded-xl text-xs transition shadow-md text-center flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-base text-green-600"></i> হোয়াটসঅ্যাপে চ্যাট শুরু করুন
                 </a>
             </div>
-        </div>
-    </main>
+        </section>
 
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div class="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
-            <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
-                <i class="fa-solid fa-cubes text-blue-600 animate-spin"></i> প্ল্যাটফর্মের আসন্ন প্রিমিয়াম ফিচারসমূহ
-            </h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-md transition">
-                    <div class="h-10 w-10 rounded-xl bg-purple-100 flex items-center justify-center text-purple-600 font-bold mb-3"><i class="fa-solid fa-video"></i></div>
-                    <h5 class="font-semibold text-slate-800 text-sm">সরাসরি ভিডিও আপলোড</h5>
-                    <p class="text-xs text-slate-400 mt-1">আর্টিকেলের সাথেই সরাসরি ভিডিও ভিডিও ফাইল যুক্ত করা যাবে।</p>
+        <!-- Upcoming Features Roadmap Portfolio -->
+        <section class="bg-white rounded-3xl p-8 shadow-xl border border-slate-100 space-y-6">
+            <div class="text-center max-w-md mx-auto space-y-1">
+                <h4 class="font-bold text-lg text-slate-900 flex items-center justify-center gap-2"><i class="fa-solid fa-rotate text-blue-600 animate-spin"></i> চলমান আধুনিক উন্নয়ন কাজ</h4>
+                <p class="text-xs text-slate-400">স্বাধীন বাংলা প্রেসক্লাবকে বিশ্বমানের করতে খুব শীঘ্রই প্যানেলে যুক্ত হতে যাচ্ছে নিচের ডিজিটাল ফিচারসমূহ—</p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div class="p-4 bg-slate-50 border border-slate-100 rounded-2xl text-center space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mx-auto text-sm"><i class="fa-solid fa-video"></i></div>
+                    <h5 class="font-bold text-xs text-slate-800">সরাসরি ভিডিও আপলোড</h5>
                 </div>
-                <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-md transition">
-                    <div class="h-10 w-10 rounded-xl bg-red-100 flex items-center justify-center text-red-600 font-bold mb-3"><i class="fa-solid fa-broadcast-tower"></i></div>
-                    <h5 class="font-semibold text-slate-800 text-sm">লাইভ সম্প্রচার সুবিধা</h5>
-                    <p class="text-xs text-slate-400 mt-1">যেকোনো ব্রেকিং নিউজ সরাসরি ঘটনাস্থল থেকে লাইভ কভারেজ।</p>
+                <div class="p-4 bg-slate-50 border border-slate-100 rounded-2xl text-center space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-red-100 text-red-600 flex items-center justify-center mx-auto text-sm"><i class="fa-solid fa-tower-broadcast"></i></div>
+                    <h5 class="font-bold text-xs text-slate-800">লাইভ সম্প্রচার সুবিধা</h5>
                 </div>
-                <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-md transition">
-                    <div class="h-10 w-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 font-bold mb-3"><i class="fa-solid fa-address-card"></i></div>
-                    <h5 class="font-semibold text-slate-800 text-sm">অটো আইডি কার্ড জেনারেটর</h5>
-                    <p class="text-xs text-slate-400 mt-1">প্রতিনিধিদের জন্য ইনস্ট্যান্ট ডিজিটাল ও প্রিন্ট উপযোগী আইডি কার্ড।</p>
+                <div class="p-4 bg-slate-50 border border-slate-100 rounded-2xl text-center space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mx-auto text-sm"><i class="fa-solid fa-id-card-clip"></i></div>
+                    <h5 class="font-bold text-xs text-slate-800">অটো আইডি কার্ড তৈরি</h5>
                 </div>
-                <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-md transition">
-                    <div class="h-10 w-10 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold mb-3"><i class="fa-solid fa-user-shield"></i></div>
-                    <h5 class="font-semibold text-slate-800 text-sm">স্মার্ট তথ্য যাচাই ব্যবস্থা</h5>
-                    <p class="text-xs text-slate-400 mt-1">প্রতিনিধিদের তথ্য ও সত্যতা সিকিউরড প্যানেলে নিখুঁত ভেরিফিকেশন।</p>
+                <div class="p-4 bg-slate-50 border border-slate-100 rounded-2xl text-center space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-sm"><i class="fa-solid fa-user-shield"></i></div>
+                    <h5 class="font-bold text-xs text-slate-800">প্রতিনিধি তথ্য যাচাই</h5>
+                </div>
+                <div class="p-4 bg-slate-50 border border-slate-100 rounded-2xl text-center space-y-2 col-span-2 sm:col-span-1">
+                    <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center mx-auto text-sm"><i class="fa-solid fa-bolt"></i></div>
+                    <h5 class="font-bold text-xs text-slate-800">উন্নত ডিজিটাল ফিচার</h5>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center border-t border-slate-800 text-sm">
-        <p>© 2026 স্বাধীন বাংলা প্রেসক্লাব. সর্বস্বত্ব সংরক্ষিত। ডিজাইন ও ডেভেলপমেন্ট বাই এডমিন প্যানেল।</p>
+    <!-- Footer Area -->
+    <footer class="bg-slate-900 text-slate-500 py-8 text-center text-xs border-t border-slate-800">
+        <p class="font-semibold text-slate-400">ধন্যবাদান্তে, স্বাধীন বাংলা প্রেসক্লাব</p>
+        <p class="mt-1">© 2026 Shadin Bangla Press Club. All Rights Reserved.</p>
     </footer>
 
+    <!-- AI Voice Engine and Automation Script -->
     <script>
-        let voiceEnabled = true;
+        const tutorialSteps = [
+            { 
+                elementId: "step1", 
+                text: "ধাপ এক। ওয়েবসাইটে লগইন করুন। প্রথমে স্ক্রিনে দেওয়া লিংকে ক্লিক করে আমাদের স্বাধীন বাংলা প্রেস ক্লাবের অফিশিয়াল ওয়েবসাইটে আপনার অ্যাকাউন্ট দিয়ে লগইন সম্পন্ন করুন।" 
+            },
+            { 
+                elementId: "step2", 
+                text: "ধাপ দুই। ড্যাশবোর্ডে প্রবেশ করুন। লগইন করার পর আপনার প্রোফাইলে প্রবেশ করে, সংবাদ প্রকাশ করার জন্য সরাসরি আর্টিকেল লিখুন অপশনে ক্লিক করুন।" 
+            },
+            { 
+                elementId: "step3", 
+                text: "ধাপ তিন। সংবাদ লিখুন। এরপর সংবাদ প্রকাশের ড্যাশবোর্ড ওপেন হবে। এখানে সর্বোচ্চ ১৬ শব্দের মধ্যে সংবাদের শিরোনাম দিন, বিস্তারিত বিবরণ লিখুন, ২ মেগাবাইটের মধ্যে একটি ছবি আপলোড করুন এবং আপনার নির্দিষ্ট ক্যাটাগরি ও স্থান নির্বাচন করুন। মনে রাখবেন, এখানে আপনার নাম বা পদবি লেখার কোনো প্রয়োজন নেই।" 
+            },
+            { 
+                elementId: "step4", 
+                text: "ধাপ চার। সংবাদ প্রকাশ করুন। সংবাদের শিরোনাম, বিবরণ, ছবি এবং স্থান সবকিছু সঠিকভাবে পুনরায় যাচাই করে নিয়ে সবুজ রঙের প্রকাশ করুন বাটনে ক্লিক করুন।" 
+            },
+            { 
+                elementId: "step5", 
+                text: "ধাপ পাঁচ। প্রকাশিত সংবাদ দেখুন। আপনার সংবাদ সফলভাবে সাবমিট হলে উপরে প্রকাশিত স্ট্যাটাস দেখতে পাবেন। এরপর নিচে থাকা আর্টিকেল দেখুন অপশনে ক্লিক করলেই সংবাদটি অটোমেটিক ওপেন হয়ে যাবে এবং আপনি লিংক কপি করে নিতে পারবেন।" 
+            }
+        ];
 
-        // Core Voice Synthesis Engine (AI Assist)
-        function speak(text) {
-            if (!voiceEnabled) return;
-            window.speechSynthesis.cancel(); // Terminate existing stream queue
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'bn-BD';
-            utterance.rate = 1.0;
-            window.speechSynthesis.speak(utterance);
-        }
+        let currentStepIndex = 0;
+        let speechInstance = null;
 
-        function toggleVoiceAssistant() {
-            voiceEnabled = !voiceEnabled;
-            const btn = document.getElementById('voiceBtn');
-            const icon = document.getElementById('voiceIcon');
-            const text = document.getElementById('voiceText');
-
-            if (voiceEnabled) {
-                icon.className = "fa-solid fa-volume-high text-green-300 animate-pulse";
-                text.innerText = "AI ভয়েস অন";
-                speak("ভয়েস অ্যাসিস্ট্যান্ট চালু করা হয়েছে।");
-            } else {
-                icon.className = "fa-solid fa-volume-xmark text-slate-400";
-                text.innerText = "AI ভয়েস অফ";
+        function stopSpeech() {
+            if (window.speechSynthesis) {
                 window.speechSynthesis.cancel();
             }
+            document.querySelectorAll('.step-card').forEach(card => card.classList.remove('active-step'));
         }
 
-        // Context-aware Step Instructions
-        function speakStep(stepNumber) {
-            let guideText = "";
-            switch(stepNumber) {
-                case 1:
-                    guideText = "দয়া করে এখানে সংবাদের মূল শিরোনামটি লিখুন। মনে রাখবেন শিরোনাম সর্বোচ্চ ১৬ শব্দের মধ্যে হওয়া বাঞ্ছনীয়।";
-                    break;
-                case 2:
-                    guideText = "এখানে আপনার সংবাদের বিস্তারিত বিবরণটি বিস্তারিতভাবে টাইপ করুন।";
-                    break;
-                case 3:
-                    guideText = "সংবাদের সাথে সামঞ্জস্যপূর্ণ একটি ফিচার ইমেজ সংযুক্ত করুন যার সাইজ ২ মেগাবাইটের কম হতে হবে।";
-                    break;
-                case 4:
-                    guideText = "সংবাদটি কোন ক্যাটাগরির অন্তর্ভুক্ত হবে তা ড্রপডাউন মেনু থেকে নির্বাচন করুন।";
-                    break;
+        function startAiTutorial() {
+            stopSpeech();
+            currentStepIndex = 0;
+            playNextStep();
+        }
+
+        function playNextStep() {
+            if (currentStepIndex >= tutorialSteps.length) {
+                stopSpeech();
+                // Final greeting text
+                let finalSpeech = new SpeechSynthesisUtterance("অভিনন্দন! আপনি স্বাধীন বাংলা প্রেস ক্লাবের সংবাদ আপলোড করার সম্পূর্ণ নির্দেশিকাটি শেষ করেছেন। ধন্যবাদ।");
+                finalSpeech.lang = 'bn-BD';
+                window.speechSynthesis.speak(finalSpeech);
+                return;
             }
-            speak(guideText);
-        }
 
-        // Real-time Preview Synchronization Engine
-        function updatePreview() {
-            const title = document.getElementById('newsTitle').value;
-            const content = document.getElementById('newsContent').value;
-            const cat = document.getElementById('newsCategory').value;
-            const district = document.getElementById('newsDistrict').value;
-            const upazila = document.getElementById('newsUpazila').value;
-
-            document.getElementById('pTitle').innerText = title.trim() !== "" ? title : "এখানে আপনার সংবাদের শিরোনাম লাইভ প্রদর্শিত হবে...";
-            document.getElementById('pContent').innerText = content.trim() !== "" ? content : "সংবাদের বিস্তারিত বিবরণ এখানে রিয়েল-টাইমে আপডেট হতে থাকবে।";
-            document.getElementById('pCategory').innerText = cat !== "" ? cat : "ক্যাটাগরি";
-
-            let locationText = "সারাদেশ";
-            if(district || upazila) {
-                locationText = `${upazila ? upazila + ', ' : ''}${district}`;
-            }
-            document.getElementById('pLocation').innerText = locationText;
-        }
-
-        // Image Binary Rendering Process
-        function handleImage(input) {
-            const file = input.files[0];
-            if (file) {
-                if(file.size > 2 * 1024 * 1024) {
-                    alert('ফাইলের সাইজ ২ মেগাবাইটের বেশি হতে পারবে না!');
-                    speak('দুঃখিত, এই ফাইলটির সাইজ ২ মেগাবাইটের চেয়ে বেশি।');
-                    input.value = '';
-                    return;
-                }
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById('pImg').src = e.target.result;
-                    document.getElementById('pImg').classList.remove('hidden');
-                    document.getElementById('pImgPlaceholder').classList.add('hidden');
-                    document.getElementById('uploadText').innerText = "ছবি সফলভাবে লোড হয়েছে";
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // Input Content Boundaries Optimization Rules
-        function checkWordLimit(input) {
-            const words = input.value.trim().split(/\s+/);
-            const count = input.value.trim() === "" ? 0 : words.length;
-            const countDisplay = document.getElementById('titleCount');
-            countDisplay.innerText = `${count} / ১৬ শব্দ`;
+            const currentStep = tutorialSteps[currentStepIndex];
+            const targetElement = document.getElementById(currentStep.elementId);
             
-            if(count > 16) {
-                countDisplay.classList.add('text-red-500', 'font-bold');
-            } else {
-                countDisplay.classList.remove('text-red-500', 'font-bold');
+            // UI visual updates (Animation & Glow highlight)
+            document.querySelectorAll('.step-card').forEach(card => card.classList.remove('active-step'));
+            if (targetElement) {
+                targetElement.classList.add('active-step');
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
+
+            // Voice synthesis invocation
+            speechInstance = new SpeechSynthesisUtterance(currentStep.text);
+            speechInstance.lang = 'bn-BD';
+            speechInstance.rate = 0.95; // Clear natural pace for tutorial readability
+
+            speechInstance.onend = function() {
+                currentStepIndex++;
+                setTimeout(playNextStep, 1500); // Elegant break gap before sliding to the next section
+            };
+
+            speechInstance.onerror = function() {
+                stopSpeech();
+            };
+
+            window.speechSynthesis.speak(speechInstance);
         }
 
-        // Submission Event Logic Pipeline
-        function submitNewsForm() {
-            const form = document.getElementById('newsForm');
-            if(form.checkValidity()) {
-                speak("অভিনন্দন! আপনার সংবাদটি সফলভাবে প্রকাশিত হয়েছে।");
-                
-                // UI state upgrade to Published state
-                document.getElementById('previewBadge').innerText = "প্রকাশিত";
-                document.getElementById('previewBadge').className = "text-xs bg-emerald-500 px-2 py-0.5 rounded-md font-bold text-white animate__animated animate__bounceIn";
-                document.getElementById('postActions').classList.remove('hidden');
-                
-                alert("সংবাদ সফলভাবে ওয়েবসাইটে প্রকাশ করা হয়েছে!");
-            } else {
-                speak("দুঃখিত, আবশ্যকীয় ঘরগুলো সঠিকভাবে পূরণ করুন।");
-                form.reportValidity();
-            }
-        }
-
-        // Instantly activate welcoming voice guide on first viewport paint
+        // Auto-trigger polite initial advice notice on browser boot layout ready safely
         window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                speak("স্বাধীন বাংলা প্রেসক্লাব সংবাদ আপলোড পোর্টালে আপনাকে স্বাগতম। সহজে সংবাদ যুক্ত করতে গাইডলাইন অনুসরণ করুন।");
-            }, 1000);
+            console.log("Tutorial view engine loaded smoothly.");
         });
-
-        function generatePhotoCard() {
-            alert("আপনার সংবাদের একটি ডিজিটাল সোশ্যাল মিডিয়া ফটো কার্ড তৈরি করা হচ্ছে...");
-        }
     </script>
 </body>
 </html>
