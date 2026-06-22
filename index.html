@@ -1,309 +1,374 @@
-টেকনোলজির আধুনিক ট্রেন্ড এবং প্রিমিয়াম লুক মাথায় রেখে পেজটিকে আরও আকর্ষণীয়, গ্লাস-মরফিজম (Glassmorphism) ব্যাকগ্রাউন্ড ও নিয়ন গ্লো (Neon Glow) ইফেক্ট দিয়ে রি-ডিজাইন করা হয়েছে।
-এই ডিজাইনে স্পষ্ট ও জোরালোভাবে ফুটিয়ে তোলা হয়েছে যে— **"বর্তমানে পাঠানো পার্সেলটি (আইডি কার্ড ও ডকুমেন্ট) গ্রহণ করলেই পরবর্তী ধাপে টি-শার্ট ও মাইক্রোফোন সম্পূর্ণ ফ্রিতে আনলক হবে।"**
-সম্পূর্ণ কোডটি নিচে একটি সিঙ্গেল ফাইলে (index.html) দেওয়া হলো:
-```html
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>অফিশিয়াল পার্সেল রিসিভ ও উপহার ক্লেইম পোর্টাল</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind_Siliguri:wght@400;500;600;700&display=swap');
-        
-        body {
-            font-family: 'Hind Siliguri', sans-serif;
-            background: radial-gradient(circle at 10% 20%, #0b0f19 0%, #020617 90%);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>গুরুত্বপূর্ণ নোটিশ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* প্রিমিয়াম আল্ট্রা-গ্লাস ইফেক্ট */
-        .premium-glass {
-            background: rgba(15, 23, 42, 0.45);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-        }
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background: #0d1b2a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
 
-        /* কার্ডের ভেতরের থ্রিডি গ্লো */
-        .neon-border-blue {
-            box-shadow: 0 0 25px rgba(59, 130, 246, 0.15), inset 0 0 15px rgba(59, 130, 246, 0.05);
-        }
-        
-        .neon-border-emerald {
-            box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
-        }
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      max-width: 580px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    }
 
-        /* কাস্টম টেক্সট গ্রেডিয়েন্ট */
-        .text-gradient {
-            background: linear-gradient(135deg, #fff 30%, #94a3b8 70%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    .header {
+      background: linear-gradient(135deg, #1a6b2f 0%, #0f4d22 100%);
+      padding: 28px 32px 24px;
+      text-align: center;
+    }
 
-        /* ডাল মেটালিক অ্যানিমেশন */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        .floating-item {
-            animation: float 4s ease-in-out infinite;
-        }
-    </style>
+    .header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+
+    .header h1 {
+      color: #fff;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    /* urgent strip */
+    .urgent-strip {
+      background: #e74c3c;
+      color: #fff;
+      text-align: center;
+      font-size: 13.5px;
+      font-weight: 700;
+      padding: 10px 16px;
+      letter-spacing: 0.5px;
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50% { opacity: 0.75; }
+    }
+
+    .body { padding: 26px 32px; }
+
+    .notice-text {
+      font-size: 14.5px;
+      color: #444;
+      line-height: 1.85;
+      margin-bottom: 18px;
+    }
+
+    /* reward box */
+    .reward-box {
+      background: linear-gradient(135deg, #fff8e1, #fff3cd);
+      border: 2px solid #f0c040;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+    }
+    .reward-box .reward-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #7d5a00;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .reward-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    .reward-row:last-child { margin-bottom: 0; }
+    .reward-icon { font-size: 26px; }
+    .reward-info .rtitle { font-size: 14px; font-weight: 700; color: #222; }
+    .reward-info .rdesc  { font-size: 12px; color: #777; margin-top: 2px; }
+
+    /* steps */
+    .steps {
+      display: flex;
+      gap: 0;
+      margin-bottom: 22px;
+    }
+    .step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 18px;
+      right: -1px;
+      width: 100%;
+      height: 2px;
+      background: #ddd;
+      z-index: 0;
+    }
+    .step-circle {
+      width: 36px;
+      height: 36px;
+      background: #1a6b2f;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      margin: 0 auto 6px;
+      position: relative;
+      z-index: 1;
+    }
+    .step-label { font-size: 11.5px; color: #555; line-height: 1.4; }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0d1b2a;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #eee;
+    }
+
+    .field { margin-bottom: 14px; }
+    .field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 5px;
+    }
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      padding: 10px 14px;
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 14px;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      color: #333;
+      background: #fff;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus { border-color: #1a6b2f; }
+    .field textarea { height: 90px; resize: vertical; }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px;
+      background: #25D366;
+      color: #fff;
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 6px;
+    }
+    .btn:hover { background: #1ebe5d; }
+    .btn:active { transform: scale(0.98); }
+    .btn svg { width: 22px; height: 22px; fill: #fff; flex-shrink: 0; }
+
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #aaa;
+      padding: 14px 32px 22px;
+    }
+
+    @media (max-width: 480px) {
+      .header { padding: 20px 18px; }
+      .body { padding: 20px 18px; }
+      .step-label { font-size: 10.5px; }
+    }
+  </style>
 </head>
-<body class="text-slate-100 min-h-screen antialiased selection:bg-emerald-500 selection:text-slate-950 selection:font-bold">
+<body>
+<div class="card">
 
-    <div class="fixed top-4 right-4 z-50 premium-glass px-4 py-2 rounded-full text-xs flex items-center gap-2.5 text-emerald-400 border border-emerald-500/30 shadow-lg">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-        <i class="fas fa-volume-high animate-bounce"></i>
-        <span class="font-medium tracking-wide">লাইভ অডিও গাইড সচল আছে</span>
-    </div>
+  <div class="header">
+    <div class="badge">📢 অফিসিয়াল নোটিশ</div>
+    <h1>গুরুত্বপূর্ণ নোটিশ<br>সম্মানিত সদস্য ও গণমাধ্যম কর্মীবৃন্দ</h1>
+  </div>
 
-    <div class="max-w-6xl mx-auto px-4 py-12 md:py-20 relative">
-        
-        <div class="absolute top-20 left-10 w-72 h-72 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-40 right-10 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="urgent-strip">
+    ⚡ দ্রুত পার্সেলটি গ্রহণ করুন — ডেলিভারি ম্যান অপেক্ষা করছেন!
+  </div>
 
-        <header class="text-center mb-16 relative z-10">
-            <div class="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 text-amber-400 px-5 py-2 rounded-full text-xs md:text-sm font-semibold mb-6 tracking-wide shadow-inner">
-                <i class="fas fa-shield-halved text-amber-500"></i> মেম্বারশিপ ভেরিফিকেশন ও সিকিউরড পোর্টাল
-            </div>
-            <h1 class="text-4xl md:text-6xl font-black text-gradient leading-tight tracking-tight max-w-4xl mx-auto mb-6">
-                আপনার অফিসিয়াল পার্সেলটি পাঠানো হয়েছে!
-            </h1>
-            <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-                সম্মানিত সংবাদকর্মী ও সদস্য, আপনার পরিচয় নিশ্চিত করতে প্রথম ধাপে প্রেরিত <span class="text-blue-400 font-bold underline decoration-blue-500/50">আইডি কার্ড ও ডকুমেন্ট পার্সেলটি</span> কুরিয়ার বা ডেলিভারি ম্যানের কাছ থেকে দ্রুত গ্রহণ করুন।
-            </p>
-        </header>
+  <div class="body">
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
-            
-            <div class="lg:col-span-7 space-y-6">
-                
-                <div class="premium-glass p-6 md:p-8 rounded-3xl border-l-4 border-blue-500 neon-border-blue transition duration-300 hover:bg-slate-900/40">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg md:text-xl font-bold text-blue-400 flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-sm text-blue-400">১</span>
-                            প্রথম ধাপে যা পাঠানো হয়েছে (ডেলিভারি চলন্ত):
-                        </h3>
-                        <span class="bg-blue-500/20 border border-blue-500/40 text-blue-300 text-[10px] uppercase px-2.5 py-1 rounded-md font-bold tracking-wider">ইন-ট্রানজিট</span>
-                    </div>
-                    
-                    <p class="text-slate-300 text-sm mb-4 leading-relaxed">
-                        আপনার পেশাগত সত্যতা নিশ্চিতকরণের জন্য নিম্নোক্ত প্রয়োজনীয় উপাদানগুলো কার্গো/ডেলিভারিতে অলরেডি বুকিং করা হয়েছে:
-                    </p>
+    <p class="notice-text">
+      আপনাদের জন্য একটি গুরুত্বপূর্ণ পার্সেল পাঠানো হয়েছে। এই পার্সেলে রয়েছে আপনার <strong>আইডি কার্ড ও প্রয়োজনীয় ডকুমেন্ট</strong>। পার্সেলটি গ্রহণ করার পর নিচের ফরমটি পূরণ করুন — এরপর আমরা আপনাকে পুরস্কার হিসেবে প্রদান করব:
+    </p>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-300">
-                        <div class="flex items-center gap-3 bg-slate-950/40 p-3 rounded-xl border border-slate-800/80">
-                            <i class="fas fa-id-card text-blue-500 text-base"></i>
-                            <span>স্মার্ট ডিজিটাল আইডি কার্ড</span>
-                        </div>
-                        <div class="flex items-center gap-3 bg-slate-950/40 p-3 rounded-xl border border-slate-800/80">
-                            <i class="fas fa-folder-open text-blue-500 text-base"></i>
-                            <span>অফিসিয়াল ডকুমেন্টস ও গ্যাজেট</span>
-                        </div>
-                    </div>
-                </div>
+    <!-- reward box -->
+    <div class="reward-box">
+      <div class="reward-title">🎁 পার্সেল গ্রহণের পর আপনি পাবেন</div>
 
-                <div class="flex justify-center items-center py-1">
-                    <div class="h-10 w-0.5 bg-gradient-to-b from-blue-500 to-emerald-500 animate-pulse"></div>
-                </div>
-
-                <div class="premium-glass p-6 md:p-8 rounded-3xl border-l-4 border-emerald-500 neon-border-emerald relative overflow-hidden group">
-                    <div class="absolute -right-12 -top-12 w-48 h-48 bg-emerald-500/5 rounded-full blur-3xl"></div>
-                    
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
-                        <div>
-                            <h3 class="text-lg md:text-xl font-bold text-emerald-400 flex items-center gap-3">
-                                <span class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-sm text-emerald-400">২</span>
-                                পার্সেল গ্রহণের পর সম্পূর্ণ ফ্রিতে আনলক হবে:
-                            </h3>
-                            <p class="text-xs text-slate-400 mt-1">ডেলিভারি ম্যানের থেকে পার্সেলটি বুঝে নেওয়ার সাথে সাথেই এই বিশেষ কিটগুলো সম্পূর্ণ ফ্রিতে পাঠানো হবে।</p>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        
-                        <div class="bg-slate-950/60 p-5 rounded-2xl border border-slate-800 hover:border-emerald-500/30 transition-all duration-300 text-center relative group">
-                            <div class="w-full h-40 bg-gradient-to-b from-slate-900 to-slate-950 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden">
-                                <div class="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-                                <i class="fas fa-shirt text-6xl text-emerald-400 drop-shadow-[0_0_20px_rgba(16,185,129,0.25)] floating-item"></i>
-                                <span class="absolute top-3 right-3 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] px-2 py-0.5 rounded-full font-bold">Premium Quality</span>
-                            </div>
-                            <h4 class="font-bold text-slate-200 text-base">অফিসিয়াল জার্নালিস্ট টি-শার্ট</h4>
-                            <p class="text-xs text-slate-400 mt-1.5 leading-relaxed">পেশাগত এসাইনমেন্ট ও মিডিয়া কভারেজে ব্যবহারের জন্য কলারযুক্ত প্রিমিয়াম টি-শার্ট।</p>
-                        </div>
-
-                        <div class="bg-slate-950/60 p-5 rounded-2xl border border-slate-800 hover:border-emerald-500/30 transition-all duration-300 text-center relative group">
-                            <div class="w-full h-40 bg-gradient-to-b from-slate-900 to-slate-950 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden">
-                                <div class="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-                                <i class="fas fa-microphone-lines text-6xl text-emerald-400 drop-shadow-[0_0_20px_rgba(16,185,129,0.25)] floating-item" style="animation-delay: 1.5s;"></i>
-                                <span class="absolute top-3 right-3 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] px-2 py-0.5 rounded-full font-bold">HD Reporting</span>
-                            </div>
-                            <h4 class="font-bold text-slate-200 text-base">স্মার্ট রিপোর্টিং মাইক্রোফোন</h4>
-                            <p class="text-xs text-slate-400 mt-1.5 leading-relaxed">হাই-কোয়ালিটি সাউন্ড ক্যাচিং ও লোগো সংবলিত প্রফেশনাল মিডিয়া ইন্টারভিউ ফোম মাইক্রোফোন।</p>
-                        </div>
-
-                    </div>
-
-                    <div class="mt-6 bg-slate-950/50 rounded-2xl border border-slate-800/80 p-4 space-y-3">
-                        <div class="text-xs font-bold text-slate-400 tracking-wider uppercase mb-1">অতিরিক্ত প্রাতিষ্ঠানিক সুযোগ-সুবিধা সমূহ:</div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs md:text-sm text-slate-300">
-                            <div class="flex items-center gap-2.5"><i class="fas fa-square-rss text-blue-400"></i> ওয়ান-ক্লিক অডিও/ভিডিও নিউজ আপলোড</div>
-                            <div class="flex items-center gap-2.5"><i class="fas fa-globe text-blue-400"></i> পার্সোনাল ড্যাশবোর্ড ও ওয়েবসাইট আইডি</div>
-                            <div class="flex items-center gap-2.5"><i class="fas fa-money-bill-trend-up text-emerald-400"></i> মাসিক ফিক্সড বা পারফরম্যান্স ভিত্তিক ভাতা</div>
-                            <div class="flex items-center gap-2.5"><i class="fas fa-user-shield text-emerald-400"></i> ২৪/৭ লিগ্যাল ও ফিল্ড জার্নালিজম সাপোর্ট</div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="lg:col-span-5 w-full">
-                <div class="premium-glass p-6 md:p-8 rounded-3xl border border-slate-800 shadow-2xl relative">
-                    
-                    <div class="text-center mb-8">
-                        <div class="w-14 h-14 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 border border-emerald-500/20 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-inner">
-                            <i class="fas fa-file-invoice text-emerald-400 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white tracking-wide">উপহার ক্লেইম ও সাইজ ফর্ম</h3>
-                        <p class="text-xs text-slate-400 mt-1.5">পার্সেলটি সফলভাবে গ্রহণের পর নিচের ফর্মটি সঠিকভাবে পূরণ করুন</p>
-                    </div>
-
-                    <form id="claimForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
-                        
-                        <div>
-                            <label class="block text-[11px] font-bold text-slate-400 mb-1.5 uppercase tracking-wider">সংবাদকর্মীর পূর্ণ নাম <span class="text-rose-500">*</span></label>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-500"><i class="fas fa-user text-xs"></i></span>
-                                <input type="text" id="fullName" required placeholder="আপনার অফিশিয়াল নাম লিখুন" class="w-full bg-slate-950/60 border border-slate-800 rounded-xl py-3 pl-11 pr-4 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition duration-200">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-[11px] font-bold text-slate-400 mb-1.5 uppercase tracking-wider">জেলা <span class="text-rose-500">*</span></label>
-                                <div class="relative">
-                                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-500"><i class="fas fa-map-location-dot text-xs"></i></span>
-                                    <input type="text" id="district" required placeholder="জেলার নাম" class="w-full bg-slate-950/60 border border-slate-800 rounded-xl py-3 pl-11 pr-4 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition duration-200">
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-[11px] font-bold text-slate-400 mb-1.5 uppercase tracking-wider">উপজেলা <span class="text-rose-500">*</span></label>
-                                <div class="relative">
-                                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-500"><i class="fas fa-location-crosshairs text-xs"></i></span>
-                                    <input type="text" id="upazila" required placeholder="উপজেলার নাম" class="w-full bg-slate-950/60 border border-slate-800 rounded-xl py-3 pl-11 pr-4 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition duration-200">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-[11px] font-bold text-slate-400 mb-1.5 uppercase tracking-wider">ফ্রি টি-শার্টের সাইজ <span class="text-rose-500">*</span></label>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-500"><i class="fas fa-shirt text-xs"></i></span>
-                                <select id="tshirtSize" required class="w-full bg-slate-950/60 border border-slate-800 rounded-xl py-3 pl-11 pr-4 text-sm text-slate-300 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition duration-200 appearance-none cursor-pointer">
-                                    <option value="" disabled selected class="bg-slate-900">আপনার সাইজ বেছে নিন</option>
-                                    <option value="M" class="bg-slate-900">M (Medium)</option>
-                                    <option value="L" class="bg-slate-900">L (Large)</option>
-                                    <option value="XL" class="bg-slate-900">XL (Extra Large)</option>
-                                    <option value="XXL" class="bg-slate-900">XXL (Double Extra Large)</option>
-                                </select>
-                                <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-slate-500 pointer-events-none"><i class="fas fa-chevron-down text-xs"></i></span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-[11px] font-bold text-slate-400 mb-1.5 uppercase tracking-wider">সুযোগ-সুবিধা সম্পর্কে আপনার মতামত</label>
-                            <textarea id="feedback" rows="3" placeholder="আমাদের উপকরণ ও প্রদেয় সুযোগ-সুবিধা সম্পর্কে কিছু লিখুন..." class="w-full bg-slate-950/60 border border-slate-800 rounded-xl py-3 px-4 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition duration-200 resize-none"></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-400 hover:to-green-400 text-slate-950 font-extrabold py-4 rounded-xl transition duration-300 cursor-pointer flex items-center justify-center gap-2 text-base font-semibold tracking-wide shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30">
-                            <i class="fas fa-square-check text-lg"></i> কনফার্ম করুন এবং সাবমিট করুন
-                        </button>
-                    </form>
-
-                    <div class="mt-4 text-center">
-                        <p class="text-[10px] text-slate-500 leading-relaxed">
-                            <i class="fab fa-whatsapp text-emerald-500/80 mr-0.5 text-xs"></i> ফরম সাবমিট করার সাথে সাথে আপনার ইনপুটকৃত ডেটা স্বয়ংক্রিয়ভাবে আমাদের অফিসিয়াল হোয়াটসঅ্যাপ ড্যাশবোর্ডে ভেরিফাইড হয়ে যাবে।
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-
+      <div class="reward-row">
+        <div class="reward-icon">👕</div>
+        <div class="reward-info">
+          <div class="rtitle">সাংবাদিক টি-শার্ট</div>
+          <div class="rdesc">প্রতিষ্ঠানের অফিসিয়াল ব্র্যান্ডেড টি-শার্ট</div>
         </div>
+      </div>
 
-        <footer class="mt-20 text-center border-t border-slate-900 pt-8 relative z-10">
-            <p class="text-xs text-slate-600 tracking-wider font-medium">© 2026 অল রাইটস রিজার্ভড | ডিজিটাল কোর ডেভলপমেন্ট অ্যান্ড পাবলিকেশন ইউনিট।</p>
-        </footer>
+      <div class="reward-row">
+        <div class="reward-icon">🎙️</div>
+        <div class="reward-info">
+          <div class="rtitle">সাংবাদিক মাইক্রোফোন</div>
+          <div class="rdesc">পেশাদার মাইক্রোফোন — মাঠ পর্যায়ের কাজের জন্য</div>
+        </div>
+      </div>
+
+      <div class="reward-row">
+        <div class="reward-icon">🆔</div>
+        <div class="reward-info">
+          <div class="rtitle">ওয়েবসাইট আইডি ও লগইন তথ্য</div>
+          <div class="rdesc">তথ্য যাচাই সম্পন্ন হলে পাঠানো হবে</div>
+        </div>
+      </div>
+
+      <div class="reward-row">
+        <div class="reward-icon">📋</div>
+        <div class="reward-info">
+          <div class="rtitle">কাজের নির্দেশনা ও সহযোগিতা</div>
+          <div class="rdesc">পেশাগত কার্যক্রম পরিচালনার সম্পূর্ণ গাইড</div>
+        </div>
+      </div>
     </div>
 
-    <script>
-        // ১. স্মার্ট ভয়েস অ্যাসিস্ট্যান্ট লুপ (Text-to-Speech)
-        const announcementText = "দয়া করে পার্সেলটি গ্রহণ করুন। বর্তমানে প্রেরিত আইডি কার্ড এবং প্রামাণ্য ডকুমেন্টগুলো হাতে পাওয়ার পরেই পরবর্তী ধাপে টি শার্ট এবং মাইক্রোফোন সম্পূর্ণ ফ্রিতে এবং নিরাপদে আপনার ঠিকানায় পাঠিয়ে দেওয়া হবে। দয়া করে দ্রুত পার্সেলটি গ্রহণ করুন। আমাদের প্রতিষ্ঠানের পক্ষ থেকে মাসিক আর্থিক সুবিধা সহ সকল প্রকার প্রফেশনাল সুযোগ সুবিধা পাবেন। এছাড়া আমাদের অ্যাডভান্সড ওয়েবসাইট ব্যবহার করে অতি সহজেই নিজের অডিও এবং ভিডিও সংবাদ আপলোড করতে পারবেন। ধন্যবাদ।";
-        
-        let speechInstance = new SpeechSynthesisUtterance();
-        speechInstance.text = announcementText;
-        speechInstance.lang = 'bn-BD';
-        speechInstance.rate = 0.88; // প্রফেশনাল ও স্পষ্ট বাচনভঙ্গি গতি
-        speechInstance.pitch = 1.0;
-        
-        function triggerVoiceAnnouncement() {
-            // যদি অলরেডি কথা বলতে থাকে তবে নতুন করে চালু করবে না
-            if (!window.speechSynthesis.speaking) {
-                window.speechSynthesis.speak(speechInstance);
-            }
-        }
+    <!-- steps -->
+    <div class="steps">
+      <div class="step">
+        <div class="step-circle">১</div>
+        <div class="step-label">পার্সেল<br>গ্রহণ করুন</div>
+      </div>
+      <div class="step">
+        <div class="step-circle">২</div>
+        <div class="step-label">ফরম<br>পূরণ করুন</div>
+      </div>
+      <div class="step">
+        <div class="step-circle">৩</div>
+        <div class="step-label">WhatsApp-এ<br>জমা দিন</div>
+      </div>
+      <div class="step">
+        <div class="step-circle">৪</div>
+        <div class="step-label">পুরস্কার<br>পান</div>
+      </div>
+    </div>
 
-        // ভয়েস শেষ হওয়ার পর ৩ সেকেন্ডের গ্যাপ নিয়ে রি-লুপ হবে
-        speechInstance.onend = function() {
-            setTimeout(() => {
-                triggerVoiceAnnouncement();
-            }, 3000);
-        };
+    <p class="section-title">📝 ফরম পূরণ করুন</p>
 
-        // ব্রাউজার ইভেন্ট হ্যান্ডলার (সিকিউরিটি পলিসি কমপ্লায়েন্স)
-        window.addEventListener('DOMContentLoaded', () => {
-            triggerVoiceAnnouncement();
-            // ব্রাউজার ফার্স্ট-টাইম ব্লক রিমুভ করার জন্য ইউজার ইন্টারঅ্যাকশন লিসেনার
-            document.body.addEventListener('click', () => {
-                triggerVoiceAnnouncement();
-            }, { once: true });
-        });
+    <div class="field">
+      <label>নাম *</label>
+      <input type="text" id="name" placeholder="আপনার পূর্ণ নাম লিখুন" />
+    </div>
 
+    <div class="field">
+      <label>জেলার নাম *</label>
+      <input type="text" id="district" placeholder="আপনার জেলা লিখুন" />
+    </div>
 
-        // ২. হোয়াটসঅ্যাপ ডেটা রাউটিং ইঞ্জিন
-        function handleFormSubmit(event) {
-            event.preventDefault(); // রিয়েল-টাইম ডাটা ক্যাচিং এর জন্য ডিফল্ট রিলোড বন্ধ করা হলো
+    <div class="field">
+      <label>উপজেলার নাম *</label>
+      <input type="text" id="upazila" placeholder="আপনার উপজেলা লিখুন" />
+    </div>
 
-            // ফর্ম ডম এলিমেন্ট ভ্যালু রিড
-            const name = document.getElementById('fullName').value;
-            const district = document.getElementById('district').value;
-            const upazila = document.getElementById('upazila').value;
-            const size = document.getElementById('tshirtSize').value;
-            const feedback = document.getElementById('feedback').value || "কোনো বিশেষ মন্তব্য নেই।";
+    <div class="field">
+      <label>টি-শার্টের সাইজ *</label>
+      <select id="size">
+        <option value="">-- সাইজ নির্বাচন করুন --</option>
+        <option value="S">S (ছোট)</option>
+        <option value="M">M (মাঝারি)</option>
+        <option value="L">L (বড়)</option>
+        <option value="XL">XL (অতিরিক্ত বড়)</option>
+        <option value="XXL">XXL (ডাবল এক্সএল)</option>
+      </select>
+    </div>
 
-            // টার্গেটেড অফিশিয়াল হোয়াটসঅ্যাপ নম্বর
-            const activeWhatsAppNum = "8801328627572";
+    <div class="field">
+      <label>আপনার মতামত</label>
+      <textarea id="opinion" placeholder="প্রতিষ্ঠান থেকে দেওয়া উপকরণ ও সুযোগ-সুবিধা সম্পর্কে আপনার মতামত লিখুন..."></textarea>
+    </div>
 
-            // স্ট্রাকচার্ড ইনফরমেশন টেমপ্লেট
-            const formattedPayload = `*🟢 উপহার ক্লেইম ও সাইজ ফর্ম ভেরিফিকেশন* \n\n` +
-                                     `👤 *মেম্বারের নাম:* ${name}\n` +
-                                     `📍 *জেলা:* ${district}\n` +
-                                     `🏡 *উপজেলা:* ${upazila}\n` +
-                                     `👕 *টি-শার্ট সাইজ:* ${size}\n` +
-                                     `📝 *মন্তব্য:* ${feedback}\n\n` +
-                                     `_স্টেটাস: মেম্বার প্রথম ধাপের আইডি কার্ড পার্সেলটি গ্রহণ করতে সম্মত হয়েছেন এবং উপহারটি ক্লেইম করেছেন।_`;
+    <button class="btn" onclick="submitForm()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+      WhatsApp-এ ফরম জমা দিন
+    </button>
 
-            // হোয়াটসঅ্যাপ এপিআই এর জন্য ইউআরএল প্রিপারেশন
-            const finalRedirectLink = `https://api.whatsapp.com/send?phone=${activeWhatsAppNum}&text=${encodeURIComponent(formattedPayload)}`;
+  </div>
 
-            // নিউ প্রফেশনাল উইন্ডো ট্যাবে সেন্ডিং এক্সিকিউশন
-            window.open(finalRedirectLink, '_blank');
-        }
-    </script>
+  <div class="footer">
+    📲 WhatsApp: 01328627572 &nbsp;|&nbsp; ফরম জমার পর দ্রুত যোগাযোগ করা হবে
+  </div>
+
+</div>
+
+<script>
+  function submitForm() {
+    const name     = document.getElementById('name').value.trim();
+    const district = document.getElementById('district').value.trim();
+    const upazila  = document.getElementById('upazila').value.trim();
+    const size     = document.getElementById('size').value;
+    const opinion  = document.getElementById('opinion').value.trim();
+
+    if (!name || !district || !upazila || !size) {
+      alert('অনুগ্রহ করে সকল প্রয়োজনীয় তথ্য (*) পূরণ করুন।');
+      return;
+    }
+
+    const message =
+      `📋 *পার্সেল গ্রহণের ফরম*\n\n` +
+      `👤 *নাম:* ${name}\n` +
+      `🗺️ *জেলা:* ${district}\n` +
+      `📍 *উপজেলা:* ${upazila}\n` +
+      `👕 *টি-শার্ট সাইজ:* ${size}\n` +
+      `💬 *মতামত:* ${opinion || 'কোনো মতামত নেই'}\n\n` +
+      `✅ পার্সেল গ্রহণ সম্পন্ন হয়েছে।`;
+
+    const phone = '8801328627572';
+    const url   = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  }
+</script>
 </body>
 </html>
-
-```
