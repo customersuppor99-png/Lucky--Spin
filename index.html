@@ -3,448 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>সংবাদ আপলোড সম্পূর্ণ নির্দেশিকা | স্বাধীন বাংলা প্রেসক্লাব</title>
+    <title>গুরুত্বপূর্ণ নোটিশ | পার্সেল গ্রহণ ও ভেরিফিকেশন পোর্টাল</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind_Siliguri:wght@400;500;600;700&display=swap');
         body {
             font-family: 'Hind Siliguri', sans-serif;
-            scroll-behavior: smooth;
+            background: radial-gradient(circle at top right, #1e1b4b, #0f172a);
         }
-        .step-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .step-card:hover {
-            transform: translateY(-5px);
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
         }
-        .active-step {
-            border-color: #ef4444;
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        .glow-green {
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased relative">
+<body class="text-slate-200 min-h-screen antialiased selection:bg-blue-500 selection:text-white">
 
-    <header class="bg-gradient-to-r from-red-600 to-red-800 text-white shadow-xl sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-3">
-                <div class="p-2.5 bg-white/10 rounded-xl animate__animated animate__pulse animate__infinite">
-                    <i class="fa-solid fa-newspaper text-2xl text-yellow-300"></i>
-                </div>
-                <div>
-                    <h1 class="text-xl font-bold tracking-wide">স্বাধীন বাংলা প্রেসক্লাব</h1>
-                    <p class="text-xs text-red-100 opacity-90">সংবাদ আপলোড করার সম্পূর্ণ ভিডিও ও টেক্সট নির্দেশিকা</p>
-                </div>
-            </div>
-            <div class="flex items-center gap-3">
-                <button onclick="startAiTutorial()" class="px-5 py-2.5 bg-yellow-400 hover:bg-yellow-500 text-slate-900 font-bold rounded-full transition transform hover:scale-105 shadow-md flex items-center gap-2 text-sm cursor-pointer">
-                    <i class="fa-solid fa-circle-play text-red-600 animate-ping"></i> <span>AI ভয়েস টিউটোরিয়াল চালু করুন</span>
-                </button>
-                <button onclick="stopSpeech()" class="p-2.5 bg-slate-900/40 text-white rounded-full hover:bg-slate-900/60 transition">
-                    <i class="fa-solid fa-volume-xmark"></i>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <main class="max-w-5xl mx-auto px-4 py-12 space-y-16">
-        
-        <section class="text-center space-y-4 max-w-2xl mx-auto animate__animated animate__fadeIn">
-            <span class="bg-red-100 text-red-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">অফিসিয়াল গাইডলাইন</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-950 leading-tight">ডিজিটাল পোর্টালে সহজেই সংবাদ প্রকাশ করুন</h2>
-            <p class="text-base text-slate-500">আমাদের নতুন ড্যাশবোর্ডে কীভাবে নির্ভুলভাবে সংবাদ সাবমিট করবেন, তার প্রতিটি ধাপ নিচে সচিত্র এবং এআই ভয়েস অ্যাসিস্ট্যান্টের মাধ্যমে ধাপে ধাপে বুঝিয়ে দেওয়া হলো।</p>
-        </section>
-
-        <div class="space-y-8 relative before:absolute before:inset-0 before:left-4 sm:before:left-1/2 before:w-0.5 before:bg-slate-200 before:-z-10">
-            
-            <div id="step1" class="step-card flex flex-col sm:flex-row items-start sm:items-center gap-6 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm relative">
-                <div class="absolute -left-2 sm:left-1/2 sm:-translate-x-1/2 top-6 sm:top-auto bg-blue-600 text-white w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm ring-4 ring-blue-50 shadow-md">১</div>
-                <div class="sm:w-1/2 space-y-3">
-                    <span class="text-blue-600 font-bold text-sm uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-rocket"></i> ধাপ ১</span>
-                    <h3 class="text-xl font-bold text-slate-900">ওয়েবসাইটে লগইন করুন</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">প্রথমে নিচে দেওয়া লিংকে ক্লিক করে আপনার ইউজার আইডি এবং পাসওয়ার্ড দিয়ে আমাদের অফিসিয়াল ওয়েবসাইটে সফলভাবে লগইন সম্পন্ন করুন।</p>
-                    <a href="https://shadinbanglapressclub.com/login" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 underline underline-offset-4">
-                        <i class="fa-solid fa-link"></i> https://shadinbanglapressclub.com/login
-                    </a>
-                </div>
-                <div class="sm:w-1/2 bg-slate-50 p-4 rounded-xl border border-slate-200/60 flex items-center justify-center">
-                    <i class="fa-solid fa-shield-halved text-6xl text-blue-500/20 py-6"></i>
-                </div>
-            </div>
-
-            <div id="step2" class="step-card flex flex-col sm:flex-row-reverse items-start sm:items-center gap-6 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm relative">
-                <div class="absolute -left-2 sm:left-1/2 sm:-translate-x-1/2 top-6 sm:top-auto bg-purple-600 text-white w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm ring-4 ring-purple-50 shadow-md">২</div>
-                <div class="sm:w-1/2 space-y-3 sm:pl-8">
-                    <span class="text-purple-600 font-bold text-sm uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-lock"></i> ধাপ ২</span>
-                    <h3 class="text-xl font-bold text-slate-900">ড্যাশবোর্ডে প্রবেশ করুন</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">লগইন করার পর আপনি আপনার ব্যক্তিগত প্যানেলে নিচের অপশনগুলো দেখতে পাবেন। সংবাদ প্রকাশ করার জন্য সরাসরি <strong class="text-slate-800">"আর্টিকেল লিখুন"</strong> অপশনে ক্লিক করুন।</p>
-                    <div class="grid grid-cols-2 gap-2 pt-2">
-                        <div class="p-2.5 bg-blue-50 border border-blue-200 rounded-lg text-xs font-bold text-blue-700"><i class="fa-regular fa-file-lines mr-1.5"></i> আর্টিকেল লিখুন</div>
-                        <div class="p-2.5 bg-slate-50 rounded-lg text-xs text-slate-600 opacity-60"><i class="fa-regular fa-circle-check mr-1.5"></i> প্রকাশিত আর্টিকেল</div>
-                        <div class="p-2.5 bg-slate-50 rounded-lg text-xs text-slate-600 opacity-60"><i class="fa-regular fa-clock mr-1.5"></i> অপেক্ষামান লেখা</div>
-                        <div class="p-2.5 bg-slate-50 rounded-lg text-xs text-slate-600 opacity-60"><i class="fa-regular fa-circle-xmark mr-1.5"></i> বাতিল লেখা</div>
-                    </div>
-                </div>
-                <div class="sm:w-1/2 bg-slate-50 p-4 rounded-xl border border-slate-200/60 flex items-center justify-center">
-                    <i class="fa-solid fa-gauge-high text-6xl text-purple-500/20 py-10"></i>
-                </div>
-            </div>
-
-            <div id="step3" class="step-card flex flex-col sm:flex-row items-start sm:items-center gap-6 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm relative">
-                <div class="absolute -left-2 sm:left-1/2 sm:-translate-x-1/2 top-6 sm:top-auto bg-amber-500 text-white w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm ring-4 ring-amber-50 shadow-md">৩</div>
-                <div class="sm:w-1/2 space-y-4">
-                    <span class="text-amber-600 font-bold text-sm uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-pen-nib"></i> ধাপ ৩</span>
-                    <h3 class="text-xl font-bold text-slate-900">সংবাদ লিখুন ও তথ্য পূরণ করুন</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">ড্যাশবোর্ড ওপেন হওয়ার পর নিচের নিয়ম অনুযায়ী নিখুঁতভাবে ফর্মটি পূরণ করুন:</p>
-                    
-                    <ul class="space-y-2.5 text-xs text-slate-600">
-                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-arrow-right text-amber-500 mt-0.5"></i> <span><strong>সংবাদ শিরোনাম:</strong> আকর্ষণীয় শিরোনাম দিন, যা সর্বোচ্চ ১৬ শব্দের মধ্যে হতে হবে।</span></li>
-                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-arrow-right text-amber-500 mt-0.5"></i> <span><strong>সংবাদ লিখুন:</strong> সংবাদের বিস্তারিত বিবরণ সাবলীলভাবে লিখুন।</span></li>
-                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-arrow-right text-amber-500 mt-0.5"></i> <span><strong>ছবি আপলোড:</strong> সংবাদের সাথে সম্পর্কিত একটি ফিচার ছবি সিলেক্ট করুন। সাইজ সর্বোচ্চ 2MB হতে হবে।</span></li>
-                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-arrow-right text-amber-500 mt-0.5"></i> <span><strong>ক্যাটাগরি ও স্থান:</strong> নির্দিষ্ট ক্যাটাগরি এবং আপনার জেলা ও উপজেলা সিলেক্ট করুন।</span></li>
-                    </ul>
-
-                    <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 flex items-start gap-2.5 text-xs text-amber-900">
-                        <i class="fa-solid fa-user-ninja text-amber-600 mt-0.5"></i>
-                        <span><strong>বিশেষ দ্রষ্টব্য:</strong> সংবাদের ভেতরে আপনার নাম ও পদবি লেখার কোনো প্রয়োজন নেই। সিস্টেম স্বয়ংক্রিয়ভাবে তা যুক্ত করে নেবে।</span>
-                    </div>
-                </div>
-                <div class="sm:w-1/2 bg-slate-50 p-6 rounded-xl border border-slate-200/60 space-y-3">
-                    <div class="h-3 bg-slate-200 rounded w-1/3"></div>
-                    <div class="h-9 bg-slate-200 rounded-lg w-full"></div>
-                    <div class="h-3 bg-slate-200 rounded w-1/2"></div>
-                    <div class="h-20 bg-slate-200 rounded-lg w-full"></div>
-                </div>
-            </div>
-
-            <div id="step4" class="step-card flex flex-col sm:flex-row-reverse items-start sm:items-center gap-6 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm relative">
-                <div class="absolute -left-2 sm:left-1/2 sm:-translate-x-1/2 top-6 sm:top-auto bg-emerald-600 text-white w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm ring-4 ring-emerald-50 shadow-md">৪</div>
-                <div class="sm:w-1/2 space-y-3 sm:pl-8">
-                    <span class="text-emerald-600 font-bold text-sm uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-share-from-square"></i> ধাপ ৪</span>
-                    <h3 class="text-xl font-bold text-slate-900">সংবাদ প্রকাশ করুন</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">সাবমিট করার আগে সংবাদের ৫টি মূল বিষয় পুনরায় ভালো করে যাচাই করে নিন:</p>
-                    <div class="flex flex-wrap gap-2 pt-1">
-                        <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs font-medium text-slate-700">✓ শিরোনাম</span>
-                        <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs font-medium text-slate-700">✓ বিস্তারিত সংবাদ</span>
-                        <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs font-medium text-slate-700">✓ ইমেজ/ছবি</span>
-                        <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs font-medium text-slate-700">✓ ক্যাটাগরি</span>
-                        <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs font-medium text-slate-700">✓ জেলা ও উপজেলা</span>
-                    </div>
-                    <p class="text-sm text-slate-500 pt-1">সবকিছু সঠিক থাকলে নিচে থাকা সবুজ রঙের <strong class="text-emerald-600">"প্রকাশ করুন"</strong> বাটনে ক্লিক করুন।</p>
-                </div>
-                <div class="sm:w-1/2 bg-slate-50 p-4 rounded-xl border border-slate-200/60 flex items-center justify-center">
-                    <button type="button" class="px-6 py-3 bg-emerald-500 text-white rounded-xl font-bold shadow-lg shadow-emerald-500/20 text-sm"><i class="fa-solid fa-paper-plane mr-2"></i> প্রকাশ করুন</button>
-                </div>
-            </div>
-
-            <div id="step5" class="step-card flex flex-col sm:flex-row items-start sm:items-center gap-6 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm relative">
-                <div class="absolute -left-2 sm:left-1/2 sm:-translate-x-1/2 top-6 sm:top-auto bg-teal-600 text-white w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm ring-4 ring-teal-50 shadow-md">৫</div>
-                <div class="sm:w-1/2 space-y-3">
-                    <span class="text-teal-600 font-bold text-sm uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-square-poll-vertical"></i>  ধাপ ৫</span>
-                    <h3 class="text-xl font-bold text-slate-900">প্রকাশিত সংবাদ দেখুন ও শেয়ার করুন</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">সংবাদটি সফলভাবে ডাটাবেজে জমা হলে স্ক্রিনের উপরে সবুজ রঙে <span class="bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded text-xs font-bold">প্রকাশিত</span> স্ট্যাটাসটি দেখতে পাবেন। এরপর নিচে থাকা <strong class="text-slate-800">"আর্টিকেল দেখুন"</strong> অপশনে ক্লিক করলে আপনার খবরটি অটোমেটিক নতুন ট্যাবে ওপেন হয়ে যাবে এবং আপনি এর লিংক কপি করতে পারবেন।</p>
-                </div>
-                <div class="sm:w-1/2 bg-slate-50 p-4 rounded-xl border border-slate-200/60 flex items-center justify-center">
-                    <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 text-center space-y-2 w-full max-w-[240px]">
-                        <span class="text-[10px] bg-emerald-500 text-white font-bold px-2 py-0.5 rounded-full">প্রকাশিত</span>
-                        <div class="text-xs font-bold text-slate-700 py-1 border-y border-dashed border-slate-100">আর্টিকেল দেখুন <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-slate-400"></i></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <section class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-3xl p-8 shadow-xl space-y-6">
-            <div class="border-b border-slate-700 pb-4 text-center sm:text-left">
-                <h4 class="text-2xl font-bold text-white flex items-center justify-center sm:justify-start gap-2">
-                    <i class="fa-solid fa-wand-magic-sparkles text-yellow-300"></i> প্রকাশিত সংবাদের অতিরিক্ত আধুনিক সুবিধাসমূহ
-                </h4>
-                <p class="text-xs text-slate-400 mt-1">সংবাদটি লাইভ ওপেন করার পর আপনার নামের পাশে এই উন্নত ডিজিটাল ফিচারগুলো পাবেন—</p>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="p-4 bg-white/5 rounded-2xl border border-white/10 flex gap-4 items-start">
-                    <div class="p-3 bg-red-500/20 text-red-400 rounded-xl"><i class="fa-solid fa-print text-xl"></i></div>
-                    <div>
-                        <h5 class="font-bold text-base text-slate-100">🖨️ প্রিন্ট সংস্করণ</h5>
-                        <p class="text-xs text-slate-400 mt-1">এখানে ক্লিক করলে মুহূর্তের মধ্যে আপনার সংবাদের একটি সুন্দর ও গোছানো প্রিন্ট মিডিয়া ভিউ ওপেন হবে যা প্রিন্ট করা যাবে।</p>
-                    </div>
-                </div>
-                <div class="p-4 bg-white/5 rounded-2xl border border-white/10 flex gap-4 items-start">
-                    <div class="p-3 bg-blue-500/20 text-blue-400 rounded-xl"><i class="fa-solid fa-id-card text-xl"></i></div>
-                    <div>
-                        <h5 class="font-bold text-base text-slate-100">🪪 ডিজিটাল ফটো কার্ড</h5>
-                        <p class="text-xs text-slate-400 mt-1">সোশ্যাল মিডিয়ায় বা ফেসবুকে খবরটি আকর্ষণীয়ভাবে শেয়ার করার জন্য অটোমেটিক একটি মডার্ন ফটো কার্ড তৈরি হয়ে যাবে।</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
-            <div class="md:col-span-7 bg-white rounded-3xl p-6 shadow-xl border border-slate-100 flex flex-col justify-between space-y-4">
-                <div>
-                    <h4 class="font-bold text-lg text-slate-900 flex items-center gap-2"><i class="fa-solid fa-circle-play text-red-600"></i> ভিডিও টিউটোরিয়াল</h4>
-                    <p class="text-xs text-slate-500 mt-1">যেকোনো ধাপে বুঝতে সমস্যা হলে আমাদের তৈরি এই ১ মিনিটের অফিশিয়াল শর্টস ভিডিও গাইডটি দেখে নিতে পারেন।</p>
-                </div>
-                <div class="aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-inner relative flex items-center justify-center group">
-                    <a href="https://youtube.com/shorts/Uk0rzZGjrpU?si=ex5dKU0Aal8x0t1w" target="_blank" class="absolute z-20 px-5 py-2.5 bg-red-600 text-white font-bold text-sm rounded-xl flex items-center gap-2 shadow-lg group-hover:scale-105 transition">
-                        <i class="fa-brands fa-youtube"></i> ইউটিউবে ভিডিওটি দেখুন
-                    </a>
-                    <div class="absolute inset-0 bg-cover bg-center opacity-40 blur-xs" style="background-image: url('https://shadinbanglapressclub.com/login');"></div>
-                </div>
-            </div>
-
-            <div class="md:col-span-5 bg-gradient-to-br from-emerald-600 to-teal-700 text-white rounded-3xl p-6 shadow-xl flex flex-col justify-between space-y-6">
-                <div class="space-y-2">
-                    <span class="px-2.5 py-0.5 bg-white/20 rounded text-[10px] font-bold uppercase tracking-wider">সরাসরি সহায়তা</span>
-                    <h4 class="font-bold text-xl">জরুরি কারিগরি সাপোর্ট?</h4>
-                    <p class="text-xs text-emerald-100 leading-relaxed">নির্দেশিকা দেখার পরও যদি কোনো টেকনিক্যাল ত্রুটি বা সমস্যায় পড়েন, তবে দ্বিধা না করে আমাদের কেন্দ্রীয় আইটি সেলে সরাসরি যোগাযোগ করুন।</p>
-                </div>
-                <div class="bg-slate-900/20 p-4 rounded-2xl border border-white/10 space-y-1">
-                    <span class="text-[10px] text-emerald-200 block uppercase font-bold">Official WhatsApp Number</span>
-                    <a href="https://wa.me/8801516011136" target="_blank" class="text-lg font-black block tracking-wide hover:underline">+880 1516-011136</a>
-                </div>
-                <a href="https://wa.me/8801516011136" target="_blank" class="w-full py-3 bg-white text-slate-900 hover:bg-slate-100 font-bold rounded-xl text-xs transition shadow-md text-center flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-base text-green-600"></i> হোয়াটসঅ্যাপে চ্যাট শুরু করুন
-                </a>
-            </div>
-        </section>
-
-        <section class="bg-white rounded-3xl p-8 shadow-xl border border-slate-100 space-y-6">
-            <div class="text-center max-w-md mx-auto space-y-1">
-                <h4 class="font-bold text-lg text-slate-900 flex items-center justify-center gap-2"><i class="fa-solid fa-rotate text-blue-600 animate-spin"></i> চলমান আধুনিক উন্নয়ন কাজ</h4>
-                <p class="text-xs text-slate-400">স্বাধীন বাংলা প্রেসক্লাবকে বিশ্বমানের করতে খুব শীঘ্রই প্যানেলে যুক্ত হতে যাচ্ছে নিচের ডিজিটাল ফিচারসমূহ—</p>
-            </div>
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-                <div class="p-4 bg-slate-50 border border-slate-100 rounded-2xl text-center space-y-2">
-                    <div class="w-8 h-8 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mx-auto text-sm"><i class="fa-solid fa-video"></i></div>
-                    <h5 class="font-bold text-xs text-slate-800">সরাসরি ভিডিও আপলোড</h5>
-                </div>
-                <div class="p-4 bg-slate-50 border border-slate-100 rounded-2xl text-center space-y-2">
-                    <div class="w-8 h-8 rounded-lg bg-red-100 text-red-600 flex items-center justify-center mx-auto text-sm"><i class="fa-solid fa-tower-broadcast"></i></div>
-                    <h5 class="font-bold text-xs text-slate-800">লাইভ সম্প্রচার সুবিধা</h5>
-                </div>
-                <div class="p-4 bg-slate-50 border border-slate-100 rounded-2xl text-center space-y-2">
-                    <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mx-auto text-sm"><i class="fa-solid fa-id-card-clip"></i></div>
-                    <h5 class="font-bold text-xs text-slate-800">অটো আইডি কার্ড তৈরি</h5>
-                </div>
-                <div class="p-4 bg-slate-50 border border-slate-100 rounded-2xl text-center space-y-2">
-                    <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-sm"><i class="fa-solid fa-user-shield"></i></div>
-                    <h5 class="font-bold text-xs text-slate-800">প্রতিনিধি তথ্য যাচাই</h5>
-                </div>
-                <div class="p-4 bg-slate-50 border border-slate-100 rounded-2xl text-center space-y-2 col-span-2 sm:col-span-1">
-                    <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center mx-auto text-sm"><i class="fa-solid fa-bolt"></i></div>
-                    <h5 class="font-bold text-xs text-slate-800">উন্নত ডিজিটাল ফিচার</h5>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-slate-900 text-slate-500 py-8 text-center text-xs border-t border-slate-800">
-        <p class="font-semibold text-slate-400">ধন্যবাদান্তে, স্বাধীন বাংলা প্রেসক্লাব</p>
-        <p class="mt-1">© 2026 Shadin Bangla Press Club. All Rights Reserved.</p>
-    </footer>
-
-    <div class="fixed bottom-6 right-6 z-50 font-['Hind_Siliguri']">
-        <button onclick="toggleChatbot()" id="chatbot-toggle" class="w-14 h-14 bg-gradient-to-tr from-red-600 to-red-700 text-white rounded-full shadow-2xl hover:scale-105 active:scale-95 transition flex items-center justify-center cursor-pointer group relative">
-            <span class="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full animate-ping"></span>
-            <span class="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full border border-white"></span>
-            <i class="fa-solid fa-comments text-xl group-hover:rotate-12 transition"></i>
-        </button>
-
-        <div id="chatbot-box" class="hidden w-80 sm:w-96 h-[450px] bg-white rounded-3xl shadow-2xl border border-slate-100 flex flex-col overflow-hidden animate__animated animate__fadeInUp animate__faster">
-            <div class="bg-gradient-to-r from-red-600 to-red-800 p-4 text-white flex justify-between items-center shadow-md">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center relative">
-                        <i class="fa-solid fa-robot text-lg text-yellow-300"></i>
-                        <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 rounded-full border border-red-700"></span>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-sm tracking-wide">প্যানেল অ্যাসিস্ট্যান্ট</h4>
-                        <p class="text-[10px] text-red-100 opacity-80 flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span> অনলাইন আছেন</p>
-                    </div>
-                </div>
-                <button onclick="toggleChatbot()" class="p-1.5 hover:bg-white/10 rounded-full transition cursor-pointer text-white">
-                    <i class="fa-solid fa-xmark text-sm"></i>
-                </button>
-            </div>
-
-            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50 scrollbar-thin">
-                <div class="flex items-start gap-2.5">
-                    <div class="w-7 h-7 bg-red-100 text-red-600 rounded-lg flex items-center justify-center text-xs shrink-0 mt-0.5 shadow-xs">
-                        <i class="fa-solid fa-robot"></i>
-                    </div>
-                    <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-100 text-xs text-slate-700 shadow-xs max-w-[80%] leading-relaxed">
-                        আসসালামু আলাইকুম! আপনাকে কি সংবাদ আপলোড করতে বা প্রসেসটি বুঝতে কোনো সমস্যা হচ্ছে?
-                    </div>
-                </div>
-            </div>
-
-            <div id="chat-footer" class="p-3 bg-white border-t border-slate-100 text-center">
-                <button onclick="triggerBotResponse()" id="help-btn" class="w-full py-2.5 px-4 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold text-xs rounded-xl transition shadow-md hover:shadow-lg active:scale-98 cursor-pointer flex items-center justify-center gap-2">
-                    <i class="fa-regular fa-circle-question text-sm"></i> হ্যাঁ, আমার বুঝতে সমস্যা হচ্ছে
-                </button>
-            </div>
-        </div>
+    <!-- ভয়েস প্লেয়ার কন্ট্রোল (ব্রাউজার পলিসির কারণে ইউজার ইন্টারঅ্যাকশন লাগতে পারে) -->
+    <div id="audio-status" class="fixed top-4 right-4 z-50 glass-card px-4 py-2 rounded-full text-xs flex items-center gap-2 text-blue-400 border border-blue-500/30 animate-pulse cursor-pointer">
+        <i class="fas fa-volume-up"></i>
+        <span>অডিও অ্যানাউন্সমেন্ট সচল আছে</span>
     </div>
 
-    <script>
-        const tutorialSteps = [
-            { 
-                elementId: "step1", 
-                text: "ধাপ এক। ওয়েবসাইটে লগইন করুন। প্রথমে স্ক্রিনে দেওয়া লিংকে ক্লিক করে আমাদের স্বাধীন বাংলা প্রেস ক্লাবের অফিশিয়াল ওয়েবসাইটে আপনার অ্যাকাউন্ট দিয়ে লগইন সম্পন্ন করুন।" 
-            },
-            { 
-                elementId: "step2", 
-                text: "ধাপ দুই। ড্যাশবোর্ডে প্রবেশ করুন। লগইন করার পর আপনার প্রোফাইলে প্রবেশ করে, সংবাদ প্রকাশ করার জন্য সরাসরি আর্টিকেল লিখুন অপশনে ক্লিক করুন।" 
-            },
-            { 
-                elementId: "step3", 
-                text: "ধাপ তিন। সংবাদ লিখুন। এরপর সংবাদ প্রকাশের ড্যাশবোর্ড ওপেন হবে। এখানে সর্বোচ্চ ১৬ শব্দের মধ্যে সংবাদের শিরোনাম দিন, বিস্তারিত বিবরণ লিখুন, ২ মেগাবাইটের মধ্যে একটি ছবি আপলোড করুন এবং আপনার নির্দিষ্ট ক্যাটাগরি ও স্থান নির্বাচন করুন। মনে রাখবেন, এখানে আপনার নাম বা পদবি লেখার কোনো প্রয়োজন নেই।" 
-            },
-            { 
-                elementId: "step4", 
-                text: "ধাপ চার। সংবাদ প্রকাশ করুন। সংবাদের শিরোনাম, বিবরণ, ছবি এবং স্থান সবকিছু সঠিকভাবে পুনরায় যাচাই করে নিয়ে সবুজ রঙের প্রকাশ করুন বাটনে ক্লিক করুন।" 
-            },
-            { 
-                elementId: "step5", 
-                text: "ধাপ পাঁচ। প্রকাশিত সংবাদ দেখুন। আপনার সংবাদ সফলভাবে সাবমিট হলে উপরে প্রকাশিত স্ট্যাটাস দেখতে পাবেন। এরপর নিচে থাকা আর্টিকেল দেখুন অপশনে ক্লিক করলেই সংবাদটি অটোমেটিক ওপেন হয়ে যাবে এবং আপনি লিংক কপি করে নিতে পারবেন।" 
-            }
-        ];
+    <div class="max-w-5xl mx-auto px-4 py-12">
+        <!-- হেডার সেকশন -->
+        <header class="text-center mb-12 relative">
+            <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 px-4 py-1.5 rounded-full text-sm font-semibold mb-4 animate-bounce">
+                <i class="fas fa-exclamation-circle"></i> অতি জরুরি প্রাতিষ্ঠানিক নোটিশ
+            </div>
+            <h1 class="text-3xl md:text-5xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-blue-400 mb-4 leading-tight">
+                আপনার নামে একটি গুরুত্বপূর্ণ পার্সেল পাঠানো হয়েছে!
+            </h1>
+            <p class="text-base md:text-lg text-slate-400 max-w-2xl mx-auto">
+                সম্মানিত সদস্য ও গণমাধ্যম কর্মী, আপনার পেশাগত আইডি কার্ড ও অফিশিয়াল ডকুমেন্টসহ পার্সেলটি বর্তমানে ডেলিভারি পয়েন্টে রয়েছে। দ্রুত এটি গ্রহণ করুন।
+            </p>
+        </header>
 
-        let currentStepIndex = 0;
-        let speechInstance = null;
-
-        function stopSpeech() {
-            if (window.speechSynthesis) {
-                window.speechSynthesis.cancel();
-            }
-            document.querySelectorAll('.step-card').forEach(card => card.classList.remove('active-step'));
-        }
-
-        function startAiTutorial() {
-            stopSpeech();
-            currentStepIndex = 0;
-            playNextStep();
-        }
-
-        function playNextStep() {
-            if (currentStepIndex >= tutorialSteps.length) {
-                stopSpeech();
-                // Final greeting text
-                let finalSpeech = new SpeechSynthesisUtterance("অভিনন্দন! আপনি স্বাধীন বাংলা প্রেস ক্লাবের সংবাদ আপলোড করার সম্পূর্ণ নির্দেশিকাটি শেষ করেছেন। ধন্যবাদ।");
-                finalSpeech.lang = 'bn-BD';
-                window.speechSynthesis.speak(finalSpeech);
-                return;
-            }
-
-            const currentStep = tutorialSteps[currentStepIndex];
-            const targetElement = document.getElementById(currentStep.elementId);
+        <!-- মূল কন্টেন্ট গ্রিড -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
-            // UI visual updates (Animation & Glow highlight)
-            document.querySelectorAll('.step-card').forEach(card => card.classList.remove('active-step'));
-            if (targetElement) {
-                targetElement.classList.add('active-step');
-                targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+            <!-- বাম পাশ: পার্সেল ও আকর্ষণীয় গিফট সমূহের বিবরণ -->
+            <div class="lg:col-span-7 space-y-6">
+                
+                <!-- প্রথম ধাপের নোটিশ -->
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-blue-500 glow-effect">
+                    <h3 class="text-xl font-bold text-blue-400 mb-3 flex items-center gap-2">
+                        <i class="fas fa-box-open"></i> বর্তমানে পার্সেলের ভেতরে যা রয়েছে:
+                    </h3>
+                    <ul class="space-y-2.5 text-slate-300 pl-2">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500 text-sm"></i> আপনার নামাঙ্কিত ডিজিটাল আইডি কার্ড</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500 text-sm"></i> প্রাতিষ্ঠানিক অফিশিয়াল ও আইনি ডকুমেন্টস</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500 text-sm"></i> জাতীয় মিডিয়া নেটওয়ার্কের কার্যক্রম নির্দেশিকা</li>
+                    </ul>
+                    <p class="mt-4 text-xs text-amber-400/90 bg-amber-500/5 p-2.5 rounded-lg border border-amber-500/20">
+                        <i class="fas fa-info-circle"></i> <strong>সতর্কতা:</strong> এই আইডি কার্ড ও ডকুমেন্ট পার্সেলটি সফলভাবে গ্রহণ করার পরই আপনার পরবর্তী স্থায়ী সুযোগ-সুবিধাগুলো আনলক হবে।
+                    </p>
+                </div>
 
-            // Voice synthesis invocation
-            speechInstance = new SpeechSynthesisUtterance(currentStep.text);
-            speechInstance.lang = 'bn-BD';
-            speechInstance.rate = 0.95; // Clear natural pace for tutorial readability
+                <!-- আকর্ষণীয় থ্রিডি গিফট ডিসপ্লে (টি-শার্ট ও মাইক্রোফোন) -->
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-purple-500/10 rounded-full blur-2xl"></div>
+                    
+                    <h3 class="text-xl font-bold text-emerald-400 mb-6 flex items-center gap-2">
+                        <i class="fas fa-gift"></i> পার্সেল গ্রহণের পর সম্পূর্ণ ফ্রিতে যা পাবেন:
+                    </h3>
 
-            speechInstance.onend = function() {
-                currentStepIndex++;
-                setTimeout(playNextStep, 1500); // Elegant break gap before sliding to the next section
-            };
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- টি-শার্ট কার্ড -->
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 hover:border-emerald-500/40 transition duration-300 text-center">
+                            <div class="w-full h-36 bg-gradient-to-br from-slate-800 to-slate-950 rounded-lg mb-3 flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition duration-300">
+                                <!-- টি-শার্টের প্লেসহোল্ডার আইকন বা ইমেজ -->
+                                <i class="fas fa-shirt text-5xl text-emerald-500/80 drop-shadow-[0_0_15px_rgba(16,185,129,0.3)]"></i>
+                                <span class="absolute bottom-2 right-2 bg-emerald-500 text-slate-950 font-bold text-[10px] px-2 py-0.5 rounded-full">Premium Quality</span>
+                            </div>
+                            <h4 class="font-bold text-slate-200">অফিশিয়াল জার্নালিস্ট টি-শার্ট</h4>
+                            <p class="text-xs text-slate-400 mt-1">পেশাগত অ্যাসাইনমেন্টের জন্য বিশেষ সংস্করণের কলার টি-শার্ট</p>
+                        </div>
 
-            speechInstance.onerror = function() {
-                stopSpeech();
-            };
-
-            window.speechSynthesis.speak(speechInstance);
-        }
-
-        // ================= AI CHATBOT FUNCTIONALITY =================
-        function toggleChatbot() {
-            const chatbotBox = document.getElementById('chatbot-box');
-            chatbotBox.classList.toggle('hidden');
-        }
-
-        function triggerBotResponse() {
-            const chatMessages = document.getElementById('chat-messages');
-            const chatFooter = document.getElementById('chat-footer');
-            
-            // 1. Add User Question Message to Screen
-            const userMsgHtml = `
-                <div class="flex items-start gap-2.5 justify-end">
-                    <div class="bg-gradient-to-br from-slate-800 to-slate-900 text-white p-3 rounded-2xl rounded-tr-none text-xs shadow-xs max-w-[80%] leading-relaxed">
-                        হ্যাঁ, আমার বুঝতে সমস্যা হচ্ছে
+                        <!-- মাইক্রোফোন কার্ড -->
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 hover:border-emerald-500/40 transition duration-300 text-center">
+                            <div class="w-full h-36 bg-gradient-to-br from-slate-800 to-slate-950 rounded-lg mb-3 flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition duration-300">
+                                <!-- মাইক্রোফোনের প্লেসহোল্ডার আইকন বা ইমেজ -->
+                                <i class="fas fa-microphone-lines text-5xl text-emerald-500/80 drop-shadow-[0_0_15px_rgba(16,185,129,0.3)]"></i>
+                                <span class="absolute bottom-2 right-2 bg-emerald-500 text-slate-950 font-bold text-[10px] px-2 py-0.5 rounded-full">HD Sound</span>
+                            </div>
+                            <h4 class="font-bold text-slate-200">স্মার্ট রিপোর্টিং মাইক্রোফোন</h4>
+                            <p class="text-xs text-slate-400 mt-1">লোগো প্রিন্টেড হাই-কোয়ালিটি মিডিয়া ও ইন্টারভিউ মাইক্রোফোন</p>
+                        </div>
                     </div>
-                    <div class="w-7 h-7 bg-slate-200 text-slate-700 rounded-lg flex items-center justify-center text-xs shrink-0 mt-0.5 shadow-xs font-bold">
-                        U
+
+                    <!-- অন্যান্য সুবিধা -->
+                    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-300 bg-slate-950/40 p-4 rounded-xl border border-slate-800/60">
+                        <div class="flex items-center gap-2"><i class="fas fa-file-code text-blue-400"></i> ওয়েবসাইট আইডি ও লগইন তথ্য</div>
+                        <div class="flex items-center gap-2"><i class="fas fa-video text-blue-400"></i> অডিও/ভিডিও সংবাদ আপলোড সুবিধা</div>
+                        <div class="flex items-center gap-2"><i class="fas fa-wallet text-emerald-400"></i> মাসিক আর্থিক ও অন্যান্য সুবিধা</div>
+                        <div class="flex items-center gap-2"><i class="fas fa-handshake-angle text-emerald-400"></i> সার্বক্ষণিক আইনি ও মাঠপর্যায়ের সাপোর্ট</div>
                     </div>
                 </div>
-            `;
-            chatMessages.insertAdjacentHTML('beforeend', userMsgHtml);
-            chatMessages.scrollTop = chatMessages.scrollHeight; // Auto Scroll down
 
-            // Disable button during thinking
-            chatFooter.innerHTML = `<span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-ellipsis animate-pulse text-lg"></i> টাইপ করছেন...</span>`;
+            </div>
 
-            // Stop other speeches before starting chatbot voice
-            if (window.speechSynthesis) { window.speechSynthesis.cancel(); }
-
-            // 2. TTS Voice Setup for Bot response
-            const responseText = "ঠিক আছে, আপনি তাহলে এই ভিডিওটি দেখুন সম্পূর্ণ মনোযোগ দিয়ে।";
-            const botSpeech = new SpeechSynthesisUtterance(responseText);
-            botSpeech.lang = 'bn-BD';
-            botSpeech.rate = 1.0;
-
-            // Speak response
-            window.speechSynthesis.speak(botSpeech);
-
-            // 3. Render Bot Reply after 1 second elegant lag
-            setTimeout(() => {
-                const botReplyHtml = `
-                    <div class="flex items-start gap-2.5 animate__animated animate__fadeInUp animate__faster">
-                        <div class="w-7 h-7 bg-red-100 text-red-600 rounded-lg flex items-center justify-center text-xs shrink-0 mt-0.5 shadow-xs">
-                            <i class="fa-solid fa-robot"></i>
+            <!-- ডান পাশ: মডার্ন ডাটা ভেরিফিকেশন ফরম -->
+            <div class="lg:col-span-5 w-full">
+                <div class="glass-card p-6 md:p-8 rounded-2xl border border-slate-700/50 shadow-2xl relative">
+                    <div class="absolute -left-6 -bottom-6 w-32 h-32 bg-blue-500/5 rounded-full blur-xl"></div>
+                    
+                    <div class="text-center mb-6">
+                        <div class="w-12 h-12 bg-blue-500/10 border border-blue-500/30 rounded-full flex items-center justify-center mx-auto mb-2 text-blue-400 text-xl">
+                            <i class="fas fa-file-signature"></i>
                         </div>
-                        <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-100 text-xs text-slate-700 shadow-xs max-w-[85%] leading-relaxed space-y-3">
-                            <p class="font-semibold text-red-600"><i class="fa-solid fa-circle-play mr-1"></i> ${responseText}</p>
-                            
-                            <div class="w-full aspect-[9/16] max-w-[200px] mx-auto rounded-xl overflow-hidden shadow-inner border border-slate-200 bg-black relative">
-                                <iframe 
-                                    class="w-full h-full"
-                                    src="https://www.youtube.com/embed/Uk0rzZGjrpU" 
-                                    title="Tutorial Shorts" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    allowfullscreen>
-                                </iframe>
+                        <h3 class="text-xl font-bold text-white">তথ্য যাচাইকরণ ও ক্লেইম ফরম</h3>
+                        <p class="text-xs text-slate-400 mt-1">পার্সেলটি হাতে পাওয়ার পর নিচের ফরমটি পূরণ করুন</p>
+                    </div>
+
+                    <form id="verificationForm" onsubmit="sendToWhatsApp(event)" class="space-y-4">
+                        <!-- নাম -->
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">পূর্ণ নাম <span class="text-rose-500">*</span></label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500"><i class="fas fa-user text-xs"></i></span>
+                                <input type="text" id="fullName" required placeholder="আপনার নাম লিখুন" class="w-full bg-slate-950/60 border border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-sm text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-200">
                             </div>
-                            <a href="https://youtube.com/shorts/Uk0rzZGjrpU?si=jiwVnX6APi7cQtK_" target="_blank" class="block text-center py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-bold text-[11px] transition shadow-xs">
-                                <i class="fa-brands fa-youtube mr-1"></i> ইউটিউবে ফুল স্ক্রিনে দেখুন
-                            </a>
                         </div>
+
+                        <!-- জেলা ও উপজেলা গ্রিড -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">জেলার নাম <span class="text-rose-500">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500"><i class="fas fa-map-marker-alt text-xs"></i></span>
+                                    <input type="text" id="district" required placeholder="জেলার নাম" class="w-full bg-slate-950/60 border border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-sm text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-200">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">উপজেলার নাম <span class="text-rose-500">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500"><i class="fas fa-location-crosshairs text-xs"></i></span>
+                                    <input type="text" id="upazila" required placeholder="উপজেলার নাম" class="w-full bg-slate-950/60 border border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-sm text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-200">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- টি-শার্টের সাইজ -->
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">টি-শার্টের সাইজ <span class="text-rose-500">*</span></label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500"><i class="fas fa-shirt text-xs"></i></span>
+                                <select id="tshirtSize" required class="w-full bg-slate-950/60 border border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-sm text-slate-300 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-200 appearance-none cursor-pointer">
+                                    <option value="" disabled selected class="bg-slate-900">নির্বাচন করুন</option>
+                                    <option value="M" class="bg-slate-900">M (Medium)</option>
+                                    <option value="L" class="bg-slate-900">L (Large)</option>
+                                    <option value="XL" class="bg-slate-900">XL (Extra Large)</option>
+                                    <option value="XXL" class="bg-slate-900">XXL (Double Extra Large)</option>
+                                </select>
+                                <span class="absolute inset-y-0 right-0 flex items-center pr-3.5 text-slate-500 pointer-events-none"><i class="fas fa-chevron-down text-xs"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- মতামত -->
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">আপনার মূল্যবান মতামত</label>
+                            <textarea id="feedback" rows="3" placeholder="উপকরণ ও সুযোগ-সুবিধা সম্পর্কে মতামত লিখুন..." class="w-full bg-slate-950/60 border border-slate-800 rounded-xl py-2.5 px-4 text-sm text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-200 resize-none"></textarea>
+                        </div>
+
+                        <!-- সাবমিট বাটন -->
+                        <button type="submit" class="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-500 hover:to-emerald-400 text-slate-950 font-bold py-3.5 rounded-xl transition duration-300 cursor-pointer flex items-center justify-center gap-2 text-base glow-green">
+                            <i class="fas fa-paper-plane"></i> তথ্য কনফার্ম করুন
+                        </button>
+                    </form>
+
+                    <div class="mt-4 text-center">
+                        <p class="text-[11px] text-slate-400">
+                            <i class="fab fa-whatsapp text-emerald-400 mr-1"></i> সাবমিট করার সাথে সাথে তথ্যগুলো আমাদের অফিশিয়াল হোয়াটসঅ্যাপ নম্বরে সেন্ট হয়ে যাবে।
+                        </p>
                     </div>
-                `;
-                chatFooter.innerHTML = `
-                    <div class="p-1 bg-green-50 rounded-xl border border-green-200 text-green-700 text-[11px] font-bold">
-                        <i class="fa-solid fa-circle-check"></i> সমাধান গাইড দেওয়া হয়েছে
-                    </div>
-                `;
-                chatMessages.insertAdjacentHTML('beforeend', botReplyHtml);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 1000);
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ফুটার বা সমাপনী বার্তা -->
+        <footer class="mt-16 text-center border-t border-slate-800 pt-6">
+            <p class="text-xs text-slate-500">© 2026 অল রাইটস রিজার্ভড | প্রাতিষ্ঠানিক প্রচার ও ব্যবস্থাপনা সেল।</p>
+        </footer>
+    </div>
+
+    <!-- স্ক্রিপ্ট: ভয়েস অটো-প্লে এবং হোয়াটসঅ্যাপ এ ডাটা সেন্ডিং -->
+    <script>
+        // ১. স্বয়ংক্রিয় ব্যাকগ্রাউন্ড ভয়েস অ্যাসিস্ট্যান্ট (Text-to-Speech)
+        const announcementText = "দয়া করে পার্সেলটি দ্রুত গ্রহণ করুন। হাতে পাওয়ার পরে সবকিছু বুঝিয়ে দেওয়া হবে। টি শার্ট এবং মাইক্রোফোন সম্পূর্ণ ফ্রিতে পাবেন। দয়া করে পার্সেলটি গ্রহণ করুন। আমাদের প্রতিষ্ঠানের পক্ষ থেকে আর্থিক সুবিধা সহ সকল প্রকার সুবিধা পাবেন। আমাদের ওয়েবসাইট ব্যবহার করে অডিও এবং ভিডিও সংবাদ আপলোড করতে পারবেন। ধন্যবাদ।";
+        
+        let speech = new SpeechSynthesisUtterance();
+        speech.text = announcementText;
+        speech.lang = 'bn-BD';
+        speech.rate = 0.9; // স্বাভাবিক কথা বলার গতি
+        speech.pitch = 1.0;
+        
+        // ব্রাউজার লোড হলে ভয়েস অন করার চেষ্টা করবে (লুপ আকারে চলার জন্য)
+        function startVoice() {
+            window.speechSynthesis.speak(speech);
         }
 
-        // Auto-trigger polite initial advice notice on browser boot layout ready safely
+        // লুপ সেটআপ করা হলো
+        speech.onend = function() {
+            setTimeout(() => {
+                window.speechSynthesis.speak(speech);
+            }, 3000); // প্রতি ৩ সেকেন্ড পর পর আবার বলবে
+        };
+
+        // পেজ লোড বা প্রথম ক্লিকের পর ভয়েস অ্যাক্টিভেশন নিশ্চিত করা
         window.addEventListener('DOMContentLoaded', () => {
-            console.log("Tutorial view engine loaded smoothly.");
+            startVoice();
+            // ব্রাউজার যদি সিকিউরিটির কারণে আটকে দেয়, তবে প্রথম ক্লিকেই চালু হবে
+            document.body.addEventListener('click', () => {
+                if(!window.speechSynthesis.speaking) {
+                    startVoice();
+                }
+            }, { once: true });
         });
+
+        // ২. হোয়াটসঅ্যাপ ডাটা সেন্ডিং ফাংশন
+        function sendToWhatsApp(event) {
+            event.preventDefault(); // পেজ রিফ্রেশ হওয়া বন্ধ করবে
+
+            // ফর্মের ডেটা সংগ্রহ
+            const name = document.getElementById('fullName').value;
+            const district = document.getElementById('district').value;
+            const upazila = document.getElementById('upazila').value;
+            const size = document.getElementById('tshirtSize').value;
+            const feedback = document.getElementById('feedback').value || "কোনো মতামত দেওয়া হয়নি।";
+
+            // হোয়াটসঅ্যাপ নম্বর (কান্ট্রি কোড সহ)
+            const whatsappNumber = "8801328627572";
+
+            // মেসেজ ফরম্যাট করা
+            const message = `*--- নতুন পার্সেল ভেরিফিকেশন ফরম ---*\n\n` +
+                            `👤 *নাম:* ${name}\n` +
+                            `📍 *জেলা:* ${district}\n` +
+                            `🏡 *উপজেলা:* ${upazila}\n` +
+                            `👕 *টি-শার্টের সাইজ:* ${size}\n` +
+                            `📝 *মতামত:* ${feedback}\n\n` +
+                            `_অনুরোধ: ব্যবহারকারী পার্সেলটি রিসিভ করতে সম্মতি প্রকাশ করেছেন।_`;
+
+            // ইউআরএল এনকোড করে হোয়াটসঅ্যাপ লিংক তৈরি
+            const whatsappURL = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
+
+            // নতুন ট্যাবে হোয়াটসঅ্যাপ ওপেন করা
+            window.open(whatsappURL, '_blank');
+        }
     </script>
 </body>
 </html>
