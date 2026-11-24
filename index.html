@@ -51,8 +51,8 @@
             serif: ['Noto Serif Bengali', 'serif'],
           },
           boxShadow: {
-            'gold': '0 10px 30px -5px rgba(212, 175, 55, 0.45)',
-            'gold-lg': '0 18px 45px -6px rgba(212, 175, 55, 0.65)',
+            'gold': '0 10px 30px -5px rgba(212, 175, 55, 0.48)',
+            'gold-lg': '0 20px 50px -6px rgba(212, 175, 55, 0.72)',
             'card': '0 16px 40px -12px rgba(3, 14, 22, 0.12)',
           }
         }
@@ -76,7 +76,7 @@
     .btn-gold {
       position: relative;
       overflow: hidden;
-      background: linear-gradient(135deg, #D4AF37 0%, #F6DC7D 50%, #B88E1E 100%);
+      background: linear-gradient(135deg, #D4AF37 0%, #F9E287 50%, #B88E1E 100%);
       background-size: 200% auto;
       color: #030E16;
       transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -88,9 +88,9 @@
       left: -100%;
       width: 60%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
       transform: skewX(-25deg);
-      animation: shineSweep 3.2s infinite;
+      animation: shineSweep 2.6s infinite;
     }
     @keyframes shineSweep {
       0% { left: -100%; }
@@ -99,15 +99,33 @@
     }
     .btn-gold:hover {
       background-position: right center;
-      transform: translateY(-2px);
-      box-shadow: 0 18px 38px -4px rgba(212, 175, 55, 0.68);
+      box-shadow: 0 22px 45px -4px rgba(212, 175, 55, 0.8);
+    }
+
+    /* Eye-Catching Up & Down Floating Motion + Glowing Pulse for Primary Video CTA */
+    @keyframes ctaBounceFloat {
+      0%, 100% {
+        transform: translateY(0px) scale(1);
+        box-shadow: 0 12px 32px -4px rgba(212, 175, 55, 0.65), 0 0 0 0 rgba(212, 175, 55, 0.65);
+      }
+      50% {
+        transform: translateY(-9px) scale(1.035);
+        box-shadow: 0 24px 48px -4px rgba(212, 175, 55, 0.85), 0 0 0 14px rgba(212, 175, 55, 0);
+      }
+    }
+    .btn-attention {
+      animation: ctaBounceFloat 1.9s ease-in-out infinite;
+    }
+    .btn-attention:hover {
+      animation-play-state: paused;
+      transform: translateY(-4px) scale(1.04);
     }
 
     /* Hero Deep Midnight Teal Background */
     .hero-midnight {
       background-color: #04131D;
       background-image:
-        radial-gradient(circle at 80% 18%, rgba(212, 175, 55, 0.22) 0%, transparent 45%),
+        radial-gradient(circle at 80% 18%, rgba(212, 175, 55, 0.24) 0%, transparent 45%),
         radial-gradient(circle at 12% 85%, rgba(19, 66, 94, 0.65) 0%, transparent 50%),
         linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
@@ -122,7 +140,7 @@
       letter-spacing: 0.12em;
     }
 
-    /* Floating Card Animation */
+    /* Floating ID Card Animation */
     @keyframes floatCard {
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-7px); }
@@ -211,13 +229,13 @@
     </div>
   </header>
 
-  <!-- ==================== 2. HERO SECTION WITH AUTO-PLAYING YOUTUBE VIDEO & INTEGRATED URGENCY TIMER ==================== -->
+  <!-- ==================== 2. HERO SECTION WITH AUTO-PLAYING VIDEO & BOUNCING APPLY CTA ==================== -->
   <section id="home" class="hero-midnight text-white pt-8 pb-16 sm:pt-12 sm:pb-24 relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       
       <!-- Top Auto-Playing YouTube Video Showcase -->
-      <div class="max-w-4xl mx-auto mb-10 sm:mb-12">
-        <div class="bg-midnight-800/85 backdrop-blur-md border-2 border-champagne-500/55 rounded-3xl p-3 sm:p-4 shadow-2xl">
+      <div class="max-w-4xl mx-auto mb-8">
+        <div class="bg-midnight-800/90 backdrop-blur-md border-2 border-champagne-500/60 rounded-3xl p-3 sm:p-4 shadow-2xl">
           <div class="flex flex-wrap items-center justify-between gap-2 px-2 pb-3">
             <div class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
@@ -226,22 +244,45 @@
               </span>
             </div>
             <button id="sound-toggle-btn" type="button"
-                    class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-champagne-500 text-midnight-950 font-extrabold text-xs shadow hover:bg-champagne-400 transition-colors">
-              <i id="yt-sound-icon" data-lucide="volume-2" class="w-3.5 h-3.5"></i>
-              <span id="yt-sound-label">ভিডিও সাউন্ড সক্রিয়</span>
+                    class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-champagne-500 text-midnight-950 font-extrabold text-xs shadow hover:bg-champagne-400 transition-colors">
+              <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+              <span>ভিডিও সাউন্ড চালু / আনমিউট</span>
             </button>
           </div>
 
-          <!-- Responsive 16:9 YouTube Player Container -->
-          <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black border border-white/10 shadow-inner">
-            <div id="yt-player-container" class="w-full h-full"></div>
+          <!-- Direct Standard YouTube Embed IFrame (Reliable Autoplay) -->
+          <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black border border-white/15 shadow-inner">
+            <iframe
+              id="hero-youtube-iframe"
+              class="w-full h-full"
+              src="https://www.youtube.com/embed/Zz_A4x22pPE?autoplay=1&mute=1&loop=1&playlist=Zz_A4x22pPE&controls=1&rel=0&playsinline=1&enablejsapi=1"
+              title="দৈনিক রাষ্ট্র বার্তা সাংবাদিক নিয়োগ ভিডিও"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
           </div>
+        </div>
+
+        <!-- HIGHLIGHTED FLOATING / BOUNCING APPLY BUTTON RIGHT BELOW THE VIDEO (#2) -->
+        <div class="mt-7 sm:mt-8 text-center">
+          <a href="https://forms.gle/ipdv2jRRCBfCdaKb7" target="_blank" rel="noopener noreferrer"
+             class="btn-gold btn-attention w-full sm:w-auto inline-flex items-center justify-center gap-3.5 px-9 sm:px-12 py-4 sm:py-5 rounded-2xl font-extrabold text-xl sm:text-2xl border-2 border-champagne-200 tracking-wide">
+            <i data-lucide="file-check-2" class="w-7 h-7 stroke-[2.6]"></i>
+            <span>চূড়ান্ত আবেদন জমা দিন</span>
+            <i data-lucide="arrow-right-circle" class="w-6 h-6 stroke-[2.5]"></i>
+          </a>
+          <p class="text-champagne-200 text-xs sm:text-sm font-semibold mt-3 flex items-center justify-center gap-1.5">
+            <i data-lucide="sparkles" class="w-4 h-4 text-champagne-400"></i>
+            <span>সরাসরি অফিসিয়াল Google Form-এ আবেদন জমা দিতে ওপরের বাটনে ক্লিক করুন</span>
+          </p>
         </div>
       </div>
 
-      <!-- INTEGRATED REGISTRATION BADGE + LIVE COUNTDOWN TIMER & RECRUITMENT NOTICE -->
-      <div class="max-w-4xl mx-auto mb-8">
-        <div class="bg-gradient-to-r from-midnight-900 via-midnight-800 to-midnight-900 border-2 border-champagne-500/50 rounded-3xl p-4 sm:p-5 shadow-2xl">
+      <!-- INTEGRATED REGISTRATION BADGE + CONTINUOUS LIVE COUNTDOWN TIMER -->
+      <div class="max-w-4xl mx-auto mb-10">
+        <div class="bg-gradient-to-r from-midnight-900 via-midnight-800 to-midnight-900 border-2 border-champagne-500/55 rounded-3xl p-4 sm:p-5 shadow-2xl">
           
           <!-- Top Row: Gov Registration + UP Election Badge -->
           <div class="flex flex-wrap items-center justify-center gap-2.5 pb-3.5 mb-3.5 border-b border-white/15">
@@ -255,7 +296,7 @@
             </div>
           </div>
 
-          <!-- Bottom Row: Recruitment Urgency Notice + Live Ticking Clock -->
+          <!-- Bottom Row: Recruitment Urgency Notice + Continuous Ticking Clock -->
           <div class="flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left">
             <div class="flex items-center justify-center md:justify-start gap-2 text-xs sm:text-sm font-semibold">
               <span class="inline-flex items-center gap-1.5 bg-crimson-600 text-white px-2.5 py-0.5 rounded-full font-extrabold text-[11px] sm:text-xs shadow">
@@ -287,9 +328,9 @@
         </div>
       </div>
 
-      <!-- Main Headline & Primary CTA -->
+      <!-- Main Headline & Intro -->
       <div class="text-center max-w-4xl mx-auto">
-        <h1 class="text-3xl sm:text-5xl lg:text-[56px] font-extrabold leading-[1.18] tracking-tight text-white mb-5">
+        <h1 class="text-3xl sm:text-5xl lg:text-[54px] font-extrabold leading-[1.18] tracking-tight text-white mb-5">
           আপনিও যুক্ত হোন <span class="text-transparent bg-clip-text bg-gradient-to-r from-champagne-200 via-champagne-400 to-champagne-500">দৈনিক রাষ্ট্র বার্তার</span> সাংবাদিক পরিবারে!
         </h1>
         
@@ -304,17 +345,12 @@
           </p>
         </div>
 
-        <!-- Primary Hero CTA Buttons (#2) -->
+        <!-- Secondary Hero Navigation Link -->
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="https://forms.gle/ipdv2jRRCBfCdaKb7" target="_blank" rel="noopener noreferrer"
-             class="btn-gold pulse-gold w-full sm:w-auto inline-flex items-center justify-center gap-3 px-9 py-4 rounded-2xl font-extrabold text-lg sm:text-xl shadow-gold-lg">
-            <i data-lucide="file-check-2" class="w-6 h-6 stroke-[2.5]"></i>
-            <span>চূড়ান্ত আবেদন জমা দিন</span>
-          </a>
           <a href="#id-card-section"
-             class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl font-semibold text-base bg-midnight-800/85 hover:bg-midnight-700 text-pearl-50 border border-champagne-400/40 transition-all">
+             class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl font-semibold text-base bg-midnight-800/85 hover:bg-midnight-700 text-pearl-50 border border-champagne-400/40 transition-all">
             <i data-lucide="id-card" class="w-5 h-5 text-champagne-400"></i>
-            <span>সাংবাদিক ID Card নমুনা দেখুন</span>
+            <span>সাংবাদিক ID Card ও ডকুমেন্ট নমুনা দেখুন</span>
           </a>
         </div>
       </div>
@@ -942,80 +978,147 @@
     </div>
   </div>
 
-  <!-- ==================== SCRIPTS (YOUTUBE AUTOPLAY + UNMUTE, TIMER, 30s REDIRECT) ==================== -->
-  <script src="https://www.youtube.com/iframe_api"></script>
+  <!-- ==================== SCRIPTS (CONTINUOUS CLOCK, YOUTUBE SOUND TOGGLE, 30s REDIRECT) ==================== -->
   <script>
     lucide.createIcons();
 
     const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
     const toBanglaNumber = (num) => String(num).padStart(2, '0').split('').map(d => banglaDigits[d] || d).join('');
 
-    // ==================== 1. YOUTUBE PLAYER WITH AUTOPLAY & AUTO-UNMUTE ====================
-    let ytPlayer = null;
-    let isSoundActive = false;
+    // ==================== 1. YOUTUBE VIDEO SOUND CONTROL ====================
+    const ytIframe = document.getElementById('hero-youtube-iframe');
     const soundToggleBtn = document.getElementById('sound-toggle-btn');
+    let isVideoMuted = true;
 
-    function updateSoundButtonUI(unmuted) {
-      isSoundActive = unmuted;
-      if (unmuted) {
-        soundToggleBtn.innerHTML = `<i data-lucide="volume-2" class="w-3.5 h-3.5"></i><span>ভিডিও সাউন্ড চলছে</span>`;
-      } else {
-        soundToggleBtn.innerHTML = `<i data-lucide="volume-x" class="w-3.5 h-3.5"></i><span>ভিডিও সাউন্ড চালু করুন</span>`;
+    function sendYTCommand(func) {
+      if (ytIframe && ytIframe.contentWindow) {
+        ytIframe.contentWindow.postMessage(JSON.stringify({
+          event: 'command',
+          func: func,
+          args: []
+        }), '*');
       }
+    }
+
+    function unmuteYouTubeVideo() {
+      sendYTCommand('playVideo');
+      sendYTCommand('unMute');
+      isVideoMuted = false;
+      soundToggleBtn.innerHTML = `<i data-lucide="volume-2" class="w-3.5 h-3.5"></i><span>ভিডিও সাউন্ড চলছে</span>`;
       lucide.createIcons();
     }
 
-    function attemptAutoUnmute() {
-      if (ytPlayer && typeof ytPlayer.unMute === 'function') {
-        ytPlayer.unMute();
-        ytPlayer.setVolume(100);
-        ytPlayer.playVideo();
-        setTimeout(() => {
-          if (ytPlayer && typeof ytPlayer.isMuted === 'function') {
-            updateSoundButtonUI(!ytPlayer.isMuted());
-          }
-        }, 250);
-      }
-    }
-
-    window.onYouTubeIframeAPIReady = function () {
-      ytPlayer = new YT.Player('yt-player-container', {
-        videoId: 'Zz_A4x22pPE',
-        playerVars: {
-          autoplay: 1,
-          mute: 1,
-          loop: 1,
-          playlist: 'Zz_A4x22pPE',
-          controls: 1,
-          rel: 0,
-          playsinline: 1
-        },
-        events: {
-          onReady: function (event) {
-            event.target.playVideo();
-            // Try automatic unmute right after autoplay begins
-            setTimeout(attemptAutoUnmute, 500);
-          },
-          onStateChange: function (event) {
-            if (event.data === YT.PlayerState.PLAYING) {
-              attemptAutoUnmute();
-            }
-          }
-        }
-      });
-    };
-
-    // Guarantee unmute on first touch/scroll/click anywhere if browser initially muted autoplay
-    ['click', 'touchstart', 'scroll', 'keydown'].forEach(evt => {
+    // Automatically unmute on user's first interaction anywhere on the page
+    ['click', 'touchstart', 'scroll'].forEach(evt => {
       window.addEventListener(evt, () => {
-        if (!isSoundActive) {
-          attemptAutoUnmute();
-        }
+        if (isVideoMuted) unmuteYouTubeVideo();
       }, { once: true, passive: true });
     });
 
     soundToggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      if (!ytPlayer) return;
-      if (ytPlayer.isMuted()) {
-        ytPlayer.unMute();
+      if (isVideoMuted) {
+        unmuteYouTubeVideo();
+      } else {
+        sendYTCommand('mute');
+        isVideoMuted = true;
+        soundToggleBtn.innerHTML = `<i data-lucide="volume-x" class="w-3.5 h-3.5"></i><span>ভিডিও সাউন্ড চালু করুন</span>`;
+        lucide.createIcons();
+      }
+    });
+
+    // ==================== 2. CONTINUOUS RUNNING URGENCY COUNTDOWN CLOCK ====================
+    const hoursEl = document.getElementById('timer-hours');
+    const minutesEl = document.getElementById('timer-minutes');
+    const secondsEl = document.getElementById('timer-seconds');
+
+    let remainingSeconds = parseInt(sessionStorage.getItem('drb_urgency_timer'), 10);
+    if (isNaN(remainingSeconds) || remainingSeconds <= 0) {
+      remainingSeconds = (5 * 3600) + (42 * 60) + 59;
+    }
+
+    function updateTopClock() {
+      const hrs = Math.floor(remainingSeconds / 3600);
+      const mins = Math.floor((remainingSeconds % 3600) / 60);
+      const secs = remainingSeconds % 60;
+
+      hoursEl.textContent = toBanglaNumber(hrs);
+      minutesEl.textContent = toBanglaNumber(mins);
+      secondsEl.textContent = toBanglaNumber(secs);
+
+      if (remainingSeconds > 0) {
+        remainingSeconds -= 1;
+      } else {
+        remainingSeconds = (5 * 3600) + (42 * 60) + 59;
+      }
+      sessionStorage.setItem('drb_urgency_timer', remainingSeconds);
+    }
+    updateTopClock();
+    setInterval(updateTopClock, 1000);
+
+    // ==================== 3. MOBILE MENU ====================
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+    mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    mobileNavLinks.forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+    // ==================== 4. 30-SECOND POPUP + AUTO-REDIRECT TO GOOGLE FORM ====================
+    const FORM_URL = 'https://forms.gle/ipdv2jRRCBfCdaKb7';
+    const modal = document.getElementById('recruitment-modal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const dismissTextBtn = document.getElementById('dismiss-text-btn');
+    const countdownEl = document.getElementById('redirect-countdown');
+
+    let popupDismissed = sessionStorage.getItem('drb_popup_closed') === 'true';
+    let redirectInterval = null;
+
+    function closePopup() {
+      popupDismissed = true;
+      sessionStorage.setItem('drb_popup_closed', 'true');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      if (redirectInterval) {
+        clearInterval(redirectInterval);
+        redirectInterval = null;
+      }
+    }
+
+    function openPopupAndStartRedirect() {
+      if (popupDismissed) return;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      let secondsLeft = 5;
+      countdownEl.textContent = banglaDigits[secondsLeft];
+
+      redirectInterval = setInterval(() => {
+        if (popupDismissed) {
+          clearInterval(redirectInterval);
+          return;
+        }
+        secondsLeft -= 1;
+        if (secondsLeft > 0) {
+          countdownEl.textContent = banglaDigits[secondsLeft];
+        } else {
+          clearInterval(redirectInterval);
+          window.location.href = FORM_URL;
+        }
+      }, 1000);
+    }
+
+    // Trigger automatically after 30 seconds (30000 ms)
+    if (!popupDismissed) {
+      setTimeout(openPopupAndStartRedirect, 30000);
+    }
+
+    closeModalBtn.addEventListener('click', closePopup);
+    dismissTextBtn.addEventListener('click', closePopup);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closePopup();
+    });
+  </script>
+</body>
+</html>
