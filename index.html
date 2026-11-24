@@ -148,73 +148,11 @@
     .animate-pop {
       animation: popIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-
-    /* Voice Wave Bars */
-    @keyframes wave {
-      0%, 100% { height: 5px; }
-      50% { height: 15px; }
-    }
-    .voice-bar {
-      width: 3px;
-      background-color: #E8C252;
-      border-radius: 99px;
-      animation: wave 0.85s infinite ease-in-out;
-    }
-    .voice-bar:nth-child(2) { animation-delay: 0.2s; }
-    .voice-bar:nth-child(3) { animation-delay: 0.4s; }
   </style>
 </head>
 <body class="antialiased selection:bg-champagne-500 selection:text-midnight-950">
 
-  <!-- ==================== 1. TOP URGENCY COUNTDOWN CLOCK BAR ==================== -->
-  <div class="bg-gradient-to-r from-midnight-950 via-crimson-700 to-midnight-950 text-white border-b border-champagne-400/40 py-2.5 px-3 sm:px-6 relative z-50">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-center md:text-left">
-      
-      <!-- Left: Live Urgency Notice -->
-      <div class="flex items-center justify-center md:justify-start gap-2 text-xs sm:text-sm font-semibold">
-        <span class="inline-flex items-center gap-1.5 bg-white text-crimson-700 px-2.5 py-0.5 rounded-full font-extrabold text-[11px] sm:text-xs shadow">
-          <span class="w-2 h-2 rounded-full bg-crimson-600 animate-ping"></span>
-          চূড়ান্ত সময়সীমা
-        </span>
-        <span class="text-pearl-50">সাংবাদিক প্রতিনিধি নিয়োগের আবেদন সময় শেষ হতে চলেছে!</span>
-      </div>
-
-      <!-- Center: Live Ticking Countdown Clock -->
-      <div class="flex items-center justify-center gap-1.5 sm:gap-2">
-        <span class="text-[11px] sm:text-xs text-champagne-200 font-medium hidden sm:inline">বাকি সময়:</span>
-        <div class="flex items-center gap-1 font-heading font-extrabold text-xs sm:text-sm">
-          <div class="bg-midnight-950/90 border border-champagne-400/60 px-2 py-0.5 rounded text-champagne-300">
-            <span id="timer-hours">০৫</span> <span class="text-[10px] font-sans font-normal text-white">ঘণ্টা</span>
-          </div>
-          <span class="text-champagne-300 font-bold">:</span>
-          <div class="bg-midnight-950/90 border border-champagne-400/60 px-2 py-0.5 rounded text-champagne-300">
-            <span id="timer-minutes">৪২</span> <span class="text-[10px] font-sans font-normal text-white">মিনিট</span>
-          </div>
-          <span class="text-champagne-300 font-bold">:</span>
-          <div class="bg-midnight-950/90 border border-champagne-400/60 px-2 py-0.5 rounded text-amber-300">
-            <span id="timer-seconds">৫৯</span> <span class="text-[10px] font-sans font-normal text-white">সেকেন্ড</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: Voice Control Button -->
-      <div class="flex items-center justify-center">
-        <button id="voice-toggle-btn" type="button"
-                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-midnight-950/85 hover:bg-midnight-900 border border-champagne-400/50 text-champagne-300 text-xs font-semibold transition-all">
-          <span id="voice-waves" class="hidden items-end gap-0.5 h-3.5">
-            <span class="voice-bar"></span>
-            <span class="voice-bar"></span>
-            <span class="voice-bar"></span>
-          </span>
-          <i id="voice-icon" data-lucide="volume-2" class="w-3.5 h-3.5 text-champagne-400"></i>
-          <span id="voice-label">ভয়েস ঘোষণা</span>
-        </button>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ==================== 2. STICKY EDITORIAL HEADER ==================== -->
+  <!-- ==================== 1. STICKY EDITORIAL HEADER ==================== -->
   <header class="sticky top-0 z-40 bg-midnight-900/95 backdrop-blur-md border-b-2 border-champagne-500/45 shadow-xl">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
@@ -273,13 +211,13 @@
     </div>
   </header>
 
-  <!-- ==================== 3. HERO SECTION WITH AUTO-PLAYING YOUTUBE VIDEO AT TOP ==================== -->
+  <!-- ==================== 2. HERO SECTION WITH AUTO-PLAYING YOUTUBE VIDEO & INTEGRATED URGENCY TIMER ==================== -->
   <section id="home" class="hero-midnight text-white pt-8 pb-16 sm:pt-12 sm:pb-24 relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       
-      <!-- Top Auto-Playing YouTube Video Showcase Banner -->
-      <div class="max-w-4xl mx-auto mb-10 sm:mb-14">
-        <div class="bg-midnight-800/80 backdrop-blur-md border-2 border-champagne-500/50 rounded-3xl p-3 sm:p-4 shadow-2xl">
+      <!-- Top Auto-Playing YouTube Video Showcase -->
+      <div class="max-w-4xl mx-auto mb-10 sm:mb-12">
+        <div class="bg-midnight-800/85 backdrop-blur-md border-2 border-champagne-500/55 rounded-3xl p-3 sm:p-4 shadow-2xl">
           <div class="flex flex-wrap items-center justify-between gap-2 px-2 pb-3">
             <div class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
@@ -287,37 +225,65 @@
                 দৈনিক রাষ্ট্র বার্তা — বিশেষ নিয়োগ ও পরিচিতি ভিডিও
               </span>
             </div>
-            <button id="unmute-video-btn" type="button"
-                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-champagne-500 text-midnight-950 font-bold text-xs shadow hover:bg-champagne-400 transition-colors">
-              <i id="yt-sound-icon" data-lucide="volume-x" class="w-3.5 h-3.5"></i>
-              <span id="yt-sound-label">ভিডিওর সাউন্ড চালু করুন</span>
+            <button id="sound-toggle-btn" type="button"
+                    class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-champagne-500 text-midnight-950 font-extrabold text-xs shadow hover:bg-champagne-400 transition-colors">
+              <i id="yt-sound-icon" data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+              <span id="yt-sound-label">ভিডিও সাউন্ড সক্রিয়</span>
             </button>
           </div>
 
-          <!-- Responsive 16:9 Autoplay YouTube Embed -->
+          <!-- Responsive 16:9 YouTube Player Container -->
           <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black border border-white/10 shadow-inner">
-            <iframe
-              id="hero-youtube-iframe"
-              class="w-full h-full"
-              src="https://www.youtube.com/embed/Zz_A4x22pPE?autoplay=1&mute=1&loop=1&playlist=Zz_A4x22pPE&rel=0&playsinline=1&enablejsapi=1"
-              title="দৈনিক রাষ্ট্র বার্তা সাংবাদিক নিয়োগ ভিডিও"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen>
-            </iframe>
+            <div id="yt-player-container" class="w-full h-full"></div>
           </div>
         </div>
       </div>
 
-      <!-- Registration Badges -->
-      <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-midnight-800/90 border border-champagne-400/50 text-champagne-300 text-xs sm:text-sm font-semibold shadow">
-          <i data-lucide="shield-check" class="w-4 h-4 text-champagne-400"></i>
-          <span>গণপ্রজাতন্ত্রী বাংলাদেশ সরকার কর্তৃক নিবন্ধিত জাতীয় সংবাদমাধ্যম</span>
-        </div>
-        <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-crimson-600 text-white text-xs font-bold shadow">
-          <i data-lucide="flame" class="w-3.5 h-3.5"></i>
-          <span>আসন্ন ইউপি নির্বাচন বিশেষ নিয়োগ</span>
+      <!-- INTEGRATED REGISTRATION BADGE + LIVE COUNTDOWN TIMER & RECRUITMENT NOTICE -->
+      <div class="max-w-4xl mx-auto mb-8">
+        <div class="bg-gradient-to-r from-midnight-900 via-midnight-800 to-midnight-900 border-2 border-champagne-500/50 rounded-3xl p-4 sm:p-5 shadow-2xl">
+          
+          <!-- Top Row: Gov Registration + UP Election Badge -->
+          <div class="flex flex-wrap items-center justify-center gap-2.5 pb-3.5 mb-3.5 border-b border-white/15">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-midnight-950/90 border border-champagne-400/50 text-champagne-300 text-xs sm:text-sm font-semibold">
+              <i data-lucide="shield-check" class="w-4 h-4 text-champagne-400"></i>
+              <span>গণপ্রজাতন্ত্রী বাংলাদেশ সরকার কর্তৃক নিবন্ধিত জাতীয় সংবাদমাধ্যম</span>
+            </div>
+            <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-crimson-600 text-white text-xs font-bold shadow">
+              <i data-lucide="flame" class="w-3.5 h-3.5"></i>
+              <span>আসন্ন ইউপি নির্বাচন বিশেষ নিয়োগ</span>
+            </div>
+          </div>
+
+          <!-- Bottom Row: Recruitment Urgency Notice + Live Ticking Clock -->
+          <div class="flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left">
+            <div class="flex items-center justify-center md:justify-start gap-2 text-xs sm:text-sm font-semibold">
+              <span class="inline-flex items-center gap-1.5 bg-crimson-600 text-white px-2.5 py-0.5 rounded-full font-extrabold text-[11px] sm:text-xs shadow">
+                <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+                চূড়ান্ত সময়সীমা
+              </span>
+              <span class="text-pearl-50">সাংবাদিক প্রতিনিধি নিয়োগের আবেদন সময় শেষ হতে চলেছে!</span>
+            </div>
+
+            <!-- Live Countdown Clock -->
+            <div class="flex items-center justify-center gap-1.5 sm:gap-2">
+              <span class="text-[11px] sm:text-xs text-champagne-200 font-medium">বাকি সময়:</span>
+              <div class="flex items-center gap-1 font-heading font-extrabold text-xs sm:text-sm">
+                <div class="bg-midnight-950 border border-champagne-400/65 px-2.5 py-1 rounded-lg text-champagne-300">
+                  <span id="timer-hours">০৫</span> <span class="text-[10px] font-sans font-normal text-white">ঘণ্টা</span>
+                </div>
+                <span class="text-champagne-300 font-bold">:</span>
+                <div class="bg-midnight-950 border border-champagne-400/65 px-2.5 py-1 rounded-lg text-champagne-300">
+                  <span id="timer-minutes">৪২</span> <span class="text-[10px] font-sans font-normal text-white">মিনিট</span>
+                </div>
+                <span class="text-champagne-300 font-bold">:</span>
+                <div class="bg-midnight-950 border border-champagne-400/65 px-2.5 py-1 rounded-lg text-amber-300">
+                  <span id="timer-seconds">৫৯</span> <span class="text-[10px] font-sans font-normal text-white">সেকেন্ড</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -356,7 +322,7 @@
     </div>
   </section>
 
-  <!-- ==================== 4. JOURNALIST ID CARD & OFFICIAL DOCUMENTS SAMPLE ==================== -->
+  <!-- ==================== 3. JOURNALIST ID CARD & OFFICIAL DOCUMENTS SAMPLE ==================== -->
   <section id="id-card-section" class="py-16 sm:py-24 bg-pearl-50 border-b border-pearl-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -530,7 +496,7 @@
     </div>
   </section>
 
-  <!-- ==================== 5. MEDIA LAW, PRESS PROTECTION & LEGAL RIGHTS ==================== -->
+  <!-- ==================== 4. MEDIA LAW, PRESS PROTECTION & LEGAL RIGHTS ==================== -->
   <section id="media-law" class="py-16 sm:py-24 bg-pearl-100 border-b border-pearl-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -602,7 +568,7 @@
     </div>
   </section>
 
-  <!-- ==================== 6. SPECIAL BENEFITS FOR JOURNALISTS ==================== -->
+  <!-- ==================== 5. SPECIAL BENEFITS FOR JOURNALISTS ==================== -->
   <section id="benefits" class="py-16 sm:py-24 bg-pearl-50 border-b border-pearl-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -704,7 +670,7 @@
     </div>
   </section>
 
-  <!-- ==================== 7. AI TECHNOLOGY-DRIVEN AUTOMATIC NEWSROOM ==================== -->
+  <!-- ==================== 6. AI TECHNOLOGY-DRIVEN AUTOMATIC NEWSROOM ==================== -->
   <section id="ai-newsroom" class="py-16 sm:py-24 bg-pearl-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -782,7 +748,7 @@
     </div>
   </section>
 
-  <!-- ==================== 8. 3-STEP APPLICATION PROCESS ==================== -->
+  <!-- ==================== 7. 3-STEP APPLICATION PROCESS ==================== -->
   <section id="process" class="py-16 sm:py-24 bg-midnight-900 text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -840,7 +806,7 @@
     </div>
   </section>
 
-  <!-- ==================== 9. FINAL CALL-TO-ACTION SECTION ==================== -->
+  <!-- ==================== 8. FINAL CALL-TO-ACTION SECTION ==================== -->
   <section class="py-16 sm:py-24 bg-gradient-to-b from-pearl-100 to-pearl-50">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="bg-midnight-950 text-white rounded-[2rem] p-8 sm:p-14 text-center border-2 border-champagne-500 shadow-2xl relative overflow-hidden">
@@ -871,7 +837,7 @@
     </div>
   </section>
 
-  <!-- ==================== 10. FOOTER ==================== -->
+  <!-- ==================== 9. FOOTER ==================== -->
   <footer class="bg-midnight-950 text-pearl-200 border-t-4 border-champagne-500 pt-14 pb-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -926,7 +892,7 @@
     </div>
   </footer>
 
-  <!-- ==================== 11. SPECIAL 30-SECOND POPUP WITH VOICE & AUTO-REDIRECT ==================== -->
+  <!-- ==================== 10. SPECIAL 30-SECOND POPUP WITH AUTO-REDIRECT ==================== -->
   <div id="recruitment-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-midnight-950/85 backdrop-blur-sm">
     <div class="bg-pearl-50 rounded-3xl max-w-lg w-full border-2 border-champagne-500 shadow-2xl overflow-hidden animate-pop relative">
       
@@ -976,216 +942,80 @@
     </div>
   </div>
 
-  <!-- ==================== SCRIPTS ==================== -->
+  <!-- ==================== SCRIPTS (YOUTUBE AUTOPLAY + UNMUTE, TIMER, 30s REDIRECT) ==================== -->
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
     lucide.createIcons();
 
     const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
     const toBanglaNumber = (num) => String(num).padStart(2, '0').split('').map(d => banglaDigits[d] || d).join('');
 
-    // ==================== 1. YOUTUBE VIDEO SOUND UNMUTE/MUTE CONTROL ====================
-    const ytIframe = document.getElementById('hero-youtube-iframe');
-    const unmuteBtn = document.getElementById('unmute-video-btn');
-    const ytSoundLabel = document.getElementById('yt-sound-label');
-    let videoMuted = true;
+    // ==================== 1. YOUTUBE PLAYER WITH AUTOPLAY & AUTO-UNMUTE ====================
+    let ytPlayer = null;
+    let isSoundActive = false;
+    const soundToggleBtn = document.getElementById('sound-toggle-btn');
 
-    unmuteBtn.addEventListener('click', () => {
-      videoMuted = !videoMuted;
-      const command = videoMuted ? 'mute' : 'unMute';
-      ytIframe.contentWindow.postMessage(JSON.stringify({
-        event: 'command',
-        func: command,
-        args: []
-      }), '*');
-
-      if (videoMuted) {
-        ytSoundLabel.textContent = 'ভিডিওর সাউন্ড চালু করুন';
-        unmuteBtn.innerHTML = `<i data-lucide="volume-x" class="w-3.5 h-3.5"></i><span>ভিডিওর সাউন্ড চালু করুন</span>`;
+    function updateSoundButtonUI(unmuted) {
+      isSoundActive = unmuted;
+      if (unmuted) {
+        soundToggleBtn.innerHTML = `<i data-lucide="volume-2" class="w-3.5 h-3.5"></i><span>ভিডিও সাউন্ড চলছে</span>`;
       } else {
-        unmuteBtn.innerHTML = `<i data-lucide="volume-2" class="w-3.5 h-3.5"></i><span>ভিডিওর সাউন্ড চলছে</span>`;
+        soundToggleBtn.innerHTML = `<i data-lucide="volume-x" class="w-3.5 h-3.5"></i><span>ভিডিও সাউন্ড চালু করুন</span>`;
       }
       lucide.createIcons();
-    });
-
-    // ==================== 2. TOP URGENCY COUNTDOWN CLOCK ====================
-    const hoursEl = document.getElementById('timer-hours');
-    const minutesEl = document.getElementById('timer-minutes');
-    const secondsEl = document.getElementById('timer-seconds');
-
-    let remainingSeconds = parseInt(sessionStorage.getItem('drb_urgency_timer'), 10);
-    if (isNaN(remainingSeconds) || remainingSeconds <= 0) {
-      remainingSeconds = (5 * 3600) + (42 * 60) + 59;
     }
 
-    function updateTopClock() {
-      const hrs = Math.floor(remainingSeconds / 3600);
-      const mins = Math.floor((remainingSeconds % 3600) / 60);
-      const secs = remainingSeconds % 60;
-
-      hoursEl.textContent = toBanglaNumber(hrs);
-      minutesEl.textContent = toBanglaNumber(mins);
-      secondsEl.textContent = toBanglaNumber(secs);
-
-      if (remainingSeconds > 0) {
-        remainingSeconds -= 1;
-        sessionStorage.setItem('drb_urgency_timer', remainingSeconds);
-      } else {
-        remainingSeconds = 3600;
-      }
-    }
-    updateTopClock();
-    setInterval(updateTopClock, 1000);
-
-    // ==================== 3. MOBILE MENU ====================
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
-    mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-    mobileNavLinks.forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
-
-    // ==================== 4. AUTOMATIC BANGLA VOICE ENGINE ====================
-    const WELCOME_VOICE_TEXT = "গণপ্রজাতন্ত্রী বাংলাদেশ সরকার কর্তৃক নিবন্ধিত দৈনিক রাষ্ট্র বার্তার সাংবাদিক নিয়োগ পোর্টালে আপনাকে স্বাগতম। চূড়ান্ত আবেদন জমা দিন বাটনে ক্লিক করে এখনই আপনার আবেদন সম্পন্ন করুন।";
-    const POPUP_VOICE_TEXT = "আপনার সাংবাদিক আইডি কার্ড এবং গুরুত্বপূর্ণ ডকুমেন্টগুলো পাঠানো হবে এবং সংবাদপত্রের একাউন্ট দেয়া হবে ও সবকিছু বুঝিয়ে দেয়া হবে। আবেদনটি জমা দিন।";
-
-    const voiceToggleBtn = document.getElementById('voice-toggle-btn');
-    const voiceWaves = document.getElementById('voice-waves');
-    const voiceIcon = document.getElementById('voice-icon');
-    const voiceLabel = document.getElementById('voice-label');
-
-    let isMuted = false;
-    let welcomeSpoken = false;
-
-    function setSpeakingUI(active) {
-      if (active) {
-        voiceWaves.classList.remove('hidden');
-        voiceWaves.classList.add('inline-flex');
-        voiceIcon.classList.add('hidden');
-        voiceLabel.textContent = 'ভয়েস চলছে...';
-      } else {
-        voiceWaves.classList.add('hidden');
-        voiceWaves.classList.remove('inline-flex');
-        voiceIcon.classList.remove('hidden');
-        voiceLabel.textContent = isMuted ? 'ভয়েস বন্ধ' : 'ভয়েস শুনুন';
-      }
-    }
-
-    function speakBangla(text, isWelcome = false) {
-      if (isMuted || !('speechSynthesis' in window)) return;
-
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'bn-BD';
-      utterance.rate = 0.96;
-      utterance.pitch = 1.05;
-
-      const voices = window.speechSynthesis.getVoices();
-      const bnVoice = voices.find(v => v.lang.toLowerCase().includes('bn'));
-      if (bnVoice) utterance.voice = bnVoice;
-
-      utterance.onstart = () => {
-        if (isWelcome) welcomeSpoken = true;
-        setSpeakingUI(true);
-      };
-      utterance.onend = () => setSpeakingUI(false);
-      utterance.onerror = () => setSpeakingUI(false);
-
-      window.speechSynthesis.speak(utterance);
-    }
-
-    function initAutoVoice() {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.getVoices();
+    function attemptAutoUnmute() {
+      if (ytPlayer && typeof ytPlayer.unMute === 'function') {
+        ytPlayer.unMute();
+        ytPlayer.setVolume(100);
+        ytPlayer.playVideo();
         setTimeout(() => {
-          if (!welcomeSpoken && !isMuted) speakBangla(WELCOME_VOICE_TEXT, true);
-        }, 600);
+          if (ytPlayer && typeof ytPlayer.isMuted === 'function') {
+            updateSoundButtonUI(!ytPlayer.isMuted());
+          }
+        }, 250);
       }
     }
 
-    window.addEventListener('load', initAutoVoice);
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.onvoiceschanged = () => {
-        if (!welcomeSpoken && !isMuted) speakBangla(WELCOME_VOICE_TEXT, true);
-      };
-    }
+    window.onYouTubeIframeAPIReady = function () {
+      ytPlayer = new YT.Player('yt-player-container', {
+        videoId: 'Zz_A4x22pPE',
+        playerVars: {
+          autoplay: 1,
+          mute: 1,
+          loop: 1,
+          playlist: 'Zz_A4x22pPE',
+          controls: 1,
+          rel: 0,
+          playsinline: 1
+        },
+        events: {
+          onReady: function (event) {
+            event.target.playVideo();
+            // Try automatic unmute right after autoplay begins
+            setTimeout(attemptAutoUnmute, 500);
+          },
+          onStateChange: function (event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+              attemptAutoUnmute();
+            }
+          }
+        }
+      });
+    };
 
+    // Guarantee unmute on first touch/scroll/click anywhere if browser initially muted autoplay
     ['click', 'touchstart', 'scroll', 'keydown'].forEach(evt => {
       window.addEventListener(evt, () => {
-        if (!welcomeSpoken && !isMuted) speakBangla(WELCOME_VOICE_TEXT, true);
+        if (!isSoundActive) {
+          attemptAutoUnmute();
+        }
       }, { once: true, passive: true });
     });
 
-    voiceToggleBtn.addEventListener('click', (e) => {
+    soundToggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      if (window.speechSynthesis && window.speechSynthesis.speaking) {
-        window.speechSynthesis.cancel();
-        isMuted = true;
-        setSpeakingUI(false);
-      } else {
-        isMuted = false;
-        speakBangla(WELCOME_VOICE_TEXT, true);
-      }
-    });
-
-    // ==================== 5. 30-SECOND POPUP + AUTO-REDIRECT TO GOOGLE FORM ====================
-    const FORM_URL = 'https://forms.gle/ipdv2jRRCBfCdaKb7';
-    const modal = document.getElementById('recruitment-modal');
-    const closeModalBtn = document.getElementById('close-modal-btn');
-    const dismissTextBtn = document.getElementById('dismiss-text-btn');
-    const countdownEl = document.getElementById('redirect-countdown');
-
-    let popupDismissed = sessionStorage.getItem('drb_popup_closed') === 'true';
-    let redirectInterval = null;
-
-    function closePopup() {
-      popupDismissed = true;
-      sessionStorage.setItem('drb_popup_closed', 'true');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-      if (window.speechSynthesis) window.speechSynthesis.cancel();
-      setSpeakingUI(false);
-      if (redirectInterval) {
-        clearInterval(redirectInterval);
-        redirectInterval = null;
-      }
-    }
-
-    function openPopupAndStartRedirect() {
-      if (popupDismissed) return;
-
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-
-      speakBangla(POPUP_VOICE_TEXT, false);
-
-      let secondsLeft = 5;
-      countdownEl.textContent = banglaDigits[secondsLeft];
-
-      redirectInterval = setInterval(() => {
-        if (popupDismissed) {
-          clearInterval(redirectInterval);
-          return;
-        }
-        secondsLeft -= 1;
-        if (secondsLeft > 0) {
-          countdownEl.textContent = banglaDigits[secondsLeft];
-        } else {
-          clearInterval(redirectInterval);
-          window.location.href = FORM_URL;
-        }
-      }, 1000);
-    }
-
-    // Trigger automatically after exactly 30 seconds (30000 ms)
-    if (!popupDismissed) {
-      setTimeout(openPopupAndStartRedirect, 30000);
-    }
-
-    closeModalBtn.addEventListener('click', closePopup);
-    dismissTextBtn.addEventListener('click', closePopup);
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closePopup();
-    });
-  </script>
-</body>
-</html>
+      if (!ytPlayer) return;
+      if (ytPlayer.isMuted()) {
+        ytPlayer.unMute();
